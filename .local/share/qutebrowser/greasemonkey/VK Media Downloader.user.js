@@ -12,7 +12,8 @@
 // @include        *://*.vkuseraudio.net/*
 // @include        *://*.vkuservideo.net/*
 // @include        *://*.pladform.ru/*
-// @version        2.3.4
+// @include        *://*.mycdn.me/*
+// @version        2.3.12
 // @author         EisenStein
 // @compatible     firefox
 // @compatible     chrome
@@ -25,6 +26,7 @@
 // @connect        userapi.com
 // @connect        vkuseraudio.net
 // @connect        vkuservideo.net
+// @connect        mycdn.me
 // @connect        pladform.ru
 // @connect        rutube.ru
 // @run-at         document-start
@@ -43,7 +45,7 @@
 // @grant          GM.getValue
 // @grant          GM.deleteValue
 // @grant          GM.listValues
-// @require        https://greasyfork.org/scripts/391148/code/script.user.js?version=750312
+// @require        https://greasyfork.org/scripts/391148/code/script.user.js?version=804805
 // @require        https://greasyfork.org/scripts/391452/code/script.user.js?version=742854
 // ==/UserScript==
 
@@ -54,6 +56,26 @@
 // @require        https://cdn.jsdelivr.net/npm/jszip/dist/jszip.min.js
 
 /*
+ * > v2.3.13 - 2020.07.01
+ *   fix encoding
+ * > v2.3.11 - 2020.06.22
+ *   handle new response format for videos
+ * > v2.3.10 - 2020.06.12
+ *   handle size request error
+ * > v2.3.9 - 2020.06.12
+ *   simplify batch scripts
+ *   disable addToDomainList method
+ * > v2.3.8 - 2020.05.23
+ *   fallback to m3u8 downloading if mp3 size does not match m3u8 size
+ * > v2.3.7 - 2020.05.13
+ *   new hack for mp3 downloading - convert m3u8 link to mp3 link (thanks askornot, https://greasyfork.org/ru/users/320573)
+ *   update max duration for hls to 10 hours
+ *   update max size for hls to 2 GiB
+ *   add new user option "try mp3 from m3u8" - create mp3 link from m3u8 link
+ * > v2.3.6 - 2020.04.29
+ *   filename for some cases
+ * > v2.3.5 - 2020.04.08
+ *   add media filename into "filename.txt"
  * > v2.3.4 - 2019.11.25
  *   download audio on audio tooltip click
  * > v2.3.3 - 2019.11.19
@@ -185,14 +207,14 @@
     const str = '===============================================';
     console.log(['VK_MEDIA_DOWNLOADER START', str].join('\n'));
     const { hostname, pathname } = self.location;
-    const SCRIPT_VERSION = typeof GM_info !== 'undefined' ? `v${GM_info.script.version}` : 'v2.3.4';
+    const SCRIPT_VERSION = typeof GM_info !== 'undefined' ? `v${GM_info.script.version}` : 'v2.3.12';
     console.log('vkmd.. (', SCRIPT_VERSION, ')', hostname + pathname, top === self ? 'top' : 'child');
     // 0 - no log, 1 - switch on .log, 2 - switch on .out, 4 - switch on .audio, 8 - .ajax, 16 - .att, 32 - .keydown
     const DEBUG = 0; // e.i 7 = (1 + 2 + 4) = (.log + .out + .audio) logs
     const LOGGER = new Logger();
     const TEXTAREA = document.createElement('textarea');
     const LINK = document.createElement('a');
-    const DOMAIN_LIST = ['vk.com', 'vk-cdn.com', 'vk-cdn.net', 'userapi.com', 'vkuseraudio.net', 'vkuservideo.net', 'pladform.ru', 'rutube.ru'];
+    const DOMAIN_LIST = ['vk.com', 'vk-cdn.com', 'vk-cdn.net', 'userapi.com', 'vkuseraudio.net', 'vkuservideo.net', 'pladform.ru', 'rutube.ru', 'mycdn.me'];
     const MASTER_PLAYLIST_REGEX = /#EXT-X-STREAM-INF:([^\n\r]*)[\r\n]+([^\r\n]+)/g;
     const DECIMAL_RESOLUTION_REGEX = /^(\d+)x(\d+)$/;
     const ATTR_LIST_REGEX = /\s*(.+?)\s*=((?:\".*?\")|.*?)(?:,|$)/g;
@@ -202,6 +224,7 @@
     const SCRIPT_NAME = typeof GM_info !== 'undefined' ? GM_info.script.name : 'Vk Media Downloader';
     const HLS_MAX_SIZE = 1 * 1024 * 1024 * 1024; // 1 GB
     const HLS_MAX_DURATION = 3 * 60 * 60; // 3 hours
+    const TRY_MP3_FROM_M3U8 = true;
     /**
      * DOWNLOAD_TS
      *
@@ -264,6 +287,7 @@
         USE_CUSTOM_UA,
         USER_AGENT,
         LOG_WITH_CONSOLE,
+        TRY_MP3_FROM_M3U8,
     };
     const MEDIA_LIST = {
         audio: {},
@@ -471,6 +495,7 @@
         MP2T_SIZE_FACTOR,
         LOG_WITH_CONSOLE: global.LOG_WITH_CONSOLE,
         NATIVE_UA: navigator.userAgent,
+        TRY_MP3_FROM_M3U8: global.TRY_MP3_FROM_M3U8,
     });
     window.addEventListener('keydown', function(e){
         const code = e.which || e.keyCode;
@@ -1030,7 +1055,7 @@
         addToDomainList(url);
         LOGGER.log('[+] CHANNEL_LIST.size() -> url:', url);
         const channel = await this.ready(url);
-        const cb = callback ? function(error, [{ size }]) { callback(error, size); } : null;
+        const cb = callback ? function(error, [response]) { callback(error, response.size, response); } : null;
         channel.emit('size-req', {
             data: { url, ext, name, prop, id },
         }, cb);
@@ -1592,61 +1617,57 @@
         return new Uint8Array(bytes);
     }
     LOGGER.out('[+] Downloader.generateMp3Bat');
-    Downloader.generateMp3Bat = function generateMp3Bat() {
-        if (Downloader._mp3bat) {
+    Downloader.generateMp3Bat = function generateMp3Bat(fileName = 'output') {
+        if (Downloader._mp3bat && !fileName) {
             return Downloader._mp3bat.join('\r\n');
         }
         Downloader._mp3bat = [
             '@echo off',
             'setlocal enabledelayedexpansion',
+            'chcp 65001',
             'ffmpeg -version',
             'if errorlevel 1 (',
             '  echo "ffmpeg not found"',
             '  @pause',
-            'exit',
+            '  exit',
             ')',
-            'FOR %%i in (*.out) DO (',
-            '  set "filename=%%~ni"',
-            '  goto :next',
-            ')',
-            ':next',
+            'SET "filename=' + fileName + '"',
             'echo "filename: %filename%"',
+            'echo "cd: %cd%"',
+            'dir',
+            '@pause',
             '(FOR /R %%i IN (*.ts) DO @echo file \'s/%%~nxi\') > list.txt',
-            'REM set str=concat:',
-            'REM FOR /R %%i in (*.ts) DO set "str=!str!s/%%~nxi|"',
-            'REM ffmpeg -i "%str%" -c:a copy -vn "%filename%.mp3"',
             'ffmpeg -f concat -safe 0 -loglevel panic -i list.txt -c:a copy -vn "%filename%.mp3"',
             'del "list.txt"',
+            'echo "success"',
             '@pause',
         ];
         return Downloader._mp3bat.join('\r\n');
     };
     LOGGER.out('[+] Downloader.generateMp4Bat');
-    Downloader.generateMp4Bat = function generateMp4Bat() {
-        if (Downloader._mp4bat) {
+    Downloader.generateMp4Bat = function generateMp4Bat(fileName = 'output') {
+        if (Downloader._mp4bat && !fileName) {
             return Downloader._mp4bat.join('\r\n');
         }
         Downloader._mp4bat = [
             '@echo off',
             'setlocal enabledelayedexpansion',
+            'chcp 65001',
             'ffmpeg -version',
             'if errorlevel 1 (',
             '  echo "ffmpeg not found"',
             '  @pause',
             'exit',
             ')',
-            'FOR %%i in (*.out) DO (',
-            '  set "filename=%%~ni"',
-            '  goto :next',
-            ')',
-            ':next',
+            'SET "filename=' + fileName + '"',
             'echo "filename: %filename%"',
+            'echo "cd: %cd%"',
+            'dir',
+            '@pause',
             '(FOR /R %%i IN (*.ts) DO @echo file \'s/%%~nxi\') > list.txt',
-            'REM set str=concat:',
-            'REM FOR /R %%i in (*.ts) DO set "str=!str!s/%%~nxi|"',
-            'REM ffmpeg -i "%str%" -c:a copy -c:v copy "%filename%.mp4"',
             'ffmpeg -f concat -safe 0 -loglevel panic -i list.txt -c:a copy -c:v copy "%filename%.mp4"',
             'del "list.txt"',
+            'echo "success"',
             '@pause',
         ];
         return Downloader._mp4bat.join('\r\n');
@@ -1670,11 +1691,6 @@
             'done',
             'ffmpeg -f concat -safe 0 -loglevel panic -i list.txt -c:a copy -c:v copy "$filename.mp4"',
             'rm -f list.txt',
-            '# str="concat:"',
-            '# for file in s/*.ts; do',
-            '#  str="$str$file|"',
-            '# done',
-            '# ffmpeg -i "$str" -c:a copy -c:v copy "$filename.mp4"',
             'exit 0',
         ];
         return Downloader._mp4sh.join('\n');
@@ -1698,11 +1714,6 @@
             'done',
             'ffmpeg -f concat -safe 0 -loglevel panic -i list.txt -c:a copy -vn "$filename.mp3"',
             'rm -f list.txt',
-            '# str="concat:"',
-            '# for file in s/*.ts; do',
-            '#   str="$str$file|"',
-            '# done',
-            '# ffmpeg -i "$str" -c:a copy -vn "$filename.mp3"',
             'exit 0',
         ];
         return Downloader._mp3sh.join('\n');
@@ -1735,11 +1746,12 @@
             jszip.file('s/' + filename, data, { binary: true });
         }
         jszip.file(name + '.out', '');
-        jszip.file('generate.mp3.bat', Downloader.generateMp3Bat());
+        jszip.file('filename.txt', name);
+        jszip.file('generate.mp3.bat', Downloader.generateMp3Bat(name));
         jszip.file('generate.mp3.sh', Downloader.generateMp3Sh(), {
             unixPermissions: '755',
         });
-        jszip.file('generate.mp4.bat', Downloader.generateMp4Bat());
+        jszip.file('generate.mp4.bat', Downloader.generateMp4Bat(name));
         jszip.file('generate.mp4.sh', Downloader.generateMp4Sh(), {
             unixPermissions: '755',
         });
@@ -2024,14 +2036,33 @@
 			LOGGER.log('[+] AUDIO_LIST.download() -> warning: no data found');
             return null;
         }
-        const { duration, src: url, filename, downloadState = 'void', size } = data;
+        const { duration, filename, downloadState = 'void', size } = data;
+        let { src: url } = data;
         const source = data;
         if (downloadState === 'started') {
             LOGGER.log('[+] AUDIO_LIST.download() -> download already started');
             return;
         }
-        const ext = getExtension(url);
+        let ext = getExtension(url);
         LOGGER.log('[+] AUDIO_LIST.download() -> extension = "' + ext + '"');
+        if (ext.indexOf('m3u') !== -1 && global.TRY_MP3_FROM_M3U8) {
+          const mp3_url = url.replace(/\/index\.m3u8?/, '.mp3').split('/').filter(function (_, idx, arr) {
+            return idx !== arr.length - 2;
+          }).join('/');
+          const mp3_size = await new Promise(function (resolve, reject) {
+            CHANNEL_LIST.size({ url: mp3_url }, function (error, size) {
+              if (error) { reject(error) }
+              else { resolve(size) }
+            });
+          }).catch(function(error){ return 0; });
+          const ratio = mp3_size / size;
+          console.log('[+] ', { ratio, mp3_size, size });
+          if (mp3_size && ratio < 1.1 && ratio > 0.9) {
+            url = mp3_url;
+            ext = getExtension(url);
+            LOGGER.log('[+] AUDIO_LIST.download() -> try mp3 from m3u8, url = "' + url + '"');
+          }
+        }
         if (ext.indexOf('m3u') !== -1) {
 			LOGGER.log('[+] AUDIO_LIST.download() -> hls stream: ', url);
             source.downloadState = 'started';
@@ -2264,12 +2295,15 @@
         const source = data.sources[q];
         const { duration } = data;
         const url = source.src || source.hls;
-        const ext = getExtension(url);
+        const ext = source.ext || getExtension(url);
+        LINK.href = url;
+        const origin = LINK.origin;
         LOGGER.log('[+] VIDEO_LIST.size() -> start');
+        LOGGER.log('[+] VIDEO_LIST.url: ', ext, url);
         if (!source.size && source.bitrate) {
             source.size = bitrateToSize({ bitrate: source.bitrate, duration });
             return source.size;
-        } else if (ext.indexOf('m3u') !== -1) {
+        } else if (ext && ext.indexOf('m3u') !== -1) {
             LOGGER.log('[+] VIDEO_LIST.size() -> request ' + ext + ' bitrate');
             const hls = new Hls();
             hls.loadSource(url);
@@ -2281,8 +2315,9 @@
         } else {
             LOGGER.log('[+] VIDEO_LIST.size() -> request ' + ext + ' bitrate');
             const promise = new Promise(function(resolve, reject){
-                if (typeof GM === 'undefined' || typeof GM.xmlHttpRequest === 'undefined') {
-                    CHANNEL_LIST.size({ url }, function(error, size){
+                if (typeof GM === 'undefined' || typeof GM.xmlHttpRequest === 'undefined' || (origin && origin.indexOf('mycdn.me') !== -1)) {
+                    CHANNEL_LIST.size({ url }, function(error, size, response){
+                        if (response) source.ext = source.ext || response.ext;
                         return error ? reject(error) : resolve(size);
                     });
                     return;
@@ -2296,9 +2331,16 @@
                         referer: location.href,
                     },
                 }).then(function({ headers }){
-                    const { 'content-length': size } = headers;
+                    const { 'content-length': size, 'content-type': type } = headers;
+                    source.ext = source.ext || (type ? type.split('/')[1] : null);
                     resolve(+size);
-                }).catch(reject);
+                }).catch(function (err) {
+                    console.log('[?] VIDEO_LIST.size() -> retry due to error: ', err);
+                    CHANNEL_LIST.size({ url }, function(error, size, response){
+                        if (response) source.ext = source.ext || response.ext;
+                        return error ? reject(error) : resolve(size);
+                    });
+                });
             }).catch(function(error){
                 LOGGER.error('[-] VIDEO_LIST.size() -> error:', error);
             });
@@ -2370,6 +2412,8 @@
                 t.quality = [];
                 t.name = t.md_title;
                 t.mid = t.oid + '_' + t.vid;
+                const sources2 = {};
+                const quality2 = [];
                 for (const key in params) {
                     const match = key.match(/url(\d+)/);
                     if (match) {
@@ -2377,6 +2421,19 @@
                         const src = params[key];
                         t.sources[q] = { src, q };
                         t.quality.push(q);
+                    }
+                    const match2 = key.match(/cache(\d+)/);
+                    if (match2) {
+                        const q = +match2[1];
+                        const src = params[key];
+                        sources2[q] = { src, q };
+                        quality2.push(q);
+                    }
+                }
+                if (quality2.length && getExtension(sources2[quality2[0]].src)) {
+                    if (!t.quality.length || !getExtension(t.sources[t.quality[0]].src)) {
+                        t.quality = quality2;
+                        t.sources = sources2;
                     }
                 }
                 if (!t.hls_raw) {
@@ -2873,10 +2930,10 @@
             return;
         }
         const url = src || hls;
-        const ext = getExtension(url);
+        const ext = source.ext || getExtension(url);
         const filename = name + '.' + q + 'p';
         LOGGER.log('[+] VIDEO_LIST.download()..');
-        if (ext.indexOf('m3u') !== -1) {
+        if (ext && ext.indexOf('m3u') !== -1) {
             source.downloadState = 'started';
             LOGGER.log('[+] VIDEO_LIST.download() -> ' + ext);
             await downloadHls({
@@ -2899,11 +2956,11 @@
                     return error ? reject(error) : resolve();
                 };
                 if (typeof GM_download === 'undefined') {
-                    return CHANNEL_LIST.download({ url, id, prop: q, name: filename }, callback);
+                    return CHANNEL_LIST.download({ url, id, prop: q, name: filename, ext }, callback);
                 }
                 const onerror = function(error) {
                     LOGGER.warn('[-] VIDEO_LIST.download() -> GM_download failed,\nfilename = "' + filename + '",\nurl = "' + url + '",\nresponse: ', error, '\nstarting Channel download');
-                    return CHANNEL_LIST.download({ url, id, prop: q, name: filename }, callback);
+                    return CHANNEL_LIST.download({ url, id, prop: q, name: filename, ext }, callback);
                 };
                 const onload = function(response) {
                     LOGGER.log('[+] VIDEO_LIST.download() -> GM_download complete: ', response);
@@ -2917,7 +2974,7 @@
                 LOGGER.log('[+] GM_download');
                 GM_download({
                     url,
-                    name: filename + '.' + getExtension(url),
+                    name: filename + '.' + (source.ext || getExtension(url)),
                     onerror,
                     onload,
                     onprogress,
@@ -2969,9 +3026,9 @@
         let i = 0;
         for (; i < quality.length; ++i) {
             const q = +quality[i];
-            const { size = 0, src, hls, progress = 0 } = data.sources[q];
+            let { size = 0, src, hls, progress = 0, ext } = data.sources[q];
             const url = src || hls;
-            const ext = getExtension(url);
+            ext = ext || getExtension(url);
             data.sources[q].ext = ext;
             const title = md_title + '.' + q + 'p';
             const filename = title + (ext ? ('.' + ext) : '');
@@ -3688,6 +3745,8 @@
     }
     LOGGER.out('[+] addToDomainList');
     function addToDomainList(url) {
+        return -1;
+        /*
         LOGGER.log('[+] addToDomainList()');
         if (window.location.hostname !== 'vk.com') {
             return -1;
@@ -3731,6 +3790,7 @@
         }
         localStorage.setItem(STORAGE_KEY, JSON.stringify(storage));
         return 0;
+        */
     }
     LOGGER.out('[+] child');
     async function child() {
@@ -3753,15 +3813,19 @@
                 LOGGER.log('[+] child() -> on size-req data:', JSON.stringify(dt, null, 2));
             } catch (error) {}
             const { url, id = 'unknown', prop = 'unknown', media = 'unknown', name = 'unknown' } = dt;
-            const ext = getExtension(url);
+            let ext = getExtension(url) || dt.ext;
             const filename = name + '.' + ext;
             const { headers } = await makeRequest({
                 method: 'HEAD',
                 url,
+            }).catch(function(e) {
+              LOGGER.log('[-] child() -> on size-req error: ', e);
+              return {};
             });
-            const size = +headers['content-length'];
+            const size = headers && headers['content-length'] ? +headers['content-length'] : 0;
+            ext = ext || (headers && headers['content-type'] ? headers['content-type'].split('/')[1] : null);
             LOGGER.log('[+] child() -> size-req size:', size);
-            const data = { size, url, id, prop, media, name };
+            const data = { size, url, id, prop, media, name, ext };
             return data;
         });
         LOGGER.log('[+] child() -> on download-req');
@@ -3770,10 +3834,10 @@
                 LOGGER.log('[+] child() -> on download-req data:', JSON.stringify(dt, null, 2));
             } catch (error) {}
             const { url, id, prop, name, media = 'unknown' } = dt;
-            const ext = getExtension(url);
+            const ext = getExtension(url) || dt.ext;
             const filename = name + '.' + ext;
             LOGGER.log('[+] child() -> on download-req ext:', ext);
-            if (ext.indexOf('m3u') !== -1) {
+            if (ext && ext.indexOf('m3u') !== -1) {
                 channel.emit('download-resp');
                 LOGGER.log('[+] child() -> download-req hls playlist.');
                 return;
