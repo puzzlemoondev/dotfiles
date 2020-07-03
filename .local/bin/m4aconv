@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ -z "$1" ]
+  then
+    echo "No argument supplied"
+    exit 1
+fi
+find "$1" -print0 | xargs -0 file | grep -i audio | cut -f 1 -d ':' | parallel 'ffmpeg -y -i {} -c:a aac -c:v copy -b:a 320k {.}-converted.m4a && rm {}'

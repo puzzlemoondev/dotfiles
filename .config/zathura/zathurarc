@@ -1,0 +1,44 @@
+set font "monospace 12"
+
+set default-bg                  "#323D43"
+set default-fg                  "#868D80"
+
+set statusbar-fg                "#1e292f"
+set statusbar-bg                "#868D80"
+
+set inputbar-bg                 "#323D43"
+set inputbar-fg                 "#D8CAAC"
+
+set notification-bg             "#323D43"
+set notification-fg             "#D8CAAC"
+
+set notification-error-bg       "#323D43"
+set notification-error-fg       "#E68183"
+
+set notification-warning-bg     "#323D43"
+set notification-warning-fg     "#E68183"
+
+set highlight-color             "#D9BB80"
+set highlight-active-color      "#89BEBA"
+
+set completion-bg               "#868D80"
+set completion-fg               "#89BEBA"
+
+set completion-highlight-fg     "#D8CAAC"
+set completion-highlight-bg     "#89BEBA"
+
+set recolor-lightcolor          "#323D43"
+set recolor-darkcolor           "#D8CAAC"
+
+set recolor                     "true"
+set recolor-keephue             "false"
+
+set selection-clipboard clipboard
+set guioptions none
+
+map <C-i> toggle_index
+map <C-b> toggle_inputbar
+map <C-s> toggle_statusbar
+map <C-=> zoom in
+map <C--> zoom out
+map <C-r> recolor

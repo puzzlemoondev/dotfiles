@@ -1,0 +1,73 @@
+html {
+  background-color: #323D43 !important;
+}
+html body,
+html div,
+html div * {
+  background-color: rgba(50,61,67,0.5) !important;
+  color: #D8CAAC !important;
+  text-shadow:none !important;
+}
+html body div * {
+  border-color: #1E292F !important;
+  text-shadow:none !important;
+}
+html body div a {
+  text-shadow:none !important;
+  color: #A7C080 !important;
+}
+html body div a:visited {
+  color: #868D80 !important;
+}
+html body input,
+html body textarea {
+  background-color: #323D43 !important;
+  color: #D8CAAC !important;
+}
+* {
+  border-color: #323D43 !important;
+}
+a {
+  color: #A7C080 !important;
+}
+a:visited {
+  color: #868D80 !important;
+}
+body {
+  background-color: #323D43 !important;
+  color: #D8CAAC !important;
+}
+html {
+  background-color: #323D43 !important;
+}
+input,
+textarea {
+  background-color: #323D43 !important;
+  color: #D8CAAC !important;
+}
+blockquote,
+pre {
+  background-color: #323D43 !important;
+  color: #D8CAAC !important;
+}
+* {
+  border-color: #323D43 !important;
+}
+a {
+  color: #A7C080 !important;
+}
+a:visited {
+  color: #868D80 !important;
+}
+body {
+  background-color: #1E292F !important;
+  color: #D8CAAC !important;
+}
+html {
+  background-color: #323D43 !important;
+}
+input,
+textarea {
+  background-color: #323D43 !important;
+  color: #D8CAAC !important;
+}

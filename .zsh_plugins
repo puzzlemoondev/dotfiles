@@ -1,0 +1,25 @@
+mafredri/zsh-async
+MichaelAquilina/zsh-you-should-use
+rupa/z
+changyuheng/fz
+hchbaw/zce.zsh
+b4b4r07/enhancd
+caarlos0/zsh-mkc
+juanrgon/yadm-zsh
+Cloudstek/zsh-plugin-appup
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+
+robbyrussell/oh-my-zsh path:plugins/git
+robbyrussell/oh-my-zsh path:plugins/aws
+robbyrussell/oh-my-zsh path:plugins/sudo
+robbyrussell/oh-my-zsh path:plugins/systemd
+robbyrussell/oh-my-zsh path:plugins/extract
+robbyrussell/oh-my-zsh path:plugins/archlinux
+robbyrussell/oh-my-zsh path:plugins/dirhistory
+robbyrussell/oh-my-zsh path:plugins/colored-man-pages
+robbyrussell/oh-my-zsh path:plugins/virtualenvwrapper
+
+sindresorhus/pure
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-history-substring-search

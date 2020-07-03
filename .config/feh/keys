@@ -1,0 +1,6 @@
+# unsetting
+zoom_in 
+zoom_out 
+# custom key mapping
+zoom_in equal
+zoom_out minus

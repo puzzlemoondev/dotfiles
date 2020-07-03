@@ -1,0 +1,8 @@
+#!/bin/bash
+unzip -o -d out "$1" && \
+cd out && \
+chmod +x generate.mp3.sh && \
+./generate.mp3.sh && \
+find . ! -name '*.mp3' -type f -delete && \
+rm -rf s && \
+cd ..

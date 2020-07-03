@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# update zsh plugins
+echo "Updating zsh plugins"
+if command -v antibody >/dev/null 2>&1 ; then
+    echo "Antibody is installed. Updating..."
+    antibody bundle < ~/.zsh_plugins > ~/.zsh_plugins.sh
+else
+    echo "Antibody is not installed. Skipping..."
+fi
+
+echo
+
+# install vim plugins
+echo "Updating vim plugins"
+if command -v nvim >/dev/null 2>&1; then
+    echo "Neovim is installed. Updating plugins..."
+    nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+else
+    echo "Neovim is not installed. Skipping..."
+fi
+
+echo
+
+# create hblock configuration in /etc
+echo "Configuring hblock"
+
+HBLOCK_CONFIG_DIR=/etc/hblock.d
+
+if [ -d $HBLOCK_CONFIG_DIR ]; then
+    echo "Found old hblock configuration directory, removing..."
+    if [ -L $HBLOCK_CONFIG_DIR ]; then
+	sudo rm $HBLOCK_CONFIG_DIR
+    else
+	sudo rm -rf $HBLOCK_CONFIG_DIR
+    fi
+fi
+
+echo "Creating hblock configuration"
+sudo cp -r ~/.config/hblock.d $HBLOCK_CONFIG_DIR
+
+if command -v hblock >/dev/null 2>&1; then
+    echo "Hblock is installed. Updating host file..."
+    hblock
+else
+    echo "Hblock is not installed. Skipping..."
+fi
+
+# use pacwall as wallpaper
+echo "Configuring pacwall"
+
+if [ -f /bin/pacwall ]; then
+    echo "Pacwall is installed. Updating wallpaper..."
+    pacwall -b "#323D43" -s "#D8CAAC22" -d "#E68183AA" -e "#89BEBAAA" -p "#A7C080AA" -f "#D3A0BCAA" -u "#D9BB80AA" -r 0.6 -o ${HOME}/Pictures/walls/pacwall.png
+else
+    echo "Pacwall is not installed. Skipping..."
+fi
