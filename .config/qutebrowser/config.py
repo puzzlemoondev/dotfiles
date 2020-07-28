@@ -1,3 +1,8 @@
+import subprocess
+from operator import mul
+from functools import reduce
+
+_pixels = reduce(mul, map(int, subprocess.check_output("xrandr -q | grep ' connected' | grep -oEi '[0-9]+x[0-9]+'", shell=True).strip().split(b'x')))
 _stylesheet = '~/.config/qutebrowser/userscripts/forest-all-sites.css'
 
 # system
@@ -39,6 +44,7 @@ c.statusbar.show = 'always'
 c.tabs.last_close = 'startpage'
 c.tabs.position = 'bottom'
 c.tabs.show = 'multiple'
+c.zoom.default = '125%' if _pixels > 2073600 else '100%'
 
 # aliases
 c.aliases['x'] = 'quit --save'
