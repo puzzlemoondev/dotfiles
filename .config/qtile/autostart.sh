@@ -1,6 +1,6 @@
 #!/bin/bash
 
-redshift -l 25.04:121.53 -g 1.0:0.8:0.7 -t 6500:5500 &
+redshift -l 25.04:121.53 -g 1.0:0.8:0.7 &
 mpDris2 &
 ~/.fehbg &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
