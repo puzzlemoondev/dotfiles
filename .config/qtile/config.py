@@ -2,6 +2,7 @@ import subprocess
 
 from pathlib import Path
 from itertools import chain
+from functools import partial
 
 from libqtile.config import EzKey as Key, EzDrag as Drag, EzClick as Click, Screen, Group, ScratchPad, DropDown
 from libqtile.lazy import lazy
@@ -59,13 +60,13 @@ def float_to_front(qtile):
             window.cmd_bring_to_front()
             window.cmd_focus()
 
-def window_to_next_group(qtile):
+def window_to_next_group(qtile, switch_group=False):
     target_index = group_names.index(qtile.current_group.name) + 1
-    qtile.current_window.cmd_togroup(group_names[target_index if target_index < len(group_names) else 0])
+    qtile.current_window.cmd_togroup(group_names[target_index if target_index < len(group_names) else 0], switch_group=switch_group)
 
-def window_to_prev_group(qtile):
+def window_to_prev_group(qtile, switch_group=False):
     target_index = group_names.index(qtile.current_group.name) - 1
-    qtile.current_window.cmd_togroup(group_names[target_index])
+    qtile.current_window.cmd_togroup(group_names[target_index], switch_group=switch_group)
 
 # KEYS
 keys = [
@@ -106,8 +107,10 @@ keys = [
     # GROUP KEYS
     Key("M-<bracketleft>", lazy.screen.prev_group()),
     Key("M-<bracketright>", lazy.screen.next_group()),
-    Key("M-S-<bracketleft>", lazy.function(window_to_prev_group)),
-    Key("M-S-<bracketright>", lazy.function(window_to_next_group)),
+    Key("M-C-<bracketleft>", lazy.function(window_to_prev_group)),
+    Key("M-C-<bracketright>", lazy.function(window_to_next_group)),
+    Key("M-S-<bracketleft>", lazy.function(partial(window_to_prev_group, switch_group=True))),
+    Key("M-S-<bracketright>", lazy.function(partial(window_to_next_group, switch_group=True))),
     Key("M-<grave>", lazy.screen.togglegroup()),
 
     # SUPER + SHIFT KEYS
