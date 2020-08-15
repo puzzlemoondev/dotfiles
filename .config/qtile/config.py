@@ -191,7 +191,7 @@ keys.extend(chain.from_iterable((
 # DROPDOWN
 groups.append(ScratchPad("dropdown", [DropDown("term", term_new)]))
 
-keys.append(Key("<F11>", lazy.group["dropdown"].dropdown_toggle("term")))
+keys.append(Key("<F12>", lazy.group["dropdown"].dropdown_toggle("term")))
 
 # LAYOUTS
 layouts = [layout.MonadTall(**monad_config), layout.MonadWide(**monad_config), layout.Max()]
