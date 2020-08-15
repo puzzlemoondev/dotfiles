@@ -5,9 +5,6 @@ from functools import reduce
 _pixels = reduce(mul, map(int, subprocess.check_output("xrandr -q | grep ' connected' | grep -oEi '[0-9]+x[0-9]+'", shell=True).strip().split(b'x')))
 _stylesheet = '~/.config/qutebrowser/userscripts/forest-all-sites.css'
 
-# system
-c.qt.force_software_rendering = 'chromium'
-
 # editor
 c.editor.command = ['nvim', '{file}', '-c', 'normal {line}G{column0}l']
 
