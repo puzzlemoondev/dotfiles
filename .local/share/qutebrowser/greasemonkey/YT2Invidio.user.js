@@ -55,25 +55,25 @@ function rewriteLinks(config) {
     // Youtube: https://www.youtube.com/watch?v=cRRA2xRRgl8 || https://www.youtube.com/channel/dfqwfhqQ34er || https://www.youtube.com/playlist?list=PLjV3HijScGMynGvjJrvNNd5Q9pPy255dL
     // only rewrite if we're not on Invidious already (too keep the "watch this on YouTube" links intact)
     if (elem.href.match(/((www|m)\.)?youtube.com(\/(watch\?v|playlist\?list)=[a-z0-9_-]+)/i)) {
-      if (location.hostname != videohost) { elem.setAttribute('href', 'https://'+videohost+RegExp.$3+'&'+invProxy); }
+      if (location.hostname != videohost) { elem.href='https://'+videohost+RegExp.$3+'&'+invProxy; }
     } else if (elem.href.match(/((www|m)\.)?youtu.be\/([a-z0-9_-]+)/i)) {
-      if (location.hostname != videohost) { elem.setAttribute('href', 'https://'+videohost+'/watch?v='+RegExp.$3+'?'+invProxy); }
+      if (location.hostname != videohost) { elem.href='https://'+videohost+'/watch?v='+RegExp.$3+'?'+invProxy; }
     } else if (elem.href.match(/((www|m)\.)?youtube.com(\/channel\/[a-z0-9_-]+)/i)) {
-      if (location.hostname != videohost) { elem.setAttribute('href', 'https://'+videohost+RegExp.$3+'?'+invProxy); }
+      if (location.hostname != videohost) { elem.href='https://'+videohost+RegExp.$3+'?'+invProxy; }
 
     // Twitter
     } else if (nitterhost != '' && elem.href.match(/(mobile\.)?twitter\.com\/([^&#]+)/i)) {
-      if (location.hostname != nitterhost) elem.setAttribute('href', 'https://'+nitterhost+'/'+RegExp.$2);
+      if (location.hostname != nitterhost) elem.href='https://'+nitterhost+'/'+RegExp.$2;
     }
 
     // Bibliogram
     else if (elem.href.match(/(www\.)?instagram\.com\/(p|tv)\/([^&#/]+)/i)) { // profile
       if (location.hostname != bibliogramhost) {
-        elem.setAttribute('href', 'https://'+bibliogramhost+'/p/' + RegExp.$3);
+        elem.href = 'https://'+bibliogramhost+'/p/' + RegExp.$3;
       }
     } else if (elem.href.match(/(www\.)?instagram\.com\/([^&#/]+)/i)) { // image or video
       if (location.hostname != bibliogramhost) {
-        elem.setAttribute('href', 'https://'+bibliogramhost+'/u/' + RegExp.$2);
+        elem.href = 'https://'+bibliogramhost+'/u/' + RegExp.$2;
       }
     }
   }
