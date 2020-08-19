@@ -106,7 +106,8 @@ export ENHANCD_DOT_ARG='...'
 export ENHANCD_HOOK_AFTER_CD='la'
 
 # less
-export LESS='-i -J -M -R -W -x4 -z-4'
+export LESS="-i -J -M -R -W -x4 -z-4"
+export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
 
 man() {
     LESS_TERMCAP_md=$'\e'"[1;36m" \

@@ -2,7 +2,9 @@ alias sudo='sudo '
 
 alias cat='bat --theme="Nord" --italic-text=always'
 
-alias grep='grep --color'
+alias diff='diff --color=auto'
+alias grep='grep --color=auto'
+alias ip='ip --color=auto'
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 alias hgrep='fc -El 0 | grep'
 
@@ -35,7 +37,7 @@ alias uy='yf && ym'
 alias yec='yadm encrypt'
 alias ydc='yadm decrypt'
 alias ur='sudo reflector --protocol http --protocol https --verbose --latest 100 --sort rate --save /etc/pacman.d/mirrorlist'
-alias par='ping archlinux.org'
+alias par='prettyping archlinux.org'
 alias zshrc='${=EDITOR} ~/.zshrc'
 
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage"'
