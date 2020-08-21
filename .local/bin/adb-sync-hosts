@@ -1,3 +1,3 @@
 #!/bin/bash
 
-hblock -O hosts && adb root && adb remount && adb push hosts /system/etc/hosts && adb reboot && rm hosts
+hblock && adb root && adb remount && adb push /etc/hosts /system/etc/hosts && adb reboot
