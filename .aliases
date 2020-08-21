@@ -36,7 +36,7 @@ alias yu='yaa && yc && yp'
 alias uy='yf && ym'
 alias yec='yadm encrypt'
 alias ydc='yadm decrypt'
-alias ur='sudo reflector --protocol http --protocol https --verbose --latest 100 --sort rate --save /etc/pacman.d/mirrorlist'
+alias ur='sudo reflector -p http -p https -l 30 -n 20 --sort rate --save /etc/pacman.d/mirrorlist --verbose'
 alias par='prettyping archlinux.org'
 alias zshrc='${=EDITOR} ~/.zshrc'
 
