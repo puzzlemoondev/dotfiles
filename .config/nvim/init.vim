@@ -6,7 +6,6 @@ set linebreak
 set textwidth=0
 set wrapmargin=0
 set showbreak=+++
-set textwidth=100
 set showmatch
 set encoding=utf-8
 set visualbell
