@@ -9,6 +9,7 @@ juanrgon/yadm-zsh
 Cloudstek/zsh-plugin-appup
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
+MichaelAquilina/zsh-autoswitch-virtualenv
 
 robbyrussell/oh-my-zsh path:plugins/git
 robbyrussell/oh-my-zsh path:plugins/aws
@@ -18,7 +19,7 @@ robbyrussell/oh-my-zsh path:plugins/extract
 robbyrussell/oh-my-zsh path:plugins/archlinux
 robbyrussell/oh-my-zsh path:plugins/dirhistory
 robbyrussell/oh-my-zsh path:plugins/colored-man-pages
-robbyrussell/oh-my-zsh path:plugins/virtualenvwrapper
+robbyrussell/oh-my-zsh path:plugins/python
 
 sindresorhus/pure
 zsh-users/zsh-syntax-highlighting

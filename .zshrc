@@ -141,18 +141,6 @@ lg()
 # java
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-# virtualenv
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/workspace
-source /usr/bin/virtualenvwrapper.sh
-
-# conda
-if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-    . "/opt/miniconda3/etc/profile.d/conda.sh"
-else
-    export PATH="/opt/miniconda3/bin:$PATH"
-fi
-
 # barva
 if [ -f "/usr/bin/barva" ] && [[ -n "$DISPLAY" ]]; then
     export BARVA_SOURCE=$(/usr/share/barva/pa-get-default-monitor.sh)
