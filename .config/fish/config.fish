@@ -74,6 +74,7 @@ alias ip='ip --color=auto'
 alias df='df -h'
 alias free='free -m'
 alias mkdir='mkdir -pv'
+alias tty-clock='tty-clock -s -c -D -C 6'
 alias yay='yay --nocleanmenu --nodiffmenu --noeditmenu --removemake --cleanafter'
 alias pacwall='pacwall -b "#'$bg0'" -s "#'$fg'22" -d "#'$red'AA" -e "#'$blue'AA" -p "#'$green'AA" -f "#'$purple'AA" -u "#'$yellow'AA" -r 0.6 -o {$HOME}/Pictures/walls/pacwall.png'
 # }}}
@@ -150,7 +151,6 @@ abbr -ag aw 'awman'
 abbr -ag ur 'sudo reflector -p http -p https -l 30 -n 20 --sort rate --save /etc/pacman.d/mirrorlist --verbose'
 abbr -ag par 'prettyping archlinux.org'
 abbr -ag battery 'upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage"'
-abbr -ag clock 'tty-clock -s -c -D -C 6'
 abbr -ag fconf 'vim ~/.config/fish/config.fish'
 abbr -ag fdir 'cd ~/.config/fish/'
 # }}}
@@ -238,10 +238,8 @@ end
 # }}}
 # {{{ Start Actions
 ## Start X at Login
-if status is-login
-    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-        exec ssh-agent startx -- -keeptty
-    end
+if status is-login; and test -z "$DISPLAY" -a "$XDG_VTNR" = 1
+    exec ssh-agent startx -- -keeptty
 end
 
 ## Barva
@@ -256,7 +254,7 @@ if test -f "/usr/bin/barva" -a -n "$DISPLAY" -a (id -u) -ne 0
 end
 
 ## Greeting
-if type -q fish_logo
+if type -q fish_logo; and status is-interactive
     fish_logo $red $orange $yellow
 end
 # }}}
