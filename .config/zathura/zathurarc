@@ -1,10 +1,10 @@
 set font "monospace 12"
 
 set default-bg                  "#323D43"
-set default-fg                  "#868D80"
+set default-fg                  "#465258"
 
 set statusbar-fg                "#1e292f"
-set statusbar-bg                "#868D80"
+set statusbar-bg                "#465258"
 
 set inputbar-bg                 "#323D43"
 set inputbar-fg                 "#D8CAAC"
@@ -21,7 +21,7 @@ set notification-warning-fg     "#E68183"
 set highlight-color             "#D9BB80"
 set highlight-active-color      "#89BEBA"
 
-set completion-bg               "#868D80"
+set completion-bg               "#465258"
 set completion-fg               "#89BEBA"
 
 set completion-highlight-fg     "#D8CAAC"
