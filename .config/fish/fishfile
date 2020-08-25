@@ -1,7 +1,6 @@
 jethrokuan/z
 laughedelic/pisces
 oh-my-fish/plugin-thefuck
-oh-my-fish/plugin-bang-bang
 oh-my-fish/plugin-extract
 oh-my-fish/plugin-sudope
 joseluisq/gitnow
@@ -13,3 +12,4 @@ edc/bass
 rafaelrinaldi/pure
 franciscolourenco/done
 0rax/fish-bd
+oh-my-fish/plugin-direnv

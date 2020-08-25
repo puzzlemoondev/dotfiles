@@ -7,9 +7,6 @@ set -g pure_symbol_reverse_prompt "ƛ"
 
 set -g async_prompt_functions 'fish_right_prompt'
 
-# programs
-eval (direnv hook fish)
-
 # greeting
 set o (set_color red)
 set m (set_color f70)
