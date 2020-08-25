@@ -24,6 +24,7 @@ set undofile
 set undodir=~/.config/nvim/undodir
 set undolevels=1000
 set backspace=indent,eol,start
+set foldmethod=marker
 
 " fuzzy finder
 function! FzyCommand(choice_command, vim_command)

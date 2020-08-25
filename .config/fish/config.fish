@@ -1,4 +1,4 @@
-# env
+# {{{ Environment Variables
 set -gx LC_ALL 'en_US.UTF-8'
 set -gx VISUAL (type -p nvim)
 set -gx EDITOR $VISUAL
@@ -7,12 +7,11 @@ set -gx SYSTEMD_EDITOR $VISUAL
 set -gx LESS '-i -J -M -R -W -x4 -z-4'
 set -gx LESSOPEN '| /usr/bin/source-highlight-esc.sh %s'
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
-
-# keybinds
+# }}}
+# {{{ Keybindings
 set -g fish_key_bindings fish_vi_key_bindings
-
-# color scheme
-## Forest Night
+# }}}
+# {{{ Colorscheme
 set -l bg0        323d43
 set -l bg1        3c474d
 set -l bg2        465258
@@ -47,28 +46,28 @@ set -g fish_color_autosuggestion  $grey --italics
 set -g fish_color_valid_path  --underline
 set -g fish_color_history_current  $green
 set -g fish_color_selection  --background=$bg3
-set -g fish_pager_color_completion  $fg
+set -g fish_pager_color_completion  $purple
 set -g fish_pager_color_prefix  $orange --bold
 set -g fish_pager_color_description  $grey --italics
 set -g fish_pager_color_progress  $blue --bold
-
-# plugins
+# }}}
+# {{{ Plugins
 set -g pure_symbol_prompt "λ"
 set -g pure_symbol_reverse_prompt "ƛ"
 
 set -g FZF_DEFAULT_OPTS "--height 40 --color=bg+:#$bg3,bg:#$bg0,spinner:#$cyan,hl:#$blue,fg:#$green,header:#$blue,info:#$yellow,pointer:#$cyan,marker:#$cyan,fg+:#$fg,prompt:#$yellow,hl+:#$blue"
-
-# completions
+# }}}
+# {{{ Completions
 kitty + complete setup fish | source
-
-# aliases
-## replacements
+# }}}
+# {{{ Aliases
+## Replacements
 alias more='less'
 alias vim='nvim'
 alias ls='exa -gh'
 alias cat='bat -p'
 
-## default arguments
+## Default Arguments
 alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 alias ip='ip --color=auto'
@@ -77,9 +76,9 @@ alias free='free -m'
 alias mkdir='mkdir -pv'
 alias yay='yay --nocleanmenu --nodiffmenu --noeditmenu --removemake --cleanafter'
 alias pacwall='pacwall -b "#'$bg0'" -s "#'$fg'22" -d "#'$red'AA" -e "#'$blue'AA" -p "#'$green'AA" -f "#'$purple'AA" -u "#'$yellow'AA" -r 0.6 -o {$HOME}/Pictures/walls/pacwall.png'
-
-# abbreviations
-## coreutils
+# }}}
+# {{{ Abbreviations
+## Coreutils
 abbr -ag c 'clear'
 
 abbr -ag la 'ls -a'
@@ -97,13 +96,13 @@ abbr -ag fdd 'fd -t d'
 abbr -ag fdf 'fd -t f'
 abbr -ag map 'xargs -n1'
 
-## systemd
+## Systemd
 abbr -a -g sc 'systemctl'
 abbr -a -g scu 'systemctl --user'
 abbr -a -g jor 'journalctl'
 abbr -a -g jour 'journalctl --user'
 
-## yadm
+## Yadm
 abbr -ag ya 'yadm add'
 abbr -ag yaa 'yadm add -u'
 abbr -ag yc 'yadm commit'
@@ -114,12 +113,12 @@ abbr -ag yp 'yadm push'
 abbr -ag yu 'yadm add -u && yadm commit && yadm push'
 abbr -ag uy 'yadm fetch && yadm merge'
 
-## arch
+## Arch
 abbr -ag yaupg 'yay -Syu && pacwall'
 abbr -ag yarem 'yay -Rns'
 abbr -ag yareo 'yay --clean'
 
-## vpn
+## VPN
 abbr -ag vpn 'expressvpn'
 abbr -ag vpna 'expressvpn activate'
 abbr -ag vpnc 'expressvpn connect'
@@ -134,14 +133,14 @@ abbr -ag vpnh 'expressvpn help'
 abbr -ag vpnlock 'expressvpn preferences set network_lock on'
 abbr -ag vpnunlock 'expressvpn preferences set network_lock off'
 
-## adb-sync
+## ADB
 abbr -ag asm 'adb-sync ~/Music/ /sdcard/Music/'
 abbr -ag asm2 'adb-sync -2 ~/Music/ /sdcard/Music/'
 abbr -ag asmd 'adb-sync -d ~/Music/ /sdcard/Music/'
 abbr -ag asmr 'adb-sync -R /sdcard/Music/ ~/Music/'
 abbr -ag asmrd 'adb-sync -R -d /sdcard/Music/ ~/Music/'
 
-## misc
+## Misc
 abbr -ag x 'extract'
 abbr -ag v 'vifm'
 abbr -ag e 'nvim'
@@ -153,8 +152,8 @@ abbr -ag battery 'upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep 
 abbr -ag clock 'tty-clock -s -c -D -C 6'
 abbr -ag fconf 'vim ~/.config/fish/config.fish'
 abbr -ag fdir 'cd ~/.config/fish/'
-
-# functions
+# }}}
+# {{{ Functions
 function cd
     if count $argv > /dev/null
         builtin cd "$argv"; and ls
@@ -235,14 +234,26 @@ function extract -d 'Expand or extract bundled & compressed files'
 	echo "Could not extract $argv"
     end
 end
-
-# start actions
-## start X at login
+# }}}
+# {{{ Start Actions
+## Start X at Login
 if status is-login
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-        exec ssh-agent startx -- -keeptty &> /dev/null
+        exec ssh-agent startx -- -keeptty
     end
 end
 
-## greeting
+## Barva
+if test -f "/usr/bin/barva" -a -n "$DISPLAY"
+    set -x BARVA_SOURCE (/usr/share/barva/pa-get-default-monitor.sh)
+    set -x BARVA_BG "#$bg0"
+    set -x BARVA_TARGET "#$bg2"
+
+    barva &
+    set PID (jobs -l | awk '{print $2}')
+    trap "kill -9 $PID" EXIT
+end
+
+## Greeting
 fish_logo $red $orange $yellow
+# }}}
