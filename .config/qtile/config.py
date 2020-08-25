@@ -12,7 +12,7 @@ from libqtile import layout, hook
 home = Path.home().as_posix()
 
 group_names = "1234567890"
-shell = "zsh -ci"
+shell = "fish -c"
 term = "kitty -1"
 term_new = "kitty"
 term_open = f"{term} {shell}"
