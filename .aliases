@@ -1,7 +1,5 @@
 alias sudo='sudo '
 
-alias cat='bat --theme="base16" --italic-text=always'
-
 alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 alias ip='ip --color=auto'
