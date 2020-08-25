@@ -244,10 +244,10 @@ if status is-login
 end
 
 ## Barva
-if test -f "/usr/bin/barva" -a -n "$DISPLAY"
+if test -f "/usr/bin/barva" -a -n "$DISPLAY" -a (id -u) -ne 0
     set -x BARVA_SOURCE (/usr/share/barva/pa-get-default-monitor.sh)
     set -x BARVA_BG "#$bg0"
-    set -x BARVA_TARGET "#$bg2"
+    set -x BARVA_TARGET "#$bg1"
 
     barva &
     set PID (jobs -l | awk '{print $2}')
@@ -255,5 +255,7 @@ if test -f "/usr/bin/barva" -a -n "$DISPLAY"
 end
 
 ## Greeting
-fish_logo $red $orange $yellow
+if type -q fish_logo
+    fish_logo $red $orange $yellow
+end
 # }}}
