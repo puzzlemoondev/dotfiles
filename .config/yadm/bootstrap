@@ -1,16 +1,5 @@
 #!/bin/bash
 
-# update zsh plugins
-echo "Updating zsh plugins"
-if command -v antibody >/dev/null 2>&1 ; then
-    echo "Antibody is installed. Updating..."
-    antibody bundle < ~/.zsh_plugins > ~/.zsh_plugins.sh
-else
-    echo "Antibody is not installed. Skipping..."
-fi
-
-echo
-
 # install vim plugins
 echo "Updating vim plugins"
 if command -v nvim >/dev/null 2>&1; then
@@ -44,14 +33,4 @@ if command -v hblock >/dev/null 2>&1; then
     hblock
 else
     echo "Hblock is not installed. Skipping..."
-fi
-
-# use pacwall as wallpaper
-echo "Configuring pacwall"
-
-if [ -f /bin/pacwall ]; then
-    echo "Pacwall is installed. Updating wallpaper..."
-    pacwall -b "#323D43" -s "#D8CAAC22" -d "#E68183AA" -e "#89BEBAAA" -p "#A7C080AA" -f "#D3A0BCAA" -u "#D9BB80AA" -r 0.6 -o ${HOME}/Pictures/walls/pacwall.png
-else
-    echo "Pacwall is not installed. Skipping..."
 fi

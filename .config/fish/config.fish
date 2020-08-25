@@ -110,6 +110,7 @@ abbr -ag yd 'yadm diff'
 abbr -ag ydc 'yadm decrypt'
 abbr -ag yec 'yadm encrypt'
 abbr -ag yp 'yadm push'
+abbr -ag yrmc 'yadm rm --cached'
 abbr -ag yu 'yadm add -u && yadm commit && yadm push'
 abbr -ag uy 'yadm fetch && yadm merge'
 
