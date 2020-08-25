@@ -251,7 +251,7 @@ if test -f "/usr/bin/barva" -a -n "$DISPLAY" -a (id -u) -ne 0
     set -x BARVA_BG "#$bg0"
     set -x BARVA_TARGET "#$bg1"
 
-    barva &
+    barva > /dev/null 2>&1 &
     set PID (jobs -l | awk '{print $2}')
     trap "kill -9 $PID" EXIT
 end
