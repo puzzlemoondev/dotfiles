@@ -47,7 +47,7 @@ fileviewer *.html w3m -dump %c
 
 " Text based files
 filetype <text/*> nvim
-fileviewer <text/*> env bat -p
+fileviewer <text/*> env -uCOLORTERM bat --wrap never --pager never %c -p
 
 " Pdf
 fileviewer *.pdf pdftotext -nopgbrk %c -
