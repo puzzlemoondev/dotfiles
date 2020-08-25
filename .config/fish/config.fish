@@ -116,6 +116,7 @@ abbr -ag yu 'yadm add -u && yadm commit && yadm push'
 abbr -ag uy 'yadm fetch && yadm merge'
 
 ## Arch
+abbr -ag yain 'yay -S'
 abbr -ag yaupg 'yay -Syu && pacwall'
 abbr -ag yarem 'yay -Rns'
 abbr -ag yareo 'yay --clean'
@@ -143,13 +144,15 @@ abbr -ag asmr 'adb-sync -R /sdcard/Music/ ~/Music/'
 abbr -ag asmrd 'adb-sync -R -d /sdcard/Music/ ~/Music/'
 
 ## Misc
-abbr -ag x 'extract'
-abbr -ag v 'vifm'
-abbr -ag e 'nvim'
+abbr -ag e 'lf'
 abbr -ag q 'exit'
+abbr -ag v 'nvim'
+abbr -ag x 'extract'
 abbr -ag aw 'awman'
+abbr -ag ef 'exec fish'
 abbr -ag ur 'sudo reflector -p http -p https -l 30 -n 20 --sort rate --save /etc/pacman.d/mirrorlist --verbose'
 abbr -ag par 'prettyping archlinux.org'
+abbr -ag clock 'tty-clock'
 abbr -ag battery 'upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage"'
 abbr -ag fconf 'vim ~/.config/fish/config.fish'
 abbr -ag fdir 'cd ~/.config/fish/'
@@ -239,7 +242,7 @@ end
 # {{{ Start Actions
 ## Start X at Login
 if status is-login; and test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-    exec ssh-agent startx -- -keeptty
+    exec ssh-agent startx -- -keeptty &> /dev/null
 end
 
 ## Barva
