@@ -4,12 +4,10 @@ oh-my-fish/plugin-thefuck
 oh-my-fish/plugin-extract
 oh-my-fish/plugin-sudope
 joseluisq/gitnow
-acomagu/fish-async-prompt
 wawa19933/fish-systemd
 jethrokuan/fzf
 edc/bass
 rafaelrinaldi/pure
-franciscolourenco/done
 0rax/fish-bd
 jethrokuan/fish-direnv
 jhillyerd/plugin-git

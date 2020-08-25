@@ -1,18 +1,139 @@
-# sources
-source ~/.config/fish/functions.fish
-source ~/.config/fish/abbr_aliases.fish
+# env
+set -gx LC_ALL en_US.UTF-8
+set -gx VISUAL (type -p nvim)
+set -gx EDITOR $VISUAL
+set -gx SYSTEMD_EDITOR $VISUAL
+set -gx LESS '-i -J -M -R -W -x4 -z-4'
+set -gx LESSOPEN '| /usr/bin/source-highlight-esc.sh %s'
+set -gx _JAVA_AWT_WM_NONREPARENTING 1
 
 # keybinds
 set -U fish_key_bindings fish_vi_key_bindings
+
+# completions
+kitty + complete setup fish | source
 
 # plugins
 set -g pure_symbol_prompt "λ"
 set -g pure_symbol_reverse_prompt "ƛ"
 
-set -g async_prompt_functions 'fish_right_prompt'
+# aliases
+## replacements
+alias more='less'
+alias vim='nvim'
+alias ls='lsd --group-dirs first'
+alias cat='bat -p'
+alias cd='cd && ls'
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-eval /opt/miniconda3/bin/conda "shell.fish" "hook" $argv | source
-# <<< conda initialize <<<
+## default arguments
+alias diff='diff --color=auto'
+alias grep='grep --color=auto'
+alias ip='ip --color=auto'
+alias df='df -h'
+alias free='free -m'
+alias mkdir='mkdir -pv'
+alias yay='yay --nocleanmenu --nodiffmenu --noeditmenu --removemake --cleanafter'
+alias pacwall='pacwall -b "#323D43" -s "#D8CAAC22" -d "#E68183AA" -e "#89BEBAAA" -p "#A7C080AA" -f "#D3A0BCAA" -u "#D9BB80AA" -r 0.6 -o {$HOME}/Pictures/walls/pacwall.png'
 
+# abbreviations
+## coreutils
+abbr -ag c 'clear'
+
+abbr -ag l 'ls -l'
+abbr -ag la 'ls -a'
+abbr -ag lla 'ls -la'
+abbr -ag lr 'ls -R'
+abbr -ag lt 'ls --tree'
+abbr -ag lts 'l --total-size'
+
+abbr -ag dud 'du -d 1 -h'
+abbr -ag duf 'du -sh *'
+abbr -ag fdd 'fd -t d'
+abbr -ag fdf 'fd -t f'
+abbr -ag map 'xargs -n1'
+
+## yadm
+abbr -ag ya 'yadm add'
+abbr -ag yaa 'yadm add -u'
+abbr -ag yc 'yadm commit'
+abbr -ag yd 'yadm diff'
+abbr -ag ydc 'yadm decrypt'
+abbr -ag yec 'yadm encrypt'
+abbr -ag yp 'yadm push'
+abbr -ag yu 'yadm add -u && yadm commit && yadm push'
+abbr -ag uy 'yadm fetch && yadm merge'
+
+## arch
+abbr -ag yaupg 'yay -Syu && pacwall'
+abbr -ag yarem 'yay -Rns'
+abbr -ag yareo 'yay --clean'
+
+## vpn
+abbr -ag vpn 'expressvpn'
+abbr -ag vpna 'expressvpn activate'
+abbr -ag vpnc 'expressvpn connect'
+abbr -ag vpncs 'expressvpn connect smart'
+abbr -ag vpnd 'expressvpn disconnect'
+abbr -ag vpns 'expressvpn status'
+abbr -ag vpnl 'expressvpn list'
+abbr -ag vpnla 'expressvpn list all'
+abbr -ag vpnr 'expressvpn refresh'
+abbr -ag vpnp 'expressvpn preferences'
+abbr -ag vpnh 'expressvpn help'
+abbr -ag vpnlock 'expressvpn preferences set network_lock on'
+abbr -ag vpnunlock 'expressvpn preferences set network_lock off'
+
+## adb-sync
+abbr -ag asm 'adb-sync ~/Music/ /sdcard/Music/'
+abbr -ag asm2 'adb-sync -2 ~/Music/ /sdcard/Music/'
+abbr -ag asmd 'adb-sync -d ~/Music/ /sdcard/Music/'
+abbr -ag asmr 'adb-sync -R /sdcard/Music/ ~/Music/'
+abbr -ag asmrd 'adb-sync -R -d /sdcard/Music/ ~/Music/'
+
+## misc
+abbr -ag x 'extract'
+abbr -ag v 'vifm'
+abbr -ag e 'nvim'
+abbr -ag q 'exit'
+abbr -ag aw 'awman'
+abbr -ag ur 'sudo reflector -p http -p https -l 30 -n 20 --sort rate --save /etc/pacman.d/mirrorlist --verbose'
+abbr -ag par 'prettyping archlinux.org'
+abbr -ag bat 'upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage"'
+abbr -ag clock 'tty-clock -s -c -D -C 6'
+abbr -ag fconf 'vim ~/.config/fish/config.fish'
+abbr -ag aconf 'vim ~/.config/fish/abbr_aliases.fish; and for a in (abbr -l); abbr -e $a; end; and source ~/.config/fish/abbr_aliases.fish'
+
+# functions
+function mkc --wraps mkdir -d "Create a directory and cd into it"
+    command mkdir -p $argv
+    if test $status = 0
+    switch $argv[(count $argv)]
+        case '-*'
+        case '*'
+        cd $argv[(count $argv)]
+        return
+    end
+    end
+end
+
+function fish_greeting
+    set o (set_color red)
+    set m (set_color f70)
+    set i (set_color yellow)
+
+    echo '                 '$o'___
+  ___======____='$m'-'$i'-'$m'-='$o')
+/T            \_'$i'--='$m'=='$o')
+[ \ '$m'('$i'O'$m')   '$o'\~    \_'$i'-='$m'='$o')
+ \      / )J'$m'~~    '$o'\\'$i'-='$o')
+  \\\\___/  )JJ'$m'~'$i'~~   '$o'\)
+   \_____/JJJ'$m'~~'$i'~~    '$o'\\
+   '$m'/ '$o'\  '$i', \\'$o'J'$m'~~~'$i'~~     '$m'\\
+  (-'$i'\)'$o'\='$m'|'$i'\\\\\\'$m'~~'$i'~~       '$m'L_'$i'_
+  '$m'('$o'\\'$m'\\)  ('$i'\\'$m'\\\)'$o'_           '$i'\=='$m'__
+   '$o'\V    '$m'\\\\'$o'\) =='$m'=_____   '$i'\\\\\\\\'$m'\\\\
+          '$o'\V)     \_) '$m'\\\\'$i'\\\\JJ\\'$m'J\)
+                      '$o'/'$m'J'$i'\\'$m'J'$o'T\\'$m'JJJ'$o'J)
+                      (J'$m'JJ'$o'| \UUU)
+                       (UU)'(set_color normal)
+end
