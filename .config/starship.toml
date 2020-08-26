@@ -23,7 +23,7 @@ symbol = " "
 [directory]
 prefix = ""
 fish_style_pwd_dir_length = 3
-style = "bold italic green"
+style = "bold italic cyan"
 
 [docker_context]
 disabled = false
