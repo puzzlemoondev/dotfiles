@@ -62,6 +62,10 @@ set -g FZF_DEFAULT_OPTS "--height 40 --color=bg+:#$bg3,bg:#$bg0,spinner:#$cyan,h
 if type -q starship
     starship init fish | source
 end
+
+if type -q direnv
+    direnv hook fish | source
+end
 # }}}
 # {{{ Aliases
 ## Replacements
