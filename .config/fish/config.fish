@@ -1,5 +1,9 @@
 # {{{ Environment Variables
-set -gx LC_ALL 'en_US.UTF-8'
+set -gx LANG en_US.UTF-8
+set -gx LANGUAGE en_US.UTF-8
+set -gx LC_ALL en_US.UTF-8
+set -gx LC_CTYPE en_US.UTF-8
+
 set -gx VISUAL (type -p nvim)
 set -gx EDITOR $VISUAL
 set -gx SYSTEMD_EDITOR $VISUAL
@@ -58,7 +62,9 @@ set -g pure_symbol_reverse_prompt "ƛ"
 set -g FZF_DEFAULT_OPTS "--height 40 --color=bg+:#$bg3,bg:#$bg0,spinner:#$cyan,hl:#$blue,fg:#$green,header:#$blue,info:#$yellow,pointer:#$cyan,marker:#$cyan,fg+:#$fg,prompt:#$yellow,hl+:#$blue"
 # }}}
 # {{{ Completions
-kitty + complete setup fish | source
+if type -q kitty
+    kitty + complete setup fish | source
+end
 # }}}
 # {{{ Aliases
 ## Replacements
@@ -79,86 +85,88 @@ alias yay='yay --nocleanmenu --nodiffmenu --noeditmenu --removemake --cleanafter
 alias pacwall='pacwall -b "#'$bg0'" -s "#'$fg'22" -d "#'$red'AA" -e "#'$blue'AA" -p "#'$green'AA" -f "#'$purple'AA" -u "#'$yellow'AA" -r 0.6 -o {$HOME}/Pictures/walls/pacwall.png'
 # }}}
 # {{{ Abbreviations
-## Coreutils
-abbr -ag c 'clear'
+if status --is-interactive
+    ## Coreutils
+    abbr -ag c 'clear'
 
-abbr -ag la 'ls -a'
-abbr -ag ld 'ls -aD'
-abbr -ag lt 'ls -aT'
-abbr -ag l 'ls -l'
-abbr -ag lg 'ls -la --git'
-abbr -ag lla 'ls -la'
-abbr -ag lld 'ls -laD'
-abbr -ag llt 'ls -laT'
+    abbr -ag la 'ls -a'
+    abbr -ag ld 'ls -aD'
+    abbr -ag lt 'ls -aT'
+    abbr -ag l 'ls -l'
+    abbr -ag lg 'ls -la --git'
+    abbr -ag lla 'ls -la'
+    abbr -ag lld 'ls -laD'
+    abbr -ag llt 'ls -laT'
 
-abbr -ag dud 'du -d 1 -h'
-abbr -ag duf 'du -sh *'
-abbr -ag fdd 'fd -t d'
-abbr -ag fdf 'fd -t f'
-abbr -ag map 'xargs -n1'
+    abbr -ag dud 'du -d 1 -h'
+    abbr -ag duf 'du -sh *'
+    abbr -ag fdd 'fd -t d'
+    abbr -ag fdf 'fd -t f'
+    abbr -ag map 'xargs -n1'
 
-## Systemd
-abbr -ag sc 'systemctl'
-abbr -ag scu 'systemctl --user'
-abbr -ag jor 'journalctl'
-abbr -ag jour 'journalctl --user'
+    ## Systemd
+    abbr -ag sc 'systemctl'
+    abbr -ag scu 'systemctl --user'
+    abbr -ag jor 'journalctl'
+    abbr -ag jour 'journalctl --user'
 
-## Yadm
-abbr -ag y 'yadm'
-abbr -ag ya 'yadm add'
-abbr -ag yaa 'yadm add -u'
-abbr -ag yc 'yadm commit'
-abbr -ag yd 'yadm diff'
-abbr -ag ydc 'yadm decrypt'
-abbr -ag yec 'yadm encrypt'
-abbr -ag yp 'yadm push'
-abbr -ag yf 'yadm fetch'
-abbr -ag yl 'yadm pull'
-abbr -ag yrmc 'yadm rm --cached'
-abbr -ag yu 'yadm add -u && yadm commit && yadm push'
-abbr -ag uy 'yadm pull'
+    ## Yadm
+    abbr -ag y 'yadm'
+    abbr -ag ya 'yadm add'
+    abbr -ag yaa 'yadm add -u'
+    abbr -ag yc 'yadm commit'
+    abbr -ag yd 'yadm diff'
+    abbr -ag ydc 'yadm decrypt'
+    abbr -ag yec 'yadm encrypt'
+    abbr -ag yp 'yadm push'
+    abbr -ag yf 'yadm fetch'
+    abbr -ag yl 'yadm pull'
+    abbr -ag yrmc 'yadm rm --cached'
+    abbr -ag yu 'yadm add -u && yadm commit && yadm push'
+    abbr -ag uy 'yadm pull'
 
-## Arch
-abbr -ag yain 'yay -S'
-abbr -ag yaupg 'yay -Syu && pacwall'
-abbr -ag yarem 'yay -Rns'
-abbr -ag yarec 'yay -Sc'
-abbr -ag yareo 'yay --clean'
+    ## Arch
+    abbr -ag yain 'yay -S'
+    abbr -ag yaupg 'yay -Syu && pacwall'
+    abbr -ag yarem 'yay -Rns'
+    abbr -ag yarec 'yay -Sc'
+    abbr -ag yareo 'yay --clean'
 
-## VPN
-abbr -ag vpn 'expressvpn'
-abbr -ag vpna 'expressvpn activate'
-abbr -ag vpnc 'expressvpn connect'
-abbr -ag vpncs 'expressvpn connect smart'
-abbr -ag vpnd 'expressvpn disconnect'
-abbr -ag vpns 'expressvpn status'
-abbr -ag vpnl 'expressvpn list'
-abbr -ag vpnla 'expressvpn list all'
-abbr -ag vpnr 'expressvpn refresh'
-abbr -ag vpnp 'expressvpn preferences'
-abbr -ag vpnh 'expressvpn help'
-abbr -ag vpnlock 'expressvpn preferences set network_lock on'
-abbr -ag vpnunlock 'expressvpn preferences set network_lock off'
+    ## VPN
+    abbr -ag vpn 'expressvpn'
+    abbr -ag vpna 'expressvpn activate'
+    abbr -ag vpnc 'expressvpn connect'
+    abbr -ag vpncs 'expressvpn connect smart'
+    abbr -ag vpnd 'expressvpn disconnect'
+    abbr -ag vpns 'expressvpn status'
+    abbr -ag vpnl 'expressvpn list'
+    abbr -ag vpnla 'expressvpn list all'
+    abbr -ag vpnr 'expressvpn refresh'
+    abbr -ag vpnp 'expressvpn preferences'
+    abbr -ag vpnh 'expressvpn help'
+    abbr -ag vpnlock 'expressvpn preferences set network_lock on'
+    abbr -ag vpnunlock 'expressvpn preferences set network_lock off'
 
-## ADB
-abbr -ag asm 'adb-sync ~/Music/ /sdcard/Music/'
-abbr -ag asm2 'adb-sync -2 ~/Music/ /sdcard/Music/'
-abbr -ag asmd 'adb-sync -d ~/Music/ /sdcard/Music/'
-abbr -ag asmr 'adb-sync -R /sdcard/Music/ ~/Music/'
-abbr -ag asmrd 'adb-sync -R -d /sdcard/Music/ ~/Music/'
+    ## ADB
+    abbr -ag asm 'adb-sync ~/Music/ /sdcard/Music/'
+    abbr -ag asm2 'adb-sync -2 ~/Music/ /sdcard/Music/'
+    abbr -ag asmd 'adb-sync -d ~/Music/ /sdcard/Music/'
+    abbr -ag asmr 'adb-sync -R /sdcard/Music/ ~/Music/'
+    abbr -ag asmrd 'adb-sync -R -d /sdcard/Music/ ~/Music/'
 
-## Misc
-abbr -ag e 'lf'
-abbr -ag q 'exit'
-abbr -ag v 'nvim'
-abbr -ag x 'extract'
-abbr -ag aw 'awman'
-abbr -ag ef 'exec fish'
-abbr -ag ur 'sudo reflector -p http -p https -l 30 -n 20 --sort rate --save /etc/pacman.d/mirrorlist --verbose'
-abbr -ag par 'prettyping archlinux.org'
-abbr -ag battery 'upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage"'
-abbr -ag fconf 'vim ~/.config/fish/config.fish'
-abbr -ag fdir 'cd ~/.config/fish/'
+    ## Misc
+    abbr -ag e 'lf'
+    abbr -ag q 'exit'
+    abbr -ag v 'nvim'
+    abbr -ag x 'extract'
+    abbr -ag aw 'awman'
+    abbr -ag ef 'exec fish'
+    abbr -ag ur 'sudo reflector -p http -p https -l 30 -n 20 --sort rate --save /etc/pacman.d/mirrorlist --verbose'
+    abbr -ag par 'prettyping archlinux.org'
+    abbr -ag battery 'upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage"'
+    abbr -ag fconf 'vim ~/.config/fish/config.fish'
+    abbr -ag fdir 'cd ~/.config/fish/'
+end
 # }}}
 # {{{ Functions
 function cd
@@ -254,7 +262,7 @@ if test -f "/usr/bin/barva" -a -n "$DISPLAY" -a (id -u) != 0 -a (pgrep barva | w
     set -x BARVA_BG "#$bg0"
     set -x BARVA_TARGET "#$bg1"
 
-    barva | /usr/share/barva/to-all-ttys.sh &
+    barva | /usr/share/barva/to-all-ttys.sh > /dev/null 2>&1 &
 end
 
 ## Greeting

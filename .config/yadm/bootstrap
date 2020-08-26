@@ -11,6 +11,17 @@ fi
 
 echo
 
+# update bat cache
+echo "Updating bat cache"
+if command -v bat > /dev/null 2>&1; then
+    echo "Bat is installed. Updating cache..."
+    bat cache --build
+else
+    echo "Bat is not installed. Skipping"
+fi
+
+echo
+
 # create hblock configuration in /etc
 echo "Configuring hblock"
 
