@@ -56,14 +56,11 @@ set -g fish_pager_color_description  $grey --italics
 set -g fish_pager_color_progress  $blue --bold
 # }}}
 # {{{ Plugins
-set -g pure_symbol_prompt "λ"
-set -g pure_symbol_reverse_prompt "ƛ"
-
 set -g FZF_DEFAULT_OPTS "--height 40 --color=bg+:#$bg3,bg:#$bg0,spinner:#$cyan,hl:#$blue,fg:#$green,header:#$blue,info:#$yellow,pointer:#$cyan,marker:#$cyan,fg+:#$fg,prompt:#$yellow,hl+:#$blue"
 # }}}
-# {{{ Completions
-if type -q kitty
-    kitty + complete setup fish | source
+# {{{ Hooks
+if type -q starship
+    starship init fish | source
 end
 # }}}
 # {{{ Aliases
@@ -250,6 +247,12 @@ function extract -d 'Expand or extract bundled & compressed files'
 	echo "Could not extract $argv"
     end
 end
+
+function fish_greeting
+    if type -q fish_logo
+	fish_logo $red $orange $yellow
+    end
+end
 # }}}
 # {{{ Start Actions
 ## Start X at Login
@@ -264,10 +267,5 @@ if test -f "/usr/bin/barva" -a -n "$DISPLAY" -a (id -u) != 0 -a (pgrep barva | w
     set -x BARVA_TARGET "#$bg1"
 
     barva | /usr/share/barva/to-all-ttys.sh > /dev/null 2>&1 &
-end
-
-## Greeting
-if type -q fish_logo; and status is-interactive
-    fish_logo $red $orange $yellow
 end
 # }}}
