@@ -98,12 +98,13 @@ abbr -ag fdf 'fd -t f'
 abbr -ag map 'xargs -n1'
 
 ## Systemd
-abbr -a -g sc 'systemctl'
-abbr -a -g scu 'systemctl --user'
-abbr -a -g jor 'journalctl'
-abbr -a -g jour 'journalctl --user'
+abbr -ag sc 'systemctl'
+abbr -ag scu 'systemctl --user'
+abbr -ag jor 'journalctl'
+abbr -ag jour 'journalctl --user'
 
 ## Yadm
+abbr -ag y 'yadm'
 abbr -ag ya 'yadm add'
 abbr -ag yaa 'yadm add -u'
 abbr -ag yc 'yadm commit'
@@ -111,14 +112,17 @@ abbr -ag yd 'yadm diff'
 abbr -ag ydc 'yadm decrypt'
 abbr -ag yec 'yadm encrypt'
 abbr -ag yp 'yadm push'
+abbr -ag yf 'yadm fetch'
+abbr -ag yl 'yadm pull'
 abbr -ag yrmc 'yadm rm --cached'
 abbr -ag yu 'yadm add -u && yadm commit && yadm push'
-abbr -ag uy 'yadm fetch && yadm merge'
+abbr -ag uy 'yadm pull'
 
 ## Arch
 abbr -ag yain 'yay -S'
 abbr -ag yaupg 'yay -Syu && pacwall'
 abbr -ag yarem 'yay -Rns'
+abbr -ag yarec 'yay -Sc'
 abbr -ag yareo 'yay --clean'
 
 ## VPN
@@ -152,7 +156,6 @@ abbr -ag aw 'awman'
 abbr -ag ef 'exec fish'
 abbr -ag ur 'sudo reflector -p http -p https -l 30 -n 20 --sort rate --save /etc/pacman.d/mirrorlist --verbose'
 abbr -ag par 'prettyping archlinux.org'
-abbr -ag clock 'tty-clock'
 abbr -ag battery 'upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage"'
 abbr -ag fconf 'vim ~/.config/fish/config.fish'
 abbr -ag fdir 'cd ~/.config/fish/'
@@ -246,14 +249,12 @@ if status is-login; and test -z "$DISPLAY" -a "$XDG_VTNR" = 1
 end
 
 ## Barva
-if test -f "/usr/bin/barva" -a -n "$DISPLAY" -a (id -u) -ne 0
+if test -f "/usr/bin/barva" -a -n "$DISPLAY" -a (id -u) != 0 -a (pgrep barva | wc -l) = 0 
     set -x BARVA_SOURCE (/usr/share/barva/pa-get-default-monitor.sh)
     set -x BARVA_BG "#$bg0"
     set -x BARVA_TARGET "#$bg1"
 
-    barva > /dev/null 2>&1 &
-    set PID (jobs -l | awk '{print $2}')
-    trap "kill -9 $PID" EXIT
+    barva | /usr/share/barva/to-all-ttys.sh &
 end
 
 ## Greeting
