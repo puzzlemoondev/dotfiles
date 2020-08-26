@@ -160,6 +160,7 @@ if status --is-interactive
     abbr -ag v 'nvim'
     abbr -ag x 'extract'
     abbr -ag aw 'awman'
+    abbr -ag ea 'for a in (abbr -l); abbr -e $a; end'
     abbr -ag ef 'exec fish'
     abbr -ag ur 'sudo reflector -p http -p https -l 30 -n 20 --sort rate --save /etc/pacman.d/mirrorlist --verbose'
     abbr -ag par 'prettyping archlinux.org'
