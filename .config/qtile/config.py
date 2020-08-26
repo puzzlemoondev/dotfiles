@@ -12,10 +12,8 @@ from libqtile import layout, hook
 home = Path.home().as_posix()
 
 group_names = "1234567890"
-shell = "fish -c"
-term = "kitty -1"
-term_new = "kitty"
-term_open = f"{term} {shell}"
+term = "alacritty"
+term_open = f"{term} -e"
 
 border_config = dict(
     border_focus="#D8CAAC",
@@ -82,14 +80,14 @@ keys = [
     Key("M-i", lazy.spawn('idea')),
     Key("M-m", lazy.spawn('tutanota-desktop')),
     Key("M-n", lazy.spawn('networkmanager_dmenu')),
-    Key("M-o", lazy.spawn(f'{term_open} tty-clock')),
+    Key("M-o", lazy.spawn(f'{term_open} tty-clock -s -c -D -C 6')),
     Key("M-p", lazy.spawn(f'{term_open} ncmpcpp')),
     Key("M-q", lazy.spawn(f'deluge-gtk')),
     Key("M-s", lazy.spawn('steam')),
     Key("M-u", lazy.spawn(f'{term_open} htop')),
     Key("M-v", lazy.spawn(f'{term_open} nvim')),
     Key("M-w", lazy.spawn('qutebrowser')),
-    Key("M-y", lazy.spawn(f'{term_open} "yay -Syu && pacwall"')),
+    Key("M-y", lazy.spawn(f'{term_open} fish -c "yay -Syu && pacwall"')),
     Key("M-<comma>", lazy.spawn(f'{term_open} cava')),
     Key("M-<period>", lazy.spawn('cantata')),
     Key("M-<slash>", lazy.spawn(f'{term_open} pulsemixer')),
@@ -189,7 +187,7 @@ keys.extend(chain.from_iterable((
 ) for i in groups))
 
 # DROPDOWN
-groups.append(ScratchPad("dropdown", [DropDown("term", term_new)]))
+groups.append(ScratchPad("dropdown", [DropDown("term", term)]))
 
 keys.append(Key("<F12>", lazy.group["dropdown"].dropdown_toggle("term")))
 
