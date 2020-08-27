@@ -12,8 +12,7 @@ from libqtile import layout, hook
 home = Path.home().as_posix()
 
 group_names = "1234567890"
-term = "alacritty"
-term_open = f"{term} -e"
+term = "kitty -1"
 
 border_config = dict(
     border_focus="#D8CAAC",
@@ -75,22 +74,22 @@ keys = [
 
     Key("M-a", lazy.spawn('code')),
     Key("M-d", lazy.spawn('rofi -combi-modi window,drun -modi combi -show combi')),
-    Key("M-e", lazy.spawn(f'{term_open} ranger')),
-    Key("M-g", lazy.spawn(f'{term_open} ytop')),
+    Key("M-e", lazy.spawn(f'{term} vifm')),
+    Key("M-g", lazy.spawn(f'{term} ytop')),
     Key("M-i", lazy.spawn('idea')),
     Key("M-m", lazy.spawn('tutanota-desktop')),
     Key("M-n", lazy.spawn('networkmanager_dmenu')),
-    Key("M-o", lazy.spawn(f'{term_open} tty-clock -s -c -D -C 6')),
-    Key("M-p", lazy.spawn(f'{term_open} ncmpcpp')),
+    Key("M-o", lazy.spawn(f'{term} tty-clock -s -c -D -C 6')),
+    Key("M-p", lazy.spawn(f'{term} ncmpcpp')),
     Key("M-q", lazy.spawn(f'deluge-gtk')),
     Key("M-s", lazy.spawn('steam')),
-    Key("M-u", lazy.spawn(f'{term_open} htop')),
-    Key("M-v", lazy.spawn(f'{term_open} nvim')),
+    Key("M-u", lazy.spawn(f'{term} htop')),
+    Key("M-v", lazy.spawn(f'{term} nvim')),
     Key("M-w", lazy.spawn('qutebrowser')),
-    Key("M-y", lazy.spawn(f'{term_open} fish -c "yay -Syu && pacwall"')),
-    Key("M-<comma>", lazy.spawn(f'{term_open} cava')),
+    Key("M-y", lazy.spawn(f'{term} fish -c "yay -Syu && pacwall"')),
+    Key("M-<comma>", lazy.spawn(f'{term} cava')),
     Key("M-<period>", lazy.spawn('cantata')),
-    Key("M-<slash>", lazy.spawn(f'{term_open} pulsemixer')),
+    Key("M-<slash>", lazy.spawn(f'{term} pulsemixer')),
     Key("M-<equal>", lazy.spawn("rofi -modi calc -show calc -no-show-match -no-sort -calc-command \"echo -n '{{result}}' | xsel --input --primary && echo -n '{{result}}' | xsel --clipboard --input\"")),
 
     # LAYOUT KEYS
