@@ -12,7 +12,7 @@ set -gx LESS '-i -J -M -R -W -x4 -z-4'
 set -gx LESSOPEN '| /usr/bin/source-highlight-esc.sh %s'
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
 # }}}
-# {{{ Keybindings
+# {{{ Fish
 set -g fish_key_bindings fish_vi_key_bindings
 # }}}
 # {{{ Colorscheme
@@ -63,10 +63,11 @@ set -g pure_symbol_git_unpushed_commits " 💨"
 set -g pure_symbol_git_dirty " 🤷"
 
 set -g pure_color_primary $cyan
-set -g pure_color_info $magenta --italics
+set -g pure_color_info $magenta
 set -g pure_color_mute $green --italics
 set -g pure_color_success $blue
 set -g pure_color_danger $red
+set -g pure_color_normal $purple --italcs
 set -g pure_color_light $white --italics
 set -g pure_color_warning $yellow --italics
 set -g pure_color_dark $black --italics
