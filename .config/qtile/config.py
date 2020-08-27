@@ -75,7 +75,7 @@ keys = [
 
     Key("M-a", lazy.spawn('code')),
     Key("M-d", lazy.spawn('rofi -combi-modi window,drun -modi combi -show combi')),
-    Key("M-e", lazy.spawn(f'{term_open} lf')),
+    Key("M-e", lazy.spawn(f'{term_open} ranger')),
     Key("M-g", lazy.spawn(f'{term_open} ytop')),
     Key("M-i", lazy.spawn('idea')),
     Key("M-m", lazy.spawn('tutanota-desktop')),

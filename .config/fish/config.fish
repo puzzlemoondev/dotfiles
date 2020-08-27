@@ -84,6 +84,7 @@ end
 alias more='less'
 alias vim='nvim'
 alias ls='exa --group --header --git'
+alias bat='bat --color=always --theme="Forest Night (Italic)" --italic-text=always'
 alias cat='bat -p'
 
 ## Default Arguments
@@ -122,6 +123,13 @@ if status --is-interactive
     abbr -ag scu 'systemctl --user'
     abbr -ag jor 'journalctl'
     abbr -ag jour 'journalctl --user'
+
+    ## Trash
+    abbr -ag tp 'trash-put'
+    abbr -ag te 'trash-empty'
+    abbr -ag tl 'trash-list'
+    abbr -ag tr 'trash-restore'
+    abbr -ag trm 'trash-rm'
 
     ## Yadm
     abbr -ag y 'yadm'
