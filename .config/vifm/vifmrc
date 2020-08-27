@@ -300,7 +300,7 @@ fileviewer *.docx docx2txt.pl %f -
 "
 " Or leave it for automatic detection
 "
-fileviewer *[^/] pygmentize -O style=monokai -f console256 -g
+fileviewer *[^/] pygmentize -O style=forest -f console256 -g
 
 " Text based files
 filetype <text/*> nvim

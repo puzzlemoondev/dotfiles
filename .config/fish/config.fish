@@ -95,6 +95,7 @@ alias df='df -h'
 alias free='free -m'
 alias mkdir='mkdir -pv'
 alias tty-clock='tty-clock -s -c -D -C 6'
+alias pygmentize='pygmentize -O style=forest'
 alias yay='yay --nocleanmenu --nodiffmenu --noeditmenu --removemake --cleanafter'
 alias pacwall='pacwall -b "#'$bg0'" -s "#'$fg'22" -d "#'$red'AA" -e "#'$blue'AA" -p "#'$green'AA" -f "#'$purple'AA" -u "#'$yellow'AA" -r 0.6 -o {$HOME}/Pictures/walls/pacwall.png'
 # }}}
