@@ -285,7 +285,7 @@ fileviewer *.7z 7z l %c
 filetype *.csv nvim
 fileviewer *.csv sed "s/,,,,/,,-,,/g;s/,,/ /g" %c | column -t | sed "s/ - /  /g" | cut -c -%pw
 fileviewer *.doc catdoc %c
-fileviewer *.docx docx2txt.pl %f -
+fileviewer *.docx docx2txt %f -
 
 " Syntax highlighting in preview
 "
