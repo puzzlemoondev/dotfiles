@@ -182,8 +182,7 @@ filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
        \ ffplay -nodisp -autoexit %c,
        \ {Play using mpv }
        \ mpv %f,
-fileviewer *.mp3 mp3info
-fileviewer *.flac soxi
+fileviewer <audio/*> mediainfo
 
 " Video
 fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,

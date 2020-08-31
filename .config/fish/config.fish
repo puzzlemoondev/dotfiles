@@ -1,4 +1,5 @@
 # {{{ Environment Variables
+set -gx PATH ~/.local/bin $PATH
 set -gx LANG en_US.UTF-8
 set -gx LANGUAGE en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
@@ -102,8 +103,6 @@ alias pacwall='pacwall -b "#'$bg0'" -s "#'$fg'22" -d "#'$red'AA" -e "#'$blue'AA"
 # {{{ Abbreviations
 if status --is-interactive
     ## Coreutils
-    abbr -ag c 'clear'
-
     abbr -ag la 'ls -a'
     abbr -ag ld 'ls -aD'
     abbr -ag lt 'ls -aT'
