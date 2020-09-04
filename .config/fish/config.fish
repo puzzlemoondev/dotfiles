@@ -59,8 +59,8 @@ set -g fish_pager_color_progress  $blue --bold
 # {{{ Plugins
 set -g pure_symbol_prompt "λ"
 set -g pure_symbol_reverse_prompt "ƛ"
-set -g pure_symbol_git_unpulled_commits " 😰"
-set -g pure_symbol_git_unpushed_commits " 💨"
+set -g pure_symbol_git_unpulled_commits "😰"
+set -g pure_symbol_git_unpushed_commits "💨"
 set -g pure_symbol_git_dirty " 🤷"
 
 set -g pure_color_primary $cyan
@@ -294,5 +294,6 @@ if test -f "/usr/bin/barva" -a -n "$DISPLAY" -a (id -u) != 0 -a (pgrep barva | w
     set -x BARVA_TARGET "#$bg1"
 
     barva | /usr/share/barva/to-all-ttys.sh > /dev/null 2>&1 &
+    disown (jobs -lp)
 end
 # }}}
