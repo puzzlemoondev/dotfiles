@@ -79,6 +79,10 @@ set -g FZF_DEFAULT_OPTS "--height 40 --color=bg+:#$bg3,bg:#$bg0,spinner:#$cyan,h
 if type -q direnv
     direnv hook fish | source
 end
+
+if type -q aws
+    complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
+end
 # }}}
 # {{{ Aliases
 ## Replacements
