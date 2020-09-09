@@ -21,7 +21,7 @@
 
 // Default Config
 const defaultConfig = {
-  hosts: {invidious: "invidious.snopyta.org", nitter: "nitter.net", bibliogram: "bibliogram.art"},
+  hosts: {invidious: "invidious.snopyta.org", nitter: "nitter.net", bibliogram: "bibliogram.snopyta.org"},
   invProxy: 0
 };
 /*
