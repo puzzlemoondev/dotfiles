@@ -945,7 +945,7 @@
             "ir-width": "100"
         },
         "crystalizer": {
-            "state": "false",
+            "state": "true",
             "aggressive": "false",
             "input-gain": "0",
             "output-gain": "0",
