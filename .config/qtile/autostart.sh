@@ -7,4 +7,5 @@ mpDris2 &
 gnome-keyring-daemon --start --components=pkcs11,secrets &
 numlockx on &
 fcitx &
+pulseeffects --gapplication-service &
 pacwall -b "#323D43" -s "#D8CAAC22" -d "#E68183AA" -e "#89BEBAAA" -p "#A7C080AA" -f "#D3A0BCAA" -u "#D9BB80AA" -r 0.6 -o ${HOME}/Pictures/walls/pacwall.png &
