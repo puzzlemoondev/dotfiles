@@ -206,6 +206,8 @@ fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
 	\ %pc
 	\ kitty icat --silent --clear
 
+filetype <image/*> sxiv-rifle
+
 " MD5
 filetype *.md5
        \ {Check MD5 hash sum}
