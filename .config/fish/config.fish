@@ -153,8 +153,8 @@ if status --is-interactive
     abbr -ag yain 'yay -S'
     abbr -ag yaupg 'yay -Syu'
     abbr -ag yarem 'yay -Rns'
-    abbr -ag yarec 'yay -Sc'
-    abbr -ag yareo 'yay --clean'
+    abbr -ag yarmc 'yay -Sc'
+    abbr -ag yarmo 'yay --clean'
 
     ## VPN
     abbr -ag vpn 'expressvpn'
