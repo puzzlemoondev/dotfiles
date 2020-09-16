@@ -87,7 +87,7 @@ keys = [
     Key("M-u", lazy.spawn(f'{term_open} htop')),
     Key("M-v", lazy.spawn(f'{term_open} nvim')),
     Key("M-w", lazy.spawn('qutebrowser')),
-    Key("M-y", lazy.spawn(f'{term_open} fish -c "yay -Syu && pacwall"')),
+    Key("M-y", lazy.spawn(f'{term_open} fish -c "yay -Syu"')),
     Key("M-<comma>", lazy.spawn(f'{term_open} cava')),
     Key("M-<period>", lazy.spawn('cantata')),
     Key("M-<slash>", lazy.spawn(f'{term_open} pulsemixer')),
