@@ -23,7 +23,7 @@ c.content.headers.accept_language = 'en-US,en;q=0.5'
 c.content.headers.referer = 'same-domain'
 c.content.headers.do_not_track = True
 c.content.javascript.enabled = True
-c.content.webgl = False
+c.content.webgl = True
 c.content.webrtc_ip_handling_policy = 'disable-non-proxied-udp'
 c.content.media_capture = False
 c.content.mouse_lock = False

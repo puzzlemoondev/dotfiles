@@ -83,7 +83,7 @@ keys = [
     Key("M-o", lazy.spawn(f'{term_open} tty-clock -s -c -D -C 6')),
     Key("M-p", lazy.spawn(f'{term_open} ncmpcpp')),
     Key("M-q", lazy.spawn(f'deluge-gtk')),
-    Key("M-s", lazy.spawn('steam')),
+    Key("M-s", lazy.spawn('slack')),
     Key("M-u", lazy.spawn(f'{term_open} htop')),
     Key("M-v", lazy.spawn(f'{term_open} nvim')),
     Key("M-w", lazy.spawn('qutebrowser')),

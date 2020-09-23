@@ -291,7 +291,7 @@ if status is-login; and test -z "$DISPLAY" -a "$XDG_VTNR" = 1
 end
 
 ## Barva
-if test -f "/usr/bin/barva" -a -n "$DISPLAY" -a (id -u) != 0 -a (pgrep barva | wc -l) = 0 
+if type -q barva; and test -n "$DISPLAY" -a (id -u) != 0 -a (pgrep barva | wc -l) = 0 
     set -x BARVA_SOURCE (/usr/share/barva/pa-get-default-monitor.sh)
     set -x BARVA_BG "#$bg0"
     set -x BARVA_TARGET "#$bg1"
