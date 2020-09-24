@@ -26,6 +26,8 @@ set undolevels=1000
 set backspace=indent,eol,start
 set foldmethod=marker
 
+nnoremap <esc> :noh<return><esc>
+
 " fuzzy finder
 function! FzyCommand(choice_command, vim_command)
   try

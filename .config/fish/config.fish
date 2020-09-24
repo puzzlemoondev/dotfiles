@@ -90,7 +90,6 @@ alias more='less'
 alias vim='nvim'
 alias ls='exa --group --header --git'
 alias bat='bat --color=always --theme="Forest Night (Italic)" --italic-text=always'
-alias cat='bat -p'
 
 ## Default Arguments
 alias diff='diff --color=auto'
