@@ -2,7 +2,7 @@
     "alias_applications": true,
     "alias_display_format": "{name}",
     "exclude_items": [],
-    "filebrowser": "xdg-open",
+    "filebrowser": "vifm",
     "fileopener": "xdg-open",
     "filter_binaries": false,
     "follow_symlinks": false,
