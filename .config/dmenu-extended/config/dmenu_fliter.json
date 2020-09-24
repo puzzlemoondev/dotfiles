@@ -1,0 +1,41 @@
+{
+    "Archives": [
+        "zip",
+        "tar",
+        "7z",
+        "gz"
+    ],
+    "Documents": [
+        "pdf",
+        "txt",
+        "html",
+        "md",
+        "ps"
+    ],
+    "Media": [
+        "mp3",
+        "mp4",
+        "avi",
+        "m4a",
+        "ogg"
+    ],
+    "Office": [
+        "odf",
+        "ods",
+        "doc",
+        "docx",
+        "xls",
+        "xlsx"
+    ],
+    "Pictures": [
+        "svg",
+        "png",
+        "jpg",
+        "gif",
+        "xcf"
+    ],
+    "Source files": [
+        "php",
+        "py"
+    ]
+}
