@@ -1,3 +1,8 @@
+div * {
+  background-color: rgba(50,61,67,0.5) !important;
+  color: #d8caac !important;
+  text-shadow:none !important;
+}
 * {
   border-color: #d9bb80 !important;
 }
