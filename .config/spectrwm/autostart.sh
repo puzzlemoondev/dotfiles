@@ -8,3 +8,4 @@ numlockx on &
 fcitx &
 nitrogen --restore &
 pulseeffects --gapplication-service &
+picom -b
