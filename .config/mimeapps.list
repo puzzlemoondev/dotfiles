@@ -3,6 +3,7 @@ text/plain=nvim.desktop;
 text/markdown=nvim.desktop;
 text/html=nvim.desktop;
 application/json=nvim.desktop;
+application/javascript=nvim.desktop;
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
 application/epub+zip=org.pwmt.zathura-pdf-mupdf.desktop;
 image/jpeg=sxiv.desktop;gimp.desktop;
