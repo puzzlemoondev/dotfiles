@@ -7,8 +7,7 @@ _is_nvidia = bool(subprocess.check_output("lspci | awk 'BEGIN{IGNORECASE=1} /vga
 _stylesheet = '~/.config/qutebrowser/userscripts/forest-all-sites.css'
 
 # system
-if _is_nvidia:
-    c.qt.force_software_rendering = 'chromium'
+c.backend = 'webengine'
 
 # editor
 c.editor.command = ['nvim', '{file}', '-c', 'normal {line}G{column0}l']
@@ -35,9 +34,17 @@ c.url.default_page = 'about:blank'
 c.url.start_pages = 'about:blank'
 c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}'}
 
+# dark mode
+c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
+c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.policy.images = 'smart'
+c.colors.webpage.darkmode.policy.page = 'smart'
+c.colors.webpage.darkmode.threshold.background = 205
+c.colors.webpage.darkmode.threshold.text = 150
+c.colors.webpage.prefers_color_scheme_dark = True
+
 # ui
 c.confirm_quit = ['downloads']
-c.colors.webpage.prefers_color_scheme_dark = True
 c.downloads.position = 'bottom'
 c.downloads.remove_finished = 5000
 c.fonts.default_family = ['Victor Mono SemiBold', 'Noto Sans']
@@ -61,6 +68,7 @@ config.bind(',M', 'spawn umpv {url}')
 config.bind(';m', 'hint --rapid links spawn umpv {hint-url}')
 config.bind('<F1>', 'config-cycle content.javascript.enabled')
 config.bind('<F2>', f'config-cycle content.user_stylesheets {_stylesheet} ""')
+
 
 # load theme last
 config.source('forest-night-qutebrowser.py')

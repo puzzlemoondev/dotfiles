@@ -327,4 +327,4 @@ c.colors.tabs.selected.odd.fg = forest['foreground']
 ## Background color for webpages if unset (or empty to use the theme's
 ## color)
 ## Type: QtColor
-c.colors.webpage.bg = forest['white']
+c.colors.webpage.bg = forest['background']
