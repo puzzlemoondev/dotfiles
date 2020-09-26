@@ -3,8 +3,7 @@ from operator import mul
 from functools import reduce
 
 _pixels = reduce(mul, map(int, subprocess.check_output("xrandr -q | awk 'match($0, / connected.* ([0-9]+x[0-9]+)/, a) { print a[1] }'", shell=True).split(b'x')))
-_is_nvidia = bool(subprocess.check_output("lspci | awk 'BEGIN{IGNORECASE=1} /vga/ && /nvidia/'", shell=True))
-_stylesheet = '~/.config/qutebrowser/userscripts/forest-all-sites.css'
+_stylesheet = '~/.config/qutebrowser/userscripts/forest-generic.css'
 
 # system
 c.backend = 'webengine'
