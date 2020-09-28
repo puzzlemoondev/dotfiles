@@ -38,8 +38,8 @@ c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.policy.images = 'smart'
 c.colors.webpage.darkmode.policy.page = 'smart'
-c.colors.webpage.darkmode.threshold.background = 205
-c.colors.webpage.darkmode.threshold.text = 150
+c.colors.webpage.darkmode.threshold.background = 128
+c.colors.webpage.darkmode.threshold.text = 128
 c.colors.webpage.prefers_color_scheme_dark = True
 
 # ui
