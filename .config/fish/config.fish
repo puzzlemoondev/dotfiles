@@ -286,6 +286,5 @@ if type -q barva; and test -n "$DISPLAY" -a (id -u) != 0 -a (pgrep barva | wc -l
     set -x BARVA_TARGET "#$bg2"
 
     barva | /usr/share/barva/to-all-ttys.sh > /dev/null 2>&1 &
-    disown (jobs -lp)
 end
 # }}}
