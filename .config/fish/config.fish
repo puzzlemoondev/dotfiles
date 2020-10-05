@@ -176,6 +176,7 @@ if status --is-interactive
     abbr -ag asmd 'adb-sync -d ~/Music/ /sdcard/Music/'
     abbr -ag asmr 'adb-sync -R /sdcard/Music/ ~/Music/'
     abbr -ag asmrd 'adb-sync -R -d /sdcard/Music/ ~/Music/'
+    abbr -ag ash 'adb-sync-host'
 
     ## Misc
     abbr -ag e 'lf'
@@ -277,14 +278,5 @@ end
 ## Start X at Login
 if status is-login; and test -z "$DISPLAY" -a "$XDG_VTNR" = 1
     exec ssh-agent startx -- -keeptty &> /dev/null
-end
-
-## Barva
-if type -q barva; and test -n "$DISPLAY" -a (id -u) != 0 -a (pgrep barva | wc -l) = 0 
-    set -x BARVA_SOURCE (/usr/share/barva/pa-get-default-monitor.sh)
-    set -x BARVA_BG "#$bg0"
-    set -x BARVA_TARGET "#$bg2"
-
-    barva | /usr/share/barva/to-all-ttys.sh > /dev/null 2>&1 &
 end
 # }}}
