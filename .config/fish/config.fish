@@ -176,7 +176,7 @@ if status --is-interactive
     abbr -ag asmd 'adb-sync -d ~/Music/ /sdcard/Music/'
     abbr -ag asmr 'adb-sync -R /sdcard/Music/ ~/Music/'
     abbr -ag asmrd 'adb-sync -R -d /sdcard/Music/ ~/Music/'
-    abbr -ag ash 'adb-sync-host'
+    abbr -ag ash 'adb-sync-hosts'
 
     ## Misc
     abbr -ag e 'lf'
