@@ -23,7 +23,9 @@ c.content.headers.do_not_track = True
 c.content.javascript.enabled = True
 c.content.webgl = True
 c.content.webrtc_ip_handling_policy = 'disable-non-proxied-udp'
-c.content.media_capture = False
+c.content.media.audio_capture = False
+c.content.media.video_capture = False
+c.content.media.audio_video_capture = False
 c.content.mouse_lock = False
 
 # content

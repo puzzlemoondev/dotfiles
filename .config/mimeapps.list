@@ -24,3 +24,4 @@ audio/m4a=mpv.desktop;
 audio/mp3=mpv.desktop;
 inode/directory=vifm.desktop;
 application/json=nvim.desktop;
+x-scheme-handler/figma=figma-linux.desktop
