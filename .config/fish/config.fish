@@ -148,6 +148,22 @@ if status --is-interactive
     abbr -ag yu 'yadm add -u && yadm commit && yadm push'
     abbr -ag uy 'yadm pull'
 
+    ## Amplify
+    abbr -ag ampc 'amplify configure'
+    abbr -ag ampi 'amplify init'
+    abbr -ag ampa 'amplify add'
+    abbr -ag ampu 'amplify update'
+    abbr -ag ampp 'amplify push'
+    abbr -ag ampl 'amplify pull'
+    abbr -ag amppb 'amplify publish'
+    abbr -ag amps 'amplify status'
+    abbr -ag ampsr 'amplify serve'
+    abbr -ag ampd 'amplify delete'
+    abbr -ag amph 'amplify help'
+    abbr -ag ampg 'amplify codegen'
+    abbr -ag ampgm 'amplify codegen models'
+    abbr -ag ampe 'amplify env'
+
     ## Arch
     abbr -ag yain 'yay -S'
     abbr -ag yaupg 'yay -Syu'
