@@ -165,11 +165,11 @@ if status --is-interactive
     abbr -ag ampe 'amplify env'
 
     ## Arch
-    abbr -ag yain 'yay -S'
-    abbr -ag yaupg 'yay -Syu'
-    abbr -ag yarem 'yay -Rns'
-    abbr -ag yarmc 'yay -Sc'
-    abbr -ag yarmo 'yay --clean'
+    abbr -ag pain 'paru -S'
+    abbr -ag paupg 'paru -Syu'
+    abbr -ag parem 'paru -Rns'
+    abbr -ag parec 'paru -Sc'
+    abbr -ag pareo 'paru --clean'
 
     ## VPN
     abbr -ag vpn 'expressvpn'
@@ -201,11 +201,13 @@ if status --is-interactive
     abbr -ag x 'extract'
     abbr -ag aw 'awman'
     abbr -ag k3 'kid3-qt'
+    abbr -ag pping 'prettyping'
     abbr -ag abcdef 'abcde -o flac:"--best"'
     abbr -ag abcdem 'abcde -o m4a:"-b 320"'
     abbr -ag ea 'for a in (abbr -l); abbr -e $a; end'
     abbr -ag ef 'exec fish'
     abbr -ag ur 'sudo reflector -p http -p https -l 30 -n 20 --sort rate --save /etc/pacman.d/mirrorlist --verbose'
+    abbr -ag p8 'prettyping 8.8.8.8'
     abbr -ag par 'prettyping archlinux.org'
     abbr -ag battery 'upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage"'
     abbr -ag fconf 'vim ~/.config/fish/config.fish'
