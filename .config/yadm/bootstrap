@@ -36,24 +36,6 @@ fi
 
 echo
 
-# create hblock configuration in /etc
-echo "Configuring hblock"
-
-HBLOCK_CONFIG_DIR=/etc/hblock.d
-
-if [ -d $HBLOCK_CONFIG_DIR ]; then
-    echo "Found old hblock configuration directory, removing..."
-    if [ -L $HBLOCK_CONFIG_DIR ]; then
-	sudo rm $HBLOCK_CONFIG_DIR
-    else
-	sudo rm -rf $HBLOCK_CONFIG_DIR
-    fi
-fi
-
-echo "Creating hblock configuration"
-
-sudo cp -r ~/.config/hblock.d $HBLOCK_CONFIG_DIR
-
 if command -v hblock >/dev/null 2>&1; then
     echo "Hblock is installed. Updating host file..."
     hblock
