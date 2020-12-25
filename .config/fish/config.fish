@@ -100,7 +100,6 @@ alias free='free -m'
 alias mkdir='mkdir -pv'
 alias tty-clock='tty-clock -s -c -D -C 6'
 alias pygmentize='pygmentize -O style=forest'
-alias paru='paru --removemake --cleanafter'
 # }}}
 # {{{ Abbreviations
 if status --is-interactive
