@@ -1,5 +1,5 @@
 # {{{ Environment Variables
-set -gx PATH ~/.local/bin $PATH
+set -gx PATH ~/.local/bin /usr/local/bin $PATH
 set -gx LANG en_US.UTF-8
 set -gx LANGUAGE en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
