@@ -5,7 +5,7 @@ from functools import reduce
 _pixels = reduce(mul, map(int, subprocess.check_output("xrandr -q | awk 'match($0, / connected.* ([0-9]+x[0-9]+)/, a) { print a[1] }'", shell=True).split(b'x')))
 _stylesheet = '~/.config/qutebrowser/userscripts/forest-generic.css'
 
-# system
+config.load_autoconfig(False)
 c.backend = 'webengine'
 
 # editor
