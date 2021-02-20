@@ -1,0 +1,45 @@
+[aws]
+disabled = true
+
+[battery]
+full_symbol = "🔋"
+charging_symbol = "⚡️"
+discharging_symbol = "💀"
+
+[character]
+success_symbol = "[λ](bold cyan)"
+error_symbol = "[λ](bold red)"
+vicmd_symbol = "[λ](bold #576268)"
+
+[cmake]
+disabled = true
+
+[cmd_duration]
+format = " [$duration](italic #d3a0bc)"
+
+[directory]
+truncation_length = 8
+truncation_symbol = "…/"
+style = "normal cyan"
+
+[gcloud]
+disabled = true
+
+[git_branch]
+symbol = "🌱 "
+style = "italic purple"
+
+[git_status]
+conflicted = "🏳"
+ahead = "🏎💨"
+behind = "😰"
+diverged = "😵"
+untracked = "🤷"
+stashed = "📦"
+modified = "📝"
+staged = '[++\($count\)](green)'
+renamed = "👅"
+deleted = "🗑"
+
+[package]
+format = "is [🎁 $version](bold 208) "
