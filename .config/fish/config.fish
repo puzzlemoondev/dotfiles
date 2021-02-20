@@ -60,18 +60,6 @@ set -g fish_pager_color_progress  $blue --bold
 set -g FZF_DEFAULT_OPTS "--height 40 --color=bg+:#$bg3,bg:#$bg0,spinner:#$cyan,hl:#$blue,fg:#$green,header:#$blue,info:#$yellow,pointer:#$cyan,marker:#$cyan,fg+:#$fg,prompt:#$yellow,hl+:#$blue"
 # }}}
 # {{{ Hooks
-if type -q direnv
-    direnv hook fish | source
-end
-
-if type -q aws
-    complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
-end
-
-if type -q starship
-    starship init fish | source
-end
-
 if test (uname -s) = "Darwin"
     if test (uname -m) = "arm64"
         set homebrew /opt/homebrew/bin/brew
@@ -82,6 +70,18 @@ if test (uname -s) = "Darwin"
     if type -q $homebrew
         eval ($homebrew shellenv)
     end
+end
+
+if type -q direnv
+    direnv hook fish | source
+end
+
+if type -q aws
+    complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
+end
+
+if type -q starship
+    starship init fish | source
 end
 # }}}
 # {{{ Aliases
@@ -172,7 +172,7 @@ if status --is-interactive
     abbr -ag parec 'paru -Sc'
     abbr -ag pareo 'paru --clean'
 
-    abbr -ag gimme 'paru'
+    abbr -ag gimme 'paru -S'
     abbr -ag yeet 'paru -Rns'
     abbr -ag relax 'paru -Syu'
 
