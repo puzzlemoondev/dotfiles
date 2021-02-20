@@ -7,27 +7,27 @@ charging_symbol = "⚡️"
 discharging_symbol = "💀"
 
 [character]
-success_symbol = "[λ](bold #98beba)"
-error_symbol = "[λ](bold #e68183)"
-vicmd_symbol = "[λ](bold #868d80)"
+success_symbol = "[λ](bold blue)"
+error_symbol = "[λ](bold red)"
+vicmd_symbol = "[λ](bold dimmed blue)"
 
 [cmake]
 disabled = true
 
 [cmd_duration]
-format = " [$duration](italic #d3a0bc)"
+format = " [$duration](italic yellow)"
 
 [directory]
 truncation_length = 8
 truncation_symbol = "…/"
-style = "normal #87c095"
+style = "normal cyan"
 
 [gcloud]
 disabled = true
 
 [git_branch]
 symbol = "🌱 "
-style = "italic #d3a0bc"
+style = "italic purple"
 
 [git_status]
 conflicted = "🏳"
