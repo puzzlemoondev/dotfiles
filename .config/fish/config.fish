@@ -57,22 +57,6 @@ set -g fish_pager_color_description  $grey --italics
 set -g fish_pager_color_progress  $blue --bold
 # }}}
 # {{{ Plugins
-set -g pure_symbol_prompt "λ"
-set -g pure_symbol_reverse_prompt "ƛ"
-set -g pure_symbol_git_unpulled_commits "😰"
-set -g pure_symbol_git_unpushed_commits "💨"
-set -g pure_symbol_git_dirty " 🤷"
-
-set -g pure_color_primary $cyan
-set -g pure_color_info $magenta
-set -g pure_color_mute $green --italics
-set -g pure_color_success $blue
-set -g pure_color_danger $red
-set -g pure_color_normal $purple --italcs
-set -g pure_color_light $white --italics
-set -g pure_color_warning $yellow --italics
-set -g pure_color_dark $black --italics
-
 set -g FZF_DEFAULT_OPTS "--height 40 --color=bg+:#$bg3,bg:#$bg0,spinner:#$cyan,hl:#$blue,fg:#$green,header:#$blue,info:#$yellow,pointer:#$cyan,marker:#$cyan,fg+:#$fg,prompt:#$yellow,hl+:#$blue"
 # }}}
 # {{{ Hooks
@@ -82,6 +66,10 @@ end
 
 if type -q aws
     complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
+end
+
+if type -q starship
+    starship init fish | source
 end
 
 if test (uname -s) = "Darwin"
