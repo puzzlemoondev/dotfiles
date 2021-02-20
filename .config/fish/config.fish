@@ -100,6 +100,7 @@ end
 ## Replacements
 alias more='less'
 alias vim='nvim'
+alias yay='paru'
 alias ls='exa --group --header --git'
 alias bat='bat --color=always --theme="Forest Night (Italic)" --italic-text=always'
 
@@ -182,6 +183,10 @@ if status --is-interactive
     abbr -ag parem 'paru -Rns'
     abbr -ag parec 'paru -Sc'
     abbr -ag pareo 'paru --clean'
+
+    abbr -ag gimme 'paru'
+    abbr -ag yeet 'paru -Rns'
+    abbr -ag relax 'paru -Syu'
 
     ## VPN
     abbr -ag vpn 'expressvpn'
