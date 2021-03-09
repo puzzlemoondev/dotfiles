@@ -1,4 +1,4 @@
-# {{{ Environment Variables
+#  Environment Variables
 set -gx PATH ~/.local/bin /usr/local/bin $PATH
 set -gx LANG en_US.UTF-8
 set -gx LANGUAGE en_US.UTF-8
@@ -12,11 +12,11 @@ set -gx SYSTEMD_EDITOR $VISUAL
 set -gx LESS '-i -J -M -R -W -x4 -z-4'
 set -gx LESSOPEN '| /usr/bin/source-highlight-esc.sh %s'
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
-# }}}
-# {{{ Fish
+# 
+#  Fish
 set -g fish_key_bindings fish_vi_key_bindings
-# }}}
-# {{{ Colorscheme
+# 
+#  Colorscheme
 set -l bg0        323d43
 set -l bg1        3c474d
 set -l bg2        465258
@@ -55,27 +55,27 @@ set -g fish_pager_color_completion  $purple
 set -g fish_pager_color_prefix  $orange --bold
 set -g fish_pager_color_description  $grey --italics
 set -g fish_pager_color_progress  $blue --bold
-# }}}
-# {{{ Plugins
-set -g pure_symbol_prompt "λ"
-set -g pure_symbol_reverse_prompt "ƛ"
-set -g pure_symbol_git_unpulled_commits "😰"
-set -g pure_symbol_git_unpushed_commits "💨"
-set -g pure_symbol_git_dirty " 🤷"
+# 
+#  Plugins
+if not functions -q fundle
+    eval (curl -sfL https://git.io/fundle-install)
+end
 
-set -g pure_color_primary $cyan
-set -g pure_color_info $magenta
-set -g pure_color_mute $green --italics
-set -g pure_color_success $blue
-set -g pure_color_danger $red
-set -g pure_color_normal $purple --italcs
-set -g pure_color_light $white --italics
-set -g pure_color_warning $yellow --italics
-set -g pure_color_dark $black --italics
+begin
+    fundle plugin 'edc/bass'
+    fundle plugin 'Gazorby/fish-abbreviation-tips'
+    fundle plugin 'jethrokuan/z'
+    fundle plugin 'jhillyerd/plugin-git'
+    fundle plugin 'joseluisq/gitnow'
+    fundle plugin 'laughedelic/fish_logo'
+    fundle plugin 'laughedelic/pisces'
+    fundle plugin 'markcial/upto'
+    fundle plugin 'shannonmoeller/up'
 
-set -g FZF_DEFAULT_OPTS "--height 40 --color=bg+:#$bg3,bg:#$bg0,spinner:#$cyan,hl:#$blue,fg:#$green,header:#$blue,info:#$yellow,pointer:#$cyan,marker:#$cyan,fg+:#$fg,prompt:#$yellow,hl+:#$blue"
-# }}}
-# {{{ Hooks
+    fundle init
+end &> /dev/null
+# 
+#  Hooks
 if test (uname -s) = "Darwin"
     if test (uname -m) = "arm64"
         set homebrew /opt/homebrew/bin/brew
@@ -88,6 +88,10 @@ if test (uname -s) = "Darwin"
     end
 end
 
+if type -q starship
+    starship init fish | source
+end
+
 if type -q direnv
     direnv hook fish | source
 end
@@ -95,8 +99,8 @@ end
 if type -q aws
     complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
 end
-# }}}
-# {{{ Aliases
+# 
+#  Aliases
 ## Replacements
 alias more='less'
 alias vim='nvim'
@@ -113,8 +117,8 @@ alias free='free -m'
 alias mkdir='mkdir -pv'
 alias tty-clock='tty-clock -s -c -D -C 6'
 alias pygmentize='pygmentize -O style=forest'
-# }}}
-# {{{ Abbreviations
+# 
+#  Abbreviations
 if status --is-interactive
     ## Coreutils
     abbr -ag la 'ls -a'
@@ -229,8 +233,8 @@ if status --is-interactive
     abbr -ag fconf 'vim ~/.config/fish/config.fish'
     abbr -ag fdir 'cd ~/.config/fish/'
 end
-# }}}
-# {{{ Functions
+# 
+#  Functions
 function cd
     if count $argv > /dev/null
         builtin cd "$argv"; and ls
@@ -307,10 +311,10 @@ function fish_greeting
 	fish_logo $red $orange $yellow
     end
 end
-# }}}
-# {{{ Start Actions
+# 
+#  Start Actions
 ## Start X at Login
 if status is-login; and test -z "$DISPLAY" -a "$XDG_VTNR" = 1
     exec ssh-agent startx -- -keeptty &> /dev/null
 end
-# }}}
+# 
