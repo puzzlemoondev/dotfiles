@@ -1,5 +1,5 @@
-#  Environment Variables
-set -gx PATH ~/.local/bin /usr/local/bin $PATH
+#{{{ Environment Variables
+set -gx PATH ~/.local/bin /usr/local/bin /opt/miniconda3/bin $PATH
 set -gx LANG en_US.UTF-8
 set -gx LANGUAGE en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
@@ -12,11 +12,11 @@ set -gx SYSTEMD_EDITOR $VISUAL
 set -gx LESS '-i -J -M -R -W -x4 -z-4'
 set -gx LESSOPEN '| /usr/bin/source-highlight-esc.sh %s'
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
-# 
-#  Fish
+#}}}
+#{{{ Fish
 set -g fish_key_bindings fish_vi_key_bindings
-# 
-#  Colorscheme
+#}}}
+#{{{ Colorscheme
 set -l bg0        323d43
 set -l bg1        3c474d
 set -l bg2        465258
@@ -55,9 +55,8 @@ set -g fish_pager_color_completion  $purple
 set -g fish_pager_color_prefix  $orange --bold
 set -g fish_pager_color_description  $grey --italics
 set -g fish_pager_color_progress  $blue --bold
-# 
-#  Plugins
-
+#}}}
+#{{{ Plugins
 if not functions -q fundle
     eval (curl -sfL https://git.io/fundle-install) 
 end
@@ -75,8 +74,8 @@ begin
 
     fundle init
 end &> /dev/null
-# 
-#  Hooks
+#}}}
+#{{{ Hooks
 if test (uname -s) = "Darwin"
     if test (uname -m) = "arm64"
         set homebrew /opt/homebrew/bin/brew
@@ -100,16 +99,15 @@ end
 if type -q aws
     complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
 end
-# 
-#  Aliases
-## Replacements
+#}}}
+#{{{ Aliases
+# Replacements
 alias more='less'
 alias vim='nvim'
 alias yay='paru'
 alias ls='exa --group --header --git'
 alias bat='bat --color=always --theme="Forest Night (Italic)" --italic-text=always'
-
-## Default Arguments
+# Default Arguments
 alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 alias ip='ip --color=auto'
@@ -118,10 +116,10 @@ alias free='free -m'
 alias mkdir='mkdir -pv'
 alias tty-clock='tty-clock -s -c -D -C 6'
 alias pygmentize='pygmentize -O style=forest'
-# 
-#  Abbreviations
+#}}}1
+#{{{ Abbreviations
 if status --is-interactive
-    ## Coreutils
+    # Coreutils
     abbr -ag la 'ls -a'
     abbr -ag ld 'ls -aD'
     abbr -ag lt 'ls -aT'
@@ -137,20 +135,20 @@ if status --is-interactive
     abbr -ag fdf 'fd -t f'
     abbr -ag map 'xargs -n1'
 
-    ## Systemd
+    # Systemd
     abbr -ag sc 'sudo systemctl'
     abbr -ag scu 'systemctl --user'
     abbr -ag jor 'journalctl'
     abbr -ag jour 'journalctl --user'
 
-    ## Trash
+    # Trash
     abbr -ag tp 'trash-put'
     abbr -ag te 'trash-empty'
     abbr -ag tl 'trash-list'
     abbr -ag tr 'trash-restore'
     abbr -ag trm 'trash-rm'
 
-    ## Yadm
+    # Yadm
     abbr -ag y 'yadm'
     abbr -ag ya 'yadm add'
     abbr -ag yaa 'yadm add -u'
@@ -165,7 +163,7 @@ if status --is-interactive
     abbr -ag yu 'yadm add -u && yadm commit && yadm push'
     abbr -ag uy 'yadm pull'
 
-    ## Amplify
+    # Amplify
     abbr -ag ampc 'amplify configure'
     abbr -ag ampi 'amplify init'
     abbr -ag ampa 'amplify add'
@@ -181,7 +179,7 @@ if status --is-interactive
     abbr -ag ampgm 'amplify codegen models'
     abbr -ag ampe 'amplify env'
 
-    ## Arch
+    # Arch
     abbr -ag par 'paru'
     abbr -ag pain 'paru -S'
     abbr -ag paupg 'paru -Syu'
@@ -193,7 +191,7 @@ if status --is-interactive
     abbr -ag yeet 'paru -Rns'
     abbr -ag relax 'paru -Syu'
 
-    ## VPN
+    # VPN
     abbr -ag vpn 'expressvpn'
     abbr -ag vpna 'expressvpn activate'
     abbr -ag vpnc 'expressvpn connect'
@@ -208,7 +206,7 @@ if status --is-interactive
     abbr -ag vpnlock 'expressvpn preferences set network_lock on'
     abbr -ag vpnunlock 'expressvpn preferences set network_lock off'
 
-    ## ADB
+    # ADB
     abbr -ag asm 'adb-sync ~/Music/ /sdcard/Music/'
     abbr -ag asm2 'adb-sync -2 ~/Music/ /sdcard/Music/'
     abbr -ag asmd 'adb-sync -d ~/Music/ /sdcard/Music/'
@@ -216,7 +214,7 @@ if status --is-interactive
     abbr -ag asmrd 'adb-sync -R -d /sdcard/Music/ ~/Music/'
     abbr -ag ash 'adb-sync-hosts'
 
-    ## Misc
+    # Misc
     abbr -ag e 'lf'
     abbr -ag q 'exit'
     abbr -ag v 'nvim'
@@ -234,8 +232,8 @@ if status --is-interactive
     abbr -ag fconf 'vim ~/.config/fish/config.fish'
     abbr -ag fdir 'cd ~/.config/fish/'
 end
-# 
-#  Functions
+#}}}
+#{{{ Functions
 function cd
     if count $argv > /dev/null
         builtin cd "$argv"; and ls
@@ -312,10 +310,10 @@ function fish_greeting
 	fish_logo $red $orange $yellow
     end
 end
-# 
-#  Start Actions
-## Start X at Login
+#}}}
+#{{{ Start Actions
+# Start X at Login
 if status is-login; and test -z "$DISPLAY" -a "$XDG_VTNR" = 1
     exec ssh-agent startx -- -keeptty &> /dev/null
 end
-# 
+#}}}
