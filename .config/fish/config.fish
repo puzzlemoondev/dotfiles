@@ -15,7 +15,7 @@ set -gx _JAVA_AWT_WM_NONREPARENTING 1
 #}}}
 #{{{ Variables
 set -g fish_key_bindings fish_vi_key_bindings
-set pipenv_fish_fancy yes
+set -g pipenv_fish_fancy yes
 #}}}
 #{{{ Colorscheme
 set -l bg0        323d43
