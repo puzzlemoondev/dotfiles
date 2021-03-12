@@ -394,15 +394,16 @@ function man --wraps man -d "Run man with added colors"
     command man $argv
 end
 
-function mkc --wraps mkdir -d 'Create a directory and cd into it'
-    command mkdir -p $argv
+function mkc -d "Create a directory and set CWD"
+    command mkdir $argv
     if test $status = 0
-    switch $argv[(count $argv)]
-        case '-*'
-        case '*'
-        cd $argv[(count $argv)]
-        return
-    end
+        switch $argv[(count $argv)]
+            case '-*'
+
+            case '*'
+                cd $argv[(count $argv)]
+                return
+        end
     end
 end
 
