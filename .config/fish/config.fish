@@ -57,21 +57,24 @@ set -g fish_pager_color_description  $grey --italics
 set -g fish_pager_color_progress  $blue --bold
 # 
 #  Plugins
-if functions -q fundle
-    begin
-	fundle plugin 'edc/bass'
-	fundle plugin 'Gazorby/fish-abbreviation-tips'
-	fundle plugin 'jethrokuan/z'
-	fundle plugin 'jhillyerd/plugin-git'
-	fundle plugin 'joseluisq/gitnow'
-	fundle plugin 'laughedelic/fish_logo'
-	fundle plugin 'laughedelic/pisces'
-	fundle plugin 'markcial/upto'
-	fundle plugin 'shannonmoeller/up'
 
-	fundle init
-    end &> /dev/null
+if not functions -q fundle
+    eval (curl -sfL https://git.io/fundle-install) 
 end
+
+begin
+    fundle plugin 'edc/bass'
+    fundle plugin 'Gazorby/fish-abbreviation-tips'
+    fundle plugin 'jethrokuan/z'
+    fundle plugin 'jhillyerd/plugin-git'
+    fundle plugin 'joseluisq/gitnow'
+    fundle plugin 'laughedelic/fish_logo'
+    fundle plugin 'laughedelic/pisces'
+    fundle plugin 'markcial/upto'
+    fundle plugin 'shannonmoeller/up'
+
+    fundle init
+end &> /dev/null
 # 
 #  Hooks
 if test (uname -s) = "Darwin"
