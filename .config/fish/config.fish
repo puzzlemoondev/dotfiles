@@ -13,11 +13,7 @@ set -gx LESS '-i -J -M -R -W -x4 -z-4'
 set -gx LESSOPEN '| /usr/bin/source-highlight-esc.sh %s'
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
 #}}}
-#{{{ Variables
-set -g fish_key_bindings fish_vi_key_bindings
-set -g pipenv_fish_fancy yes
-#}}}
-#{{{ Colorscheme
+#{{{ Fish
 set -l bg0        323d43
 set -l bg1        3c474d
 set -l bg2        465258
@@ -56,8 +52,29 @@ set -g fish_pager_color_completion  $purple
 set -g fish_pager_color_prefix  $orange --bold
 set -g fish_pager_color_description  $grey --italics
 set -g fish_pager_color_progress  $blue --bold
+
+set -g fish_key_bindings fish_vi_key_bindings
 #}}}
 #{{{ Plugins
+set -g pipenv_fish_fancy yes
+
+set -g pure_symbol_git_dirty ' 🤷'
+set -g pure_symbol_git_stash '📦'
+set -g pure_symbol_git_unpulled_commits '😰'
+set -g pure_symbol_git_unpushed_commits '💨'
+set -g pure_symbol_prompt 'λ'
+set -g pure_symbol_reverse_prompt 'ƛ'
+
+set -g pure_color_danger "$red"
+set -g pure_color_dark "$black" --italics
+set -g pure_color_info "$magenta"
+set -g pure_color_light "$white" --italics
+set -g pure_color_mute "$green" --italics
+set -g pure_color_normal "$purple" --italics
+set -g pure_color_primary "$cyan" --italics
+set -g pure_color_success "$blue"
+set -g pure_color_warning "$yellow" --italics
+
 if not functions -q fundle
     eval (curl -sfL https://git.io/fundle-install)
 end
@@ -72,6 +89,7 @@ begin
     fundle plugin 'markcial/upto'
     fundle plugin 'shannonmoeller/up'
     fundle plugin 'sentriz/fish-pipenv'
+    fundle plugin 'pure-fish/pure'
 
     fundle init
 end &> /dev/null
@@ -87,10 +105,6 @@ if test (uname -s) = "Darwin"
     if type -q $homebrew
         eval ($homebrew shellenv)
     end
-end
-
-if type -q starship
-    starship init fish | source
 end
 
 if type -q direnv
