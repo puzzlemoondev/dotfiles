@@ -13,8 +13,9 @@ set -gx LESS '-i -J -M -R -W -x4 -z-4'
 set -gx LESSOPEN '| /usr/bin/source-highlight-esc.sh %s'
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
 #}}}
-#{{{ Fish
+#{{{ Variables
 set -g fish_key_bindings fish_vi_key_bindings
+set pipenv_fish_fancy yes
 #}}}
 #{{{ Colorscheme
 set -l bg0        323d43
@@ -71,6 +72,7 @@ begin
     fundle plugin 'laughedelic/pisces'
     fundle plugin 'markcial/upto'
     fundle plugin 'shannonmoeller/up'
+    fundle plugin 'sentriz/fish-pipenv'
 
     fundle init
 end &> /dev/null
