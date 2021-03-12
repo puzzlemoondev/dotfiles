@@ -65,15 +65,15 @@ set -g pure_symbol_git_unpushed_commits '💨'
 set -g pure_symbol_prompt 'λ'
 set -g pure_symbol_reverse_prompt 'ƛ'
 
-set -g pure_color_danger "$red"
-set -g pure_color_dark "$black" --italics
-set -g pure_color_info "$magenta"
-set -g pure_color_light "$white" --italics
-set -g pure_color_mute "$green" --italics
-set -g pure_color_normal "$purple" --italics
-set -g pure_color_primary "$cyan" --italics
-set -g pure_color_success "$blue"
-set -g pure_color_warning "$yellow" --italics
+set -g pure_color_danger red
+set -g pure_color_dark black
+set -g pure_color_info magenta
+set -g pure_color_light white
+set -g pure_color_mute green
+set -g pure_color_normal purple
+set -g pure_color_primary cyan
+set -g pure_color_success blue
+set -g pure_color_warning yellow
 
 if not functions -q fundle
     eval (curl -sfL https://git.io/fundle-install)
