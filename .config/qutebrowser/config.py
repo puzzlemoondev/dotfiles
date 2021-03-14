@@ -42,7 +42,7 @@ c.colors.webpage.darkmode.policy.images = 'smart'
 c.colors.webpage.darkmode.policy.page = 'smart'
 c.colors.webpage.darkmode.threshold.background = 128
 c.colors.webpage.darkmode.threshold.text = 128
-c.colors.webpage.prefers_color_scheme_dark = True
+c.colors.webpage.preferred_color_scheme = 'dark'
 
 # ui
 c.confirm_quit = ['downloads']
