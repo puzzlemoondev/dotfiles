@@ -364,9 +364,9 @@ if status --is-interactive
     abbr -ag ash        'adb-sync-hosts'
 
     # Misc
-    abbr -ag e          'lf'
     abbr -ag q          'exit'
     abbr -ag v          'nvim'
+    abbr -ag uv         "nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'"
     abbr -ag x          'extract'
     abbr -ag aw         'awman'
     abbr -ag k3         'kid3-qt'
