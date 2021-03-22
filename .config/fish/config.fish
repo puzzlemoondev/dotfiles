@@ -365,6 +365,7 @@ if status --is-interactive
 
     # Misc
     abbr -ag q          'exit'
+    abbr -ag e          'vifm'
     abbr -ag v          'nvim'
     abbr -ag uv         "nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'"
     abbr -ag x          'extract'
