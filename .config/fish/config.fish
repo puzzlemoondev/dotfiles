@@ -108,6 +108,10 @@ if test (uname -s) = "Darwin"
     end
 end
 
+if type -q thefuck
+    thefuck --alias | source
+end
+
 if type -q direnv
     direnv hook fish | source
 end
@@ -117,12 +121,6 @@ if type -q aws
 end
 #}}}
 #{{{ Aliases
-# Replacements
-alias more='less'
-alias vim='nvim'
-alias yay='paru'
-alias ls='exa --group --header --git'
-alias bat='bat --color=always --theme="Forest Night (Italic)" --italic-text=always'
 # Default Arguments
 alias diff='diff --color=auto'
 alias grep='grep --color=auto'
@@ -132,7 +130,15 @@ alias free='free -m'
 alias mkdir='mkdir -pv'
 alias tty-clock='tty-clock -s -c -D -C 6'
 alias pygmentize='pygmentize -O style=forest'
-#}}}1
+alias paru='paru --skipreview --cleanafter'
+
+# Replacements
+alias more='less'
+alias vim='nvim'
+alias yay='paru'
+alias ls='exa --group --header --git'
+alias bat='bat --color=always --theme="Forest Night (Italic)" --italic-text=always'
+#}}}
 #{{{ Abbreviations
 if status --is-interactive
     # Coreutils

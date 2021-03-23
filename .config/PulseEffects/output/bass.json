@@ -29,7 +29,7 @@
         ]
     },
     "output": {
-        "blacklist": "",
+        "blocklist": "",
         "plugins_order": [
             "limiter",
             "autogain",
@@ -50,7 +50,8 @@
             "loudness",
             "maximizer",
             "filter",
-            "pitch"
+            "pitch",
+            "rnnoise"
         ],
         "bass_enhancer": {
             "state": "true",
@@ -857,6 +858,7 @@
             "state": "false",
             "fft": "4096",
             "std": "ISO226-2003",
+            "input": "0",
             "volume": "0"
         },
         "multiband_gate": {
@@ -1032,6 +1034,12 @@
             "output-gain": "0",
             "time-l": "0",
             "time-r": "0"
+        },
+        "rnnoise": {
+            "state": "false",
+            "input-gain": "0",
+            "output-gain": "0",
+            "model-path": "Standard RNNoise Model"
         }
     }
 }
