@@ -1,3 +1,3 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 BARVA_SOURCE=$(/usr/share/barva/pa-get-default-monitor.sh) BARVA_BG="#323d43" BARVA_TARGET="#3c474d" barva | /usr/share/barva/to-all-ttys.sh
