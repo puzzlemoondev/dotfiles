@@ -13,6 +13,7 @@ set -gx SYSTEMD_EDITOR $VISUAL
 set -gx LESS '-i -J -M -R -W -x4 -z-4'
 set -gx LESSOPEN '| /usr/bin/source-highlight-esc.sh %s'
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
+set -gx IDEA_JDK '/usr/lib/jvm/jre-jetbrains'
 #}}}
 #{{{ Fish
 set -l bg0        323d43
@@ -135,6 +136,7 @@ alias mkdir='mkdir -pv'
 alias tty-clock='tty-clock -s -c -D -C 6'
 alias pygmentize='pygmentize -O style=forest'
 alias paru='paru --skipreview --cleanafter'
+alias bye='poweroff'
 
 # Replacements
 alias more='less'
