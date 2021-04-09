@@ -423,7 +423,7 @@ function man --wraps man -d "Run man with added colors"
     command man $argv
 end
 
-function mkc -d "Create a directory and set CWD"
+function mkc --wraps mkdir -d "Create a directory and set CWD"
     command mkdir $argv
     if test $status = 0
         switch $argv[(count $argv)]
