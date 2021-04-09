@@ -98,11 +98,7 @@ end &> /dev/null
 #}}}
 #{{{ Hooks
 if test (uname -s) = "Darwin"
-    if test (uname -m) = "arm64"
-        set homebrew /opt/homebrew/bin/brew
-    else
-        set homebrew /usr/local/bin/brew
-    end
+    test (uname -m) = "arm64"; and set -l homebrew /opt/homebrew/bin/brew; or set -l homebrew /usr/local/bin/brew
 
     if type -q $homebrew
         eval ($homebrew shellenv)
