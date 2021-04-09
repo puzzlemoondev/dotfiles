@@ -397,7 +397,7 @@ if status --is-interactive
 end
 #}}}
 #{{{ Functions
-function cd
+function cd --wraps cd
     if count $argv > /dev/null
         builtin cd "$argv"; and ls
     else
