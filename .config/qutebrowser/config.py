@@ -29,7 +29,7 @@ c.content.media.audio_video_capture = False
 c.content.mouse_lock = False
 
 # content
-c.content.notifications = False
+c.content.notifications.enabled = False
 c.content.user_stylesheets = _stylesheet
 c.url.default_page = 'about:blank'
 c.url.start_pages = 'about:blank'
@@ -64,9 +64,9 @@ c.aliases['sanitize'] = 'spawn qute-sanitize'
 # bindings
 config.bind('!', 'set-cmd-text :open !')
 config.bind('<Ctrl-1>', 'set-cmd-text :open -t -r !')
-config.bind(',m', 'hint links spawn umpv {hint-url}')
-config.bind(',M', 'spawn umpv {url}')
-config.bind(';m', 'hint --rapid links spawn umpv {hint-url}')
+config.bind('<Alt-r>', 'spawn --userscript readability {url}')
+config.bind(',m', 'hint links spawn --userscript view_in_mpv {hint-url}')
+config.bind(',M', 'spawn --userscript view_in_mpv {url}')
 config.bind('<F1>', 'config-cycle content.javascript.enabled')
 config.bind('<F2>', f'config-cycle content.user_stylesheets {_stylesheet} ""')
 
