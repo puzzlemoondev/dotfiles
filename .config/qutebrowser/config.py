@@ -40,8 +40,8 @@ c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.policy.images = 'smart'
 c.colors.webpage.darkmode.policy.page = 'smart'
-c.colors.webpage.darkmode.threshold.background = 128
-c.colors.webpage.darkmode.threshold.text = 128
+c.colors.webpage.darkmode.threshold.background = 205
+c.colors.webpage.darkmode.threshold.text = 150
 c.colors.webpage.preferred_color_scheme = 'dark'
 
 # ui
@@ -64,7 +64,7 @@ c.aliases['sanitize'] = 'spawn qute-sanitize'
 # bindings
 config.bind('!', 'set-cmd-text :open !')
 config.bind('<Ctrl-1>', 'set-cmd-text :open -t -r !')
-config.bind('<Alt-r>', 'spawn --userscript readability {url}')
+config.bind('<Alt-r>', 'spawn --userscript readability')
 config.bind(',m', 'hint links spawn --userscript view_in_mpv {hint-url}')
 config.bind(',M', 'spawn --userscript view_in_mpv {url}')
 config.bind('<F1>', 'config-cycle content.javascript.enabled')
