@@ -1,0 +1,13 @@
+{
+  "name": "mailspring-forst-night",
+  "title": "Forest Night",
+  "displayName": "Forest Night",
+  "theme": "ui",
+  "version": "0.1.0",
+  "description": "A forest night theme for Mailspring.",
+  "license": "MIT",
+  "engines": {
+    "mailspring": "*"
+  }
+}
+
