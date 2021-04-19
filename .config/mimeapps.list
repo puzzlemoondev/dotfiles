@@ -26,3 +26,4 @@ inode/directory=vifm.desktop;
 application/json=nvim.desktop;
 x-scheme-handler/figma=figma-linux.desktop
 x-scheme-handler/freetube=freetube.desktop
+x-scheme-handler/mailspring=mailspring.desktop

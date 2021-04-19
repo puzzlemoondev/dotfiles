@@ -65,24 +65,20 @@ silent! if plug#begin()
     Plug 'ryanoasis/vim-devicons'
     Plug 'chrisbra/csv.vim'
     Plug 'sheerun/vim-polyglot'
-    Plug 'sainnhe/forest-night'
+    Plug 'sainnhe/everforest'
     call plug#end()
 endif
 
 " color scheme
 set termguicolors
 set background=dark
-"let g:nord_italic=1
-"let g:nord_underline=1
-"let g:nord_italic_comments=1
-"colorscheme nord
-let g:forest_night_transparent_background=1
-let g:forest_night_enable_italic=1
-colorscheme forest-night
+let g:everforest_transparent_background = 1
+let g:everforest_enable_italic = 1
+let g:everforest_better_performance = 1
+colorscheme everforest
 
 " plug-in - airline
-"let g:airline_theme='nord'
-let g:airline_theme='forest_night'
+let g:airline_theme='everforest'
 let g:airline_powerline_fonts = 1
 
 " plug-in - syntastic
