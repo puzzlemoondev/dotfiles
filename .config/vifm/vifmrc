@@ -200,9 +200,9 @@ fileviewer *.[1-8] man ./%c | col -b
 
 " Images
 fileviewer <image/*>
-	\ kitty icat --silent --place=%pwx%ph@%pxx%py %c
-	\ %pc
-	\ kitty icat --silent --clear
+    \ kitty +icat --place %pwx%ph@%pxx%py  --silent %c
+    \ %pc
+    \ kitty icat --clear --silent %pd
 
 filetype <image/*> sxiv-rifle
 
