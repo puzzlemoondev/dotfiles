@@ -402,6 +402,10 @@ function cd --wraps cd
     end
 end
 
+function su --wraps su
+   command su --shell=/usr/bin/fish $argv
+end
+
 function man --wraps man -d "Run man with added colors"
     set -l bold_ansi_code "\u001b[1m"
     set -l underline_ansi_code "\u001b[4m"
