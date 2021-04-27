@@ -338,7 +338,7 @@ if status --is-interactive
     # Arch
     abbr -ag par        'paru'
     abbr -ag pain       'paru -S'
-    abbr -ag parin      'paru --rebuild -S'
+    abbr -ag parin      'paru --redownload --rebuild -S'
     abbr -ag paupg      'paru -Syu'
     abbr -ag parem      'paru -Rns'
     abbr -ag parec      'paru -Sc'
