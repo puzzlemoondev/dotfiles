@@ -123,6 +123,7 @@ end
 #}}}
 #{{{ Aliases
 # Default Arguments
+alias su='su --shell=/usr/bin/fish'
 alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 alias ip='ip --color=auto'
@@ -400,10 +401,6 @@ function cd --wraps cd
     else
         builtin cd ~; and ls
     end
-end
-
-function su --wraps su
-   command su --shell=/usr/bin/fish $argv
 end
 
 function man --wraps man -d "Run man with added colors"
