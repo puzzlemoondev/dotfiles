@@ -123,6 +123,7 @@ end
 #}}}
 #{{{ Aliases
 # Default Arguments
+alias su='su --shell=/usr/bin/fish'
 alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 alias ip='ip --color=auto'
@@ -338,7 +339,7 @@ if status --is-interactive
     # Arch
     abbr -ag par        'paru'
     abbr -ag pain       'paru -S'
-    abbr -ag parin      'paru --rebuild --redownload -S'
+    abbr -ag parin      'paru --redownload --rebuild -S'
     abbr -ag paupg      'paru -Syu'
     abbr -ag parem      'paru -Rns'
     abbr -ag parec      'paru -Sc'
