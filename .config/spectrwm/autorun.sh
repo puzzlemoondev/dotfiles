@@ -4,7 +4,7 @@ nitrogen --restore &
 redshift -l 25.04:121.53 -g 1.0:0.8:0.7 &
 
 numlockx on &
-if [[ $(whoami | grep sean | wc -l) = 0 ]]; then
+if [[ $USER != *"sean"* ]]; then
 	xautolock -locker 'betterlockscreen -l dimblur' -time 5 &
 fi
 
