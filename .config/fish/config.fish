@@ -476,6 +476,6 @@ end
 #{{{ Start Actions
 # Start X at Login
 if status is-login; and test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-    exec startx -- -keeptty
+    exec startx -- -keeptty &> /dev/null
 end
 #}}}
