@@ -91,7 +91,7 @@ begin
     fundle plugin 'markcial/upto'
     fundle plugin 'shannonmoeller/up'
     fundle plugin 'sentriz/fish-pipenv'
-#    fundle plugin 'pure-fish/pure'
+    fundle plugin 'danhper/fish-ssh-agent'
 
     fundle init
 end &> /dev/null
@@ -476,6 +476,6 @@ end
 #{{{ Start Actions
 # Start X at Login
 if status is-login; and test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-    exec ssh-agent startx -- -keeptty &> /dev/null
+    exec startx -- -keeptty
 end
 #}}}
