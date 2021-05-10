@@ -137,7 +137,6 @@ alias paru='paru --skipreview --cleanafter --bottomup'
 # Replacements
 alias more='less'
 alias vim='nvim'
-alias yay='paru'
 alias ls='exa --group --header --git'
 alias bat='bat --color=always --theme="Forest Night (Italic)" --italic-text=always'
 #}}}
