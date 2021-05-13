@@ -5,7 +5,8 @@ redshift -l 25.04:121.53 -g 1.0:0.8:0.7 &
 
 numlockx on &
 if [[ $USER != *"sean"* ]]; then
-	xautolock -locker locker -time 5 &
+	xset 300
+	xss-lock -l -- locker &
 fi
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
