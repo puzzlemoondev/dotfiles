@@ -1,0 +1,27 @@
+# default options
+display_on=0
+span_image=false
+lock_timeout=300
+fx_list=(dim blur dimblur pixel dimpixel color)
+dim_level=40
+blur_level=1
+pixel_scale=10,1000
+solid_color=333333
+
+# theme options
+loginbox=323d4366
+loginshadow=323d4300
+locktext="Don't touch my computer!"
+font="monospace"
+ringcolor=d8caacff
+insidecolor=323d4300
+separatorcolor=323d4300
+ringvercolor=d8caacff
+insidevercolor=323d4300
+ringwrongcolor=d8caacff
+insidewrongcolor=e68183ff
+keyhlcolor=e68183ff
+bshlcolor=e68183ff
+verifcolor=d8caacff
+timecolor=d8caacff
+datecolor=d8caacff
