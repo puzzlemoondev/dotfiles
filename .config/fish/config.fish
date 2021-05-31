@@ -59,23 +59,6 @@ set -g fish_key_bindings fish_vi_key_bindings
 #}}}
 #{{{ Plugins
 set -g pipenv_fish_fancy yes
-
-set -g pure_symbol_git_dirty ' 🤷'
-set -g pure_symbol_git_stash '📦'
-set -g pure_symbol_git_unpulled_commits '😰'
-set -g pure_symbol_git_unpushed_commits '💨'
-set -g pure_symbol_prompt 'λ'
-set -g pure_symbol_reverse_prompt 'ƛ'
-
-set -g pure_color_danger red
-set -g pure_color_dark black
-set -g pure_color_info magenta
-set -g pure_color_light white
-set -g pure_color_mute green
-set -g pure_color_normal purple
-set -g pure_color_primary cyan
-set -g pure_color_success blue
-set -g pure_color_warning yellow
 #}}}
 #{{{ Hooks
 if test (uname -s) = "Darwin"
