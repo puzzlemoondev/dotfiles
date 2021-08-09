@@ -14,82 +14,89 @@
         "crystalizer": {
             "band0": {
                 "bypass": false,
-                "intensity": 12.0,
+                "intensity": -2.0,
                 "mute": false
             },
             "band1": {
                 "bypass": false,
-                "intensity": 10.0,
+                "intensity": -3.0,
                 "mute": false
             },
             "band10": {
                 "bypass": false,
-                "intensity": -8.0,
+                "intensity": -4.0,
                 "mute": false
             },
             "band11": {
                 "bypass": false,
-                "intensity": -10.0,
+                "intensity": -3.0,
                 "mute": false
             },
             "band12": {
                 "bypass": false,
-                "intensity": -12.0,
+                "intensity": -2.0,
                 "mute": false
             },
             "band2": {
                 "bypass": false,
-                "intensity": 8.0,
+                "intensity": -4.0,
                 "mute": false
             },
             "band3": {
                 "bypass": false,
-                "intensity": 6.0,
+                "intensity": -5.0,
                 "mute": false
             },
             "band4": {
                 "bypass": false,
-                "intensity": 4.0,
+                "intensity": -6.0,
                 "mute": false
             },
             "band5": {
                 "bypass": false,
-                "intensity": 2.0,
+                "intensity": -7.0,
                 "mute": false
             },
             "band6": {
                 "bypass": false,
-                "intensity": 0.0,
+                "intensity": -8.0,
                 "mute": false
             },
             "band7": {
                 "bypass": false,
-                "intensity": -2.0,
+                "intensity": -7.0,
                 "mute": false
             },
             "band8": {
                 "bypass": false,
-                "intensity": -4.0,
+                "intensity": -6.0,
                 "mute": false
             },
             "band9": {
                 "bypass": false,
-                "intensity": -6.0,
+                "intensity": -5.0,
                 "mute": false
             },
             "input-gain": 0.0,
             "output-gain": 0.0
         },
         "limiter": {
-            "asc": false,
-            "asc-level": 0.5,
-            "auto-level": false,
+            "alr": false,
+            "alr-attack": 5.0,
+            "alr-knee": 0.0,
+            "alr-release": 50.0,
+            "attack": 5.0,
+            "dithering": "None",
+            "gain-boost": true,
             "input-gain": -12.0,
-            "limit": 0.0,
             "lookahead": 5.0,
+            "mode": "Herm Thin",
             "output-gain": 0.0,
-            "oversampling": 1,
-            "release": 50.0
+            "oversampling": "None",
+            "release": 5.0,
+            "sidechain-preamp": 0.0,
+            "stereo-link": 100.0,
+            "threshold": 0.0
         },
         "plugins_order": [
             "limiter",
