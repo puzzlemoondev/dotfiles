@@ -13,7 +13,7 @@ fi
 gnome-keyring-daemon --start --components=pkcs11,secrets &
 
 picom -b &
-pulseeffects --gapplication-service &
+easyeffects --gapplication-service &
 
 start-barva &
 fcitx &
