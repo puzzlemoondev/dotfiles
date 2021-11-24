@@ -189,19 +189,15 @@ if status --is-interactive
     abbr -ag relax      'paru -Syu'
 
     # VPN
-    abbr -ag vpn        'expressvpn'
-    abbr -ag vpna       'expressvpn activate'
-    abbr -ag vpnc       'expressvpn connect'
-    abbr -ag vpncs      'expressvpn connect smart'
-    abbr -ag vpnd       'expressvpn disconnect'
-    abbr -ag vpns       'expressvpn status'
-    abbr -ag vpnl       'expressvpn list'
-    abbr -ag vpnla      'expressvpn list all'
-    abbr -ag vpnr       'expressvpn refresh'
-    abbr -ag vpnp       'expressvpn preferences'
-    abbr -ag vpnh       'expressvpn help'
-    abbr -ag vpnlock    'expressvpn preferences set network_lock on'
-    abbr -ag vpnunlock  'expressvpn preferences set network_lock off'
+    abbr -ag vpn        'protonvpn-cli'
+    abbr -ag vpnc       'protonvpn-cli connect'
+    abbr -ag vpnd       'protonvpn-cli disconnect'
+    abbr -ag vpnr       'protonvpn-cli reconnect'
+    abbr -ag vpns       'protonvpn-cli status'
+    abbr -ag vpnp       'protonvpn-cli config'
+    abbr -ag vpnh       'protonvpn-cli --help'
+    abbr -ag vpnlock    'protonvpn-cli ks --on'
+    abbr -ag vpnunlock  'protonvpn-cli ks --off'
 
     # ADB
     abbr -ag asm        'adb-sync ~/Music/ /sdcard/Music/'

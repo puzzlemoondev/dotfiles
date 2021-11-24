@@ -17,3 +17,5 @@ easyeffects --gapplication-service &
 
 start-barva &
 fcitx &
+
+nm-applet &
