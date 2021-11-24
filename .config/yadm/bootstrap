@@ -2,10 +2,15 @@
 
 # enable services
 echo "[Enabling systemd services]"
-for service in $(yadm ls-files ~/.config/systemd/user/ | grep '\.service$' | xargs -n1 basename); do
-    systemctl --user enable --now $service
-    echo "Enabled $service"
-done
+if command -v systemctl > /dev/null 2>&1; then
+    for service in $(yadm ls-files ~/.config/systemd/user/ | grep '\.service$' | xargs -n1 basename); do
+        systemctl --user enable --now $service
+        echo "Enabled $service"
+    done
+else
+    echo "systemd not found in system"
+fi
+
 
 echo
 
