@@ -1,7 +1,16 @@
 #!/bin/bash
 
+# enable services
+echo "[Enabling systemd services]"
+for service in $(yadm ls-files ~/.config/systemd/user/ | grep '\.service$' | xargs -n1 basename); do
+    systemctl --user enable --now $service
+    echo "Enabled $service"
+done
+
+echo
+
 # install vim plugins
-echo "Updating vim plugins"
+echo "[Updating vim plugins]"
 if command -v nvim >/dev/null 2>&1; then
     echo "Neovim is installed. Updating plugins..."
     nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
@@ -12,7 +21,7 @@ fi
 echo
 
 # update bat cache
-echo "Updating bat cache"
+echo "[Updating bat cache]"
 if command -v bat > /dev/null 2>&1; then
     echo "Bat is installed. Updating cache..."
     bat cache --build
@@ -23,7 +32,7 @@ fi
 echo
 
 # copy pygments styles 
-echo "Installing pygments styles"
+echo "[Installing pygments styles]"
 
 STYLE_PATH=$(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/pygments/styles/
 
@@ -36,6 +45,8 @@ fi
 
 echo
 
+# update hblock
+echo [Updating hblock]
 if command -v hblock >/dev/null 2>&1; then
     echo "Hblock is installed. Updating host file..."
     hblock
