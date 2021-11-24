@@ -190,7 +190,11 @@ if status --is-interactive
 
     # VPN
     abbr -ag vpn        'protonvpn-cli'
-    abbr -ag vpnc       'protonvpn-cli connect'
+    abbr -ag vpnc       'protonvpn-cli connect --fastest'
+    abbr -ag vpncc      'protonvpn-cli connect --cc'
+    abbr -ag vpnsc      'protonvpn-cli connect --sc'
+    abbr -ag vpnp2p     'protonvpn-cli connect --p2p'
+    abbr -ag vpntor     'protonvpn-cli connect --tor'
     abbr -ag vpnd       'protonvpn-cli disconnect'
     abbr -ag vpnr       'protonvpn-cli reconnect'
     abbr -ag vpns       'protonvpn-cli status'
