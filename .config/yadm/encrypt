@@ -1,3 +1,2 @@
 .ssh/config
-.config/qutebrowser/bookmarks/urls
-.config/qutebrowser/quickmarks
+.ssh/puzzlemoon_*
