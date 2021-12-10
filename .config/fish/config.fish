@@ -82,7 +82,12 @@ if test (uname -s) = "Darwin"
     end
 
     if type -q (brew --prefix)/opt/ruby/bin/ruby
-        fish_add_path (brew --prefix)/opt/ruby/bin/ruby (brew --prefix)/lib/ruby/gems/3.0.0/bin
+        fish_add_path (brew --prefix)/opt/ruby/bin (brew --prefix)/lib/ruby/gems/3.0.0/bin
+    end
+
+    if type -q (brew --prefix)/bin/gradle
+        set -gx GRADLE_HOME (brew --prefix)/opt/gradle
+        fish_add_path $GRADLE_HOME
     end
 end
 
@@ -120,6 +125,7 @@ alias more='less'
 alias vim='nvim'
 alias ls='exa --group --header --git'
 alias bat='bat --color=always --theme="Forest Night (Italic)" --italic-text=always'
+alias python='python3'
 #}}}
 #{{{ Abbreviations
 if status --is-interactive
