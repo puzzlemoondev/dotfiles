@@ -203,7 +203,7 @@ if status --is-interactive
     abbr -ag parec      'paru -Sc'
     abbr -ag pareo      'paru --clean'
 
-    abbr -ag gimme      'paru -S'
+    abbr -ag gimme      'paru'
     abbr -ag yeet       'paru -Rns'
     abbr -ag relax      'paru -Syu'
 
