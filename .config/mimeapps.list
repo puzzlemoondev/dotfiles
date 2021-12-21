@@ -30,6 +30,7 @@ x-scheme-handler/mailspring=mailspring.desktop
 x-scheme-handler/mailto=userapp-Thunderbird-587XC1.desktop
 message/rfc822=userapp-Thunderbird-587XC1.desktop
 x-scheme-handler/mid=userapp-Thunderbird-587XC1.desktop
+x-scheme-handler/slack=slack.desktop
 
 [Added Associations]
 x-scheme-handler/mailto=userapp-Thunderbird-587XC1.desktop;

@@ -5,8 +5,12 @@ Font=VictorMono Nerd Font,12,-1,5,50,0,0,0,0,0
 UseFontLineChararacters=true
 
 [General]
-DimWhenInactive=true
+DimWhenInactive=false
 Name=Everforest
 Parent=FALLBACK/
+ShowTerminalSizeHint=false
 TerminalCenter=true
 TerminalMargin=24
+
+[Scrolling]
+ScrollBarPosition=2
