@@ -20,11 +20,12 @@ set smartindent
 set smarttab
 set softtabstop=4
 
+set backspace=indent,eol,start
+set foldmethod=marker
+
 set undofile
 set undodir=~/.config/nvim/undodir
 set undolevels=1000
-set backspace=indent,eol,start
-set foldmethod=marker
 
 nnoremap <esc> :noh<return><esc>
 

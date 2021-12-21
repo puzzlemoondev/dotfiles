@@ -1,3 +1,24 @@
-set rnu
-set nu
 set ideajoin
+
+set number
+set relativenumber
+set wrap
+set linebreak
+set textwidth=0
+set wrapmargin=0
+set showbreak=+++
+set showmatch
+set encoding=utf-8
+set visualbell
+
+set smartcase
+set ignorecase
+set incsearch
+set autoindent
+set shiftwidth=4
+set smartindent
+set smarttab
+set softtabstop=4
+
+set backspace=indent,eol,start
+set foldmethod=marker

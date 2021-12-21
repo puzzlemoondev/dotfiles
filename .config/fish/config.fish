@@ -1,5 +1,5 @@
 #{{{ Environment Variables
-fish_add_path ~/.local/bin /usr/local/bin
+fish_add_path $HOME/.local/bin /usr/local/bin
 
 set -gx LANG en_US.UTF-8
 set -gx LANGUAGE en_US.UTF-8
@@ -79,15 +79,15 @@ if test (uname -s) = "Darwin"
 
     if type -q $homebrew
         eval ($homebrew shellenv)
-    end
 
-    if type -q (brew --prefix)/opt/ruby/bin/ruby
-        fish_add_path (brew --prefix)/opt/ruby/bin (brew --prefix)/lib/ruby/gems/3.0.0/bin
-    end
+        if type -q (brew --prefix)/opt/ruby/bin/ruby
+            fish_add_path (brew --prefix)/opt/ruby/bin (brew --prefix)/lib/ruby/gems/3.0.0/bin
+        end
 
-    if type -q (brew --prefix)/bin/gradle
-        set -gx GRADLE_HOME (brew --prefix)/opt/gradle
-        fish_add_path $GRADLE_HOME
+        if type -q (brew --prefix)/bin/gradle
+            set -gx GRADLE_HOME (brew --prefix)/opt/gradle
+            fish_add_path $GRADLE_HOME
+        end
     end
 end
 
@@ -105,6 +105,11 @@ end
 
 if type -q aws
     complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
+end
+
+if type -q jenv
+    fish_add_path $HOME/.jenv/bin 
+    status --is-interactive; and source (jenv init -|psub)
 end
 #}}}
 #{{{ Aliases
@@ -348,3 +353,4 @@ if status is-login; and test -z "$DISPLAY" -a "$XDG_VTNR" = 1
     exec startx -- -keeptty &> /dev/null
 end
 #}}}
+
