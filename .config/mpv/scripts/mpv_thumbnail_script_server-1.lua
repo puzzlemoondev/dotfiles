@@ -15,9 +15,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]--
 --[[
-    mpv_thumbnail_script.lua 0.4.2 - commit 682becf (branch master)
+    mpv_thumbnail_script.lua 0.4.4 - commit a8a910c (branch master)
     https://github.com/TheAMM/mpv_thumbnail_script
-    Built on 2020-08-02 15:22:08
+    Built on 2021-05-11 23:50:44
 ]]--
 local assdraw = require 'mp.assdraw'
 local msg = require 'mp.msg'
@@ -522,7 +522,7 @@ function create_thumbnail_mpv(file_path, timestamp, size, output_path, options)
         "--vf-add=format=bgra",
         "--of=rawvideo",
         "--ovc=rawvideo",
-        "--o=" .. output_path
+        ("--o=%s"):format(output_path)
     })
     return utils.subprocess({args=mpv_command})
 end

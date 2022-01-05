@@ -1,7 +1,7 @@
 [Appearance]
 ColorScheme=Everforest Medium Dark
 DimmValue=21
-Font=VictorMono Nerd Font,12,-1,5,50,0,0,0,0,0
+Font=VictorMono Nerd Font,16,-1,5,50,0,0,0,0,0
 UseFontLineChararacters=true
 
 [General]
