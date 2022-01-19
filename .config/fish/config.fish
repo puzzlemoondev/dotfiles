@@ -195,7 +195,7 @@ if status --is-interactive
     abbr -ag ampe       'amplify env'
 
     # Arch
-    abbr -ag par        'paru'
+    abbr -ag p          'paru'
     abbr -ag pain       'paru -S'
     abbr -ag parin      'paru --redownload --rebuild -S'
     abbr -ag paupg      'paru -Syu'
@@ -203,7 +203,7 @@ if status --is-interactive
     abbr -ag parec      'paru -Sc'
     abbr -ag pareo      'paru --clean'
 
-    abbr -ag gimme      'paru'
+    abbr -ag gimme      'paru -S'
     abbr -ag yeet       'paru -Rns'
     abbr -ag relax      'paru -Syu'
 
