@@ -89,6 +89,13 @@ if test (uname -s) = "Darwin"
             fish_add_path $GRADLE_HOME
         end
     end
+
+    set ANDROID_HOME $HOME/Library/Android/sdk
+
+    if test -d $ANDROID_HOME
+        set -gx ANDROID_HOME $ANDROID_HOME
+        fish_add_path $ANDROID_HOME/platform-tools $ANDROID_HOME/tools/bin
+    end
 end
 
 if type -q thefuck
