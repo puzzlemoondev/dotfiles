@@ -14,52 +14,52 @@
         "crystalizer": {
             "band0": {
                 "bypass": false,
-                "intensity": -2.0,
+                "intensity": 0.0,
                 "mute": false
             },
             "band1": {
                 "bypass": false,
-                "intensity": -3.0,
+                "intensity": -1.0,
                 "mute": false
             },
             "band10": {
                 "bypass": false,
-                "intensity": -4.0,
+                "intensity": -10.0,
                 "mute": false
             },
             "band11": {
                 "bypass": false,
-                "intensity": -3.0,
+                "intensity": -11.0,
                 "mute": false
             },
             "band12": {
                 "bypass": false,
-                "intensity": -2.0,
+                "intensity": -12.0,
                 "mute": false
             },
             "band2": {
                 "bypass": false,
-                "intensity": -4.0,
+                "intensity": -2.0,
                 "mute": false
             },
             "band3": {
                 "bypass": false,
-                "intensity": -5.0,
+                "intensity": -3.0,
                 "mute": false
             },
             "band4": {
                 "bypass": false,
-                "intensity": -6.0,
+                "intensity": -4.0,
                 "mute": false
             },
             "band5": {
                 "bypass": false,
-                "intensity": -7.0,
+                "intensity": -5.0,
                 "mute": false
             },
             "band6": {
                 "bypass": false,
-                "intensity": -8.0,
+                "intensity": -6.0,
                 "mute": false
             },
             "band7": {
@@ -69,12 +69,12 @@
             },
             "band8": {
                 "bypass": false,
-                "intensity": -6.0,
+                "intensity": -8.0,
                 "mute": false
             },
             "band9": {
                 "bypass": false,
-                "intensity": -5.0,
+                "intensity": -9.0,
                 "mute": false
             },
             "input-gain": 0.0,
@@ -87,6 +87,7 @@
             "alr-release": 50.0,
             "attack": 5.0,
             "dithering": "None",
+            "external-sidechain": false,
             "gain-boost": true,
             "input-gain": -12.0,
             "lookahead": 5.0,
