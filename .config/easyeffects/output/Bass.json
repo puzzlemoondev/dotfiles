@@ -1,7 +1,7 @@
 {
     "output": {
         "bass_enhancer": {
-            "amount": 6.0,
+            "amount": 6.499999999999998,
             "blend": 0.0,
             "floor": 20.0,
             "floor-active": false,
@@ -81,7 +81,7 @@
             "output-gain": 0.0
         },
         "filter": {
-            "frequency": 30.0,
+            "frequency": 40.0,
             "inertia": 20.0,
             "input-gain": 0.0,
             "mode": "36dB/oct Highpass",
@@ -97,10 +97,10 @@
             "dithering": "None",
             "external-sidechain": false,
             "gain-boost": true,
-            "input-gain": 0.0,
+            "input-gain": -6.0,
             "lookahead": 4.0,
             "mode": "Herm Thin",
-            "output-gain": 0.0,
+            "output-gain": -6.0,
             "oversampling": "None",
             "release": 8.0,
             "sidechain-preamp": 0.0,
@@ -108,10 +108,10 @@
             "threshold": 0.0
         },
         "plugins_order": [
+            "limiter",
             "filter",
             "bass_enhancer",
-            "crystalizer",
-            "limiter"
+            "crystalizer"
         ]
     }
 }
