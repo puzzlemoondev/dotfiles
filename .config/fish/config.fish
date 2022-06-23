@@ -79,15 +79,6 @@ if test (uname -s) = "Darwin"
 
     if type -q $homebrew
         eval ($homebrew shellenv)
-
-        if type -q (brew --prefix)/opt/ruby/bin/ruby
-            fish_add_path (brew --prefix)/opt/ruby/bin (brew --prefix)/lib/ruby/gems/3.0.0/bin
-        end
-
-        if type -q (brew --prefix)/bin/gradle
-            set -gx GRADLE_HOME (brew --prefix)/opt/gradle
-            fish_add_path $GRADLE_HOME
-        end
     end
 
     set ANDROID_HOME $HOME/Library/Android/sdk
@@ -114,9 +105,12 @@ if type -q aws
     complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
 end
 
-if type -q jenv
-    fish_add_path $HOME/.jenv/bin 
-    status --is-interactive; and source (jenv init -|psub)
+if type -q asdf
+    source /opt/homebrew/opt/asdf/libexec/asdf.fish
+    set asdf_java $HOME/.asdf/plugins/java
+    if test -d $asdf_java
+        source $asdf_java/set-java-home.fish
+    end
 end
 #}}}
 #{{{ Aliases
