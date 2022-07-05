@@ -87,6 +87,16 @@ if test (uname -s) = "Darwin"
         set -gx ANDROID_HOME $ANDROID_HOME
         fish_add_path $ANDROID_HOME/platform-tools $ANDROID_HOME/tools/bin
     end
+
+    set asdf_plugin $HOMEBREW_PREFIX/asdf/libexec/asdf.fish
+    if test -f $asdf_plugin
+        source $asdf_plugin
+    end
+else
+    set asdf_plugin /opt/asdf-vm/asdf.fish
+    if test -f $asdf_plugin
+        source $asdf_plugin
+    end
 end
 
 if type -q thefuck
@@ -106,10 +116,9 @@ if type -q aws
 end
 
 if type -q asdf
-    source /opt/homebrew/opt/asdf/libexec/asdf.fish
-    set asdf_java $HOME/.asdf/plugins/java
-    if test -d $asdf_java
-        source $asdf_java/set-java-home.fish
+    set asdf_java_home_plugin $HOME/.asdf/plugins/java/set-java-home.fish
+    if test -f $asdf_java_home_plugin
+        source $asdf_java_home_plugin
     end
 end
 #}}}
@@ -327,18 +336,34 @@ function extract -d 'Expand or extract bundled & compressed files'
 end
 
 function up --description 'go up $argv directories (default 1)'
-  set -l up_to ".."
-  if test (count $argv) -ne 1; or test $argv[1] -eq 1
-    cd $up_to
-  else if echo $argv[1] | not grep -q '^-\?[0-9]\+$'
-    printf "Error: up should be called with the number of directories to go up. The default is 1."
-  else if test $argv[1] -eq 1
-    cd $up_to
-  else
-    for x in (seq $argv[1])
-      set up_to "$up_to/.."
+    set -l up_to ".." 
+    if test (count $argv) -ne 1; or test $argv[1] -eq 1
+        cd $up_to 
+    else if echo $argv[1] | not grep -q '^-\?[0-9]\+$' 
+        printf "Error: up should be called with the number of directories to go up. The default is 1." 
+    else if test $argv[1] -eq 1 
+        cd $up_to 
+    else 
+        for x in (seq $argv[1]) 
+            set up_to "$up_to/.." 
+        end 
+        cd $up_to 
     end
-    cd $up_to
+end
+
+function posix_source
+    for line in (cat $argv) 
+        # Skip comment lines 
+        if test (string sub --length 1 $line) = "#"
+            continue
+        end
+
+        # Skip empty lines
+        if test (string length $line) -lt 2 
+            continue 
+        end
+        set arr (echo $line |tr = \n)
+        set -gx $arr[1] $arr[2] 
   end
 end
 
