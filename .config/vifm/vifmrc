@@ -199,12 +199,12 @@ filetype *.[1-8] man ./%c
 fileviewer *.[1-8] man ./%c | col -b
 
 " Images
-fileviewer <image/*>
-    \ kitty +icat --place %pwx%ph@%pxx%py  --silent %c
-    \ %pc
-    \ kitty icat --clear --silent %pd
+" fileviewer <image/*>
+"     \ kitty +icat --place %pwx%ph@%pxx%py  --silent %c
+"     \ %pc
+"     \ kitty icat --clear --silent %pd
 
-filetype <image/*> sxiv-rifle
+" filetype <image/*> gwenview
 
 " MD5
 filetype *.md5
