@@ -289,6 +289,10 @@ function man --wraps man -d "Run man with added colors"
     command man $argv
 end
 
+function rgf --wraps rg
+    rg $argv | cut  -d : -f 1 | sort | uniq
+end
+
 function mkc --wraps mkdir -d "Create a directory and set CWD"
     command mkdir $argv
     if test $status = 0
