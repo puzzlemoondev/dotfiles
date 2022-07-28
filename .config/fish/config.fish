@@ -10,6 +10,8 @@ set -gx VISUAL (type -p nvim)
 set -gx EDITOR $VISUAL
 set -gx SYSTEMD_EDITOR $VISUAL
 
+set -gx GPG_TTY (tty)
+
 set -gx LESS '-i -J -M -R -W -x4 -z-4'
 set -gx LESSOPEN '| /usr/bin/source-highlight-esc.sh %s'
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
