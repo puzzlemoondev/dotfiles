@@ -93,6 +93,13 @@ if test (uname -s) = "Darwin"
         source $asdf_plugin
     end
 else
+    set ANDROID_HOME $HOME/Android/Sdk
+
+    if test -d $ANDROID_HOME
+        set -gx ANDROID_HOME $ANDROID_HOME
+        fish_add_path $ANDROID_HOME/platform-tools $ANDROID_HOME/tools/bin
+    end
+
     set asdf_plugin /opt/asdf-vm/asdf.fish
     if test -f $asdf_plugin
         source $asdf_plugin
