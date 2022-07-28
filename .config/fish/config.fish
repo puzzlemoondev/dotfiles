@@ -88,7 +88,7 @@ if test (uname -s) = "Darwin"
         fish_add_path $ANDROID_HOME/platform-tools $ANDROID_HOME/tools/bin
     end
 
-    set asdf_plugin $HOMEBREW_PREFIX/asdf/libexec/asdf.fish
+    set asdf_plugin $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.fish
     if test -f $asdf_plugin
         source $asdf_plugin
     end
