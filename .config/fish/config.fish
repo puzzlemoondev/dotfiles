@@ -130,6 +130,10 @@ if type -q asdf
         source $asdf_java_home_plugin
     end
 end
+
+if type -q direnv
+    direnv hook fish | source
+end
 #}}}
 #{{{ Aliases
 # Default Arguments
