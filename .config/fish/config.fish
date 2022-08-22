@@ -201,22 +201,6 @@ if status --is-interactive
     abbr -ag yu         'yadm add -u; and yadm commit; and yadm push'
     abbr -ag uy         'yadm pull'
 
-    # Amplify
-    abbr -ag ampc       'amplify configure'
-    abbr -ag ampi       'amplify init'
-    abbr -ag ampa       'amplify add'
-    abbr -ag ampu       'amplify update'
-    abbr -ag ampp       'amplify push'
-    abbr -ag ampl       'amplify pull'
-    abbr -ag amppb      'amplify publish'
-    abbr -ag amps       'amplify status'
-    abbr -ag ampsr      'amplify serve'
-    abbr -ag ampd       'amplify delete'
-    abbr -ag amph       'amplify help'
-    abbr -ag ampg       'amplify codegen'
-    abbr -ag ampgm      'amplify codegen models'
-    abbr -ag ampe       'amplify env'
-
     # Arch
     abbr -ag p          'paru'
     abbr -ag pain       'paru -S'
@@ -230,28 +214,13 @@ if status --is-interactive
     abbr -ag yeet       'paru -Rns'
     abbr -ag relax      'paru -Syu'
 
-    # VPN
-    abbr -ag vpn        'protonvpn-cli'
-    abbr -ag vpnc       'protonvpn-cli connect --fastest'
-    abbr -ag vpncc      'protonvpn-cli connect --cc'
-    abbr -ag vpnsc      'protonvpn-cli connect --sc'
-    abbr -ag vpnp2p     'protonvpn-cli connect --p2p'
-    abbr -ag vpntor     'protonvpn-cli connect --tor'
-    abbr -ag vpnd       'protonvpn-cli disconnect'
-    abbr -ag vpnr       'protonvpn-cli reconnect'
-    abbr -ag vpns       'protonvpn-cli status'
-    abbr -ag vpnp       'protonvpn-cli config'
-    abbr -ag vpnh       'protonvpn-cli --help'
-    abbr -ag vpnlock    'protonvpn-cli ks --on'
-    abbr -ag vpnunlock  'protonvpn-cli ks --off'
-
     # ADB
     abbr -ag asm        'adb-sync ~/Music/ /sdcard/Music/'
     abbr -ag asm2       'adb-sync -2 ~/Music/ /sdcard/Music/'
     abbr -ag asmd       'adb-sync -d ~/Music/ /sdcard/Music/'
     abbr -ag asmr       'adb-sync -R /sdcard/Music/ ~/Music/'
     abbr -ag asmrd      'adb-sync -R -d /sdcard/Music/ ~/Music/'
-    abbr -ag ash        'adb-sync-hosts'
+    abbr -ag ash        'adb root && adb remount && adb push /etc/hosts /system/etc/hosts && adb reboot'
 
     # Misc
     abbr -ag q          'exit'

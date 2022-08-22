@@ -1,3 +1,0 @@
-#!/bin/bash
-
-nitrogen --set-centered $1 && betterlockscreen -u $1
