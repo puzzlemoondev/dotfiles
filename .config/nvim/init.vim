@@ -9,6 +9,7 @@ set showbreak=+++
 set showmatch
 set encoding=utf-8
 set visualbell
+set mouse=a
 
 set smartcase
 set ignorecase
