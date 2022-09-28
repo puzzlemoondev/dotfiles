@@ -179,13 +179,6 @@ if status --is-interactive
     abbr -ag jor	'journalctl'
     abbr -ag jour	'journalctl --user'
 
-    # Trash
-    abbr -ag tp		'trash-put'
-    abbr -ag te		'trash-empty'
-    abbr -ag tl		'trash-list'
-    abbr -ag tr		'trash-restore'
-    abbr -ag trm	'trash-rm'
-
     # Yadm
     abbr -ag y          'yadm'
     abbr -ag ya         'yadm add'

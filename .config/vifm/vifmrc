@@ -299,7 +299,7 @@ fileviewer *.docx docx2txt %f -
 "
 " Or leave it for automatic detection
 "
-fileviewer *[^/] pygmentize -O style=forest -f console256 -g
+fileviewer *[^/] bat --color always --wrap never --pager never %c -p
 
 " Text based files
 filetype <text/*> nvim
