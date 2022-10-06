@@ -1,34 +1,34 @@
 set font "monospace 12"
 
-set default-bg                  "#323D43"
-set default-fg                  "#465258"
+set default-bg                  "#4b565c"
+set default-fg                  "#d3c6aa"
 
-set statusbar-fg                "#1e292f"
-set statusbar-bg                "#465258"
+set statusbar-fg                "#d3c6aa"
+set statusbar-bg                "#2b3339"
 
-set inputbar-bg                 "#323D43"
-set inputbar-fg                 "#D8CAAC"
+set inputbar-bg                 "#2b3339"
+set inputbar-fg                 "#d3c6aa"
 
-set notification-bg             "#323D43"
-set notification-fg             "#D8CAAC"
+set notification-bg             "#2b3339"
+set notification-fg             "#d3c6aa"
 
-set notification-error-bg       "#323D43"
-set notification-error-fg       "#E68183"
+set notification-error-bg       "#2b3339"
+set notification-error-fg       "#d3c6aa"
 
-set notification-warning-bg     "#323D43"
-set notification-warning-fg     "#E68183"
+set notification-warning-bg     "#2b3339"
+set notification-warning-fg     "#d3c6aa"
 
-set highlight-color             "#D9BB80"
-set highlight-active-color      "#89BEBA"
+set highlight-color             "#4b565c"
+set highlight-active-color      "#e67e80"
 
-set completion-bg               "#465258"
-set completion-fg               "#89BEBA"
+set completion-bg               "#2b3339"
+set completion-fg               "#d3c6aa"
 
-set completion-highlight-fg     "#D8CAAC"
-set completion-highlight-bg     "#89BEBA"
+set completion-highlight-fg     "#4b565c"
+set completion-highlight-bg     "#2b3339"
 
-set recolor-lightcolor          "#323D43"
-set recolor-darkcolor           "#D8CAAC"
+set recolor-lightcolor          "#2b3339"
+set recolor-darkcolor           "#d3c6aa"
 
 set recolor                     "true"
 set recolor-keephue             "false"
