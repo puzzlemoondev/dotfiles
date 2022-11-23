@@ -15,7 +15,6 @@ set -gx GPG_TTY (tty)
 set -gx LESS '-i -J -M -R -W -x4 -z-4'
 set -gx LESSOPEN '| /usr/bin/source-highlight-esc.sh %s'
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
-set -gx NODE_OPTIONS --max_old_space_size=8192
 
 set -gx PHPSTORM_JDK '/usr/lib/jvm/jre-jetbrains'
 set -gx WEBIDE_JDK '/usr/lib/jvm/jre-jetbrains'
