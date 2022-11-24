@@ -203,9 +203,16 @@ if status --is-interactive
     abbr -ag parec      'paru -Sc'
     abbr -ag pareo      'paru --clean'
 
-    abbr -ag gimme      'paru -S'
-    abbr -ag yeet       'paru -Rns'
-    abbr -ag relax      'paru -Syu'
+    # Package Manager
+    if test (uname -s) = "Darwin"
+        abbr -ag gimme      'brew install'
+        abbr -ag yeet       'brew uninstall'
+        abbr -ag relax      'brew upgrade; brew list --cask | xargs brew upgrade; brew cleanup'
+    else
+        abbr -ag gimme      'paru -S'
+        abbr -ag yeet       'paru -Rns'
+        abbr -ag relax      'paru -Syu'
+    end
 
     # ADB
     abbr -ag asm        'adb-sync ~/Music/ /sdcard/Music/'
