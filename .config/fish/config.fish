@@ -313,6 +313,8 @@ function extract -d 'Expand or extract bundled & compressed files'
                 uncompress $argv
             case \*.7z
                 7z x $argv
+            case \*.xz
+                unxz $argv
             case '*'
                 echo "unknown extension"
         end
