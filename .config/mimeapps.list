@@ -32,6 +32,7 @@ message/rfc822=userapp-Thunderbird-T2EBG1.desktop
 x-scheme-handler/mid=userapp-Thunderbird-T2EBG1.desktop
 x-scheme-handler/slack=slack.desktop
 x-scheme-handler/clickup=clickup.desktop
+x-scheme-handler/bilipc=Electron.desktop
 
 [Added Associations]
 x-scheme-handler/mailto=userapp-Thunderbird-587XC1.desktop;userapp-Thunderbird-T2EBG1.desktop;
