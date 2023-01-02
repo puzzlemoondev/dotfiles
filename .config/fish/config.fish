@@ -368,4 +368,9 @@ if status is-login; and test -z "$DISPLAY" -a "$XDG_VTNR" = 1
     exec startx -- -keeptty &> /dev/null
 end
 #}}}
-
+#{{{ Conda
+#
+if test (uname -s) = "Darwin"
+    eval $HOMEBREW_PREFIX/Caskroom/miniconda/base/bin/conda "shell.fish" "hook" $argv | source
+end
+#}}}
