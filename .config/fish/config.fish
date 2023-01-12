@@ -1,5 +1,5 @@
 #{{{ Environment Variables
-fish_add_path $HOME/.local/bin /usr/local/bin
+fish_add_path $HOME/.local/bin /usr/local/bin /opt/rocm/bin /opt/rocm/opencl/bin
 
 set -gx LANG en_US.UTF-8
 set -gx LANGUAGE en_US.UTF-8
@@ -372,6 +372,11 @@ end
 #{{{ Conda
 #
 if test (uname -s) = "Darwin"
-    eval $HOMEBREW_PREFIX/Caskroom/miniconda/base/bin/conda "shell.fish" "hook" $argv | source
+    set conda $HOMEBREW_PREFIX/Caskroom/miniconda/base/bin/conda
+else
+    set conda /opt/miniconda3/bin/conda
+end
+if type -q $conda
+    eval $conda "shell.fish" "hook" $argv | source
 end
 #}}}
