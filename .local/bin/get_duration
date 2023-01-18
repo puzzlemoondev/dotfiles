@@ -1,0 +1,21 @@
+#!/bin/bash
+
+get_duration () {
+    echo "$1"
+    output="$(ffprobe -i "$1" -show_format -v quiet)"
+    if [[ "$output" =~ duration=([[:graph:]]+) ]]; then
+        echo "${BASH_REMATCH[1]}"
+    fi
+}
+
+if [ -d "$1" ]; then
+    find "$1" -type f -exec file {} + |
+    grep -iE 'audio|video|media' |
+    cut -f 1 -d ':' |
+    while read -r file; do get_duration "$file"; done |
+    awk '{ sum += $1 } END { print sum }'
+elif [ -f "$1" ]; then
+    get_duration "$1"
+else
+    exit 1
+fi
