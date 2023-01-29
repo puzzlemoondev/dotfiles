@@ -1,2 +1,3 @@
 .ssh/config
 .ssh/puzzlemoon_*
+.ssh/*.pem

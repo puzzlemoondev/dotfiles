@@ -28,6 +28,8 @@ set undofile
 set undodir=~/.config/nvim/undodir
 set undolevels=1000
 
+let mapleader = ","
+
 nnoremap <esc> :noh<return><esc>
 
 " fuzzy finder
@@ -68,6 +70,7 @@ silent! if plug#begin()
     Plug 'chrisbra/csv.vim'
     Plug 'sheerun/vim-polyglot'
     Plug 'sainnhe/everforest'
+    Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --omit=dev' }
     call plug#end()
 endif
 
