@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+
+import argparse
+import subprocess
+from pathlib import Path
+
+parser = argparse.ArgumentParser()
+parser.add_argument("path", type=Path)
+args = parser.parse_args()
+
+data_path = args.path.with_suffix(".flv").resolve(strict=True)
+danamku_path = data_path.with_suffix(".xml")
+subtitles_path = data_path.with_suffix(".ass")
+burned_path = data_path.with_suffix(".mp4")
+
+if burned_path.exists():
+    print("burned file exists, exiting...")
+    exit(0)
+
+subprocess.check_call(
+    [
+        "DanmakuFactory",
+        "-i",
+        str(danamku_path),
+        "-o",
+        str(subtitles_path),
+        "--fontname",
+        "Noto Sans CJK SC",
+        "--fontsize",
+        "64",
+    ]
+)
+
+subprocess.check_call(
+    [
+        "ffmpeg",
+        "-y",
+        "-i",
+        str(data_path),
+        "-vf",
+        f"ass={subtitles_path}",
+        "-c:a",
+        "copy",
+        str(burned_path),
+    ]
+)

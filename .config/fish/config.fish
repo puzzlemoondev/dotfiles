@@ -134,6 +134,10 @@ end
 if type -q direnv
     direnv hook fish | source
 end
+
+if type -q poetry
+    poetry completions fish > $HOME/.config/fish/completions/poetry.fish
+end
 #}}}
 #{{{ Aliases
 # Default Arguments
@@ -154,6 +158,7 @@ alias vim='nvim'
 alias ls='exa --group --header --git'
 alias bat='bat --color=always --theme="Forest Night (Italic)" --italic-text=always'
 alias python='python3'
+alias baidupcs='baidupcs-go'
 #}}}
 #{{{ Abbreviations
 if status --is-interactive
