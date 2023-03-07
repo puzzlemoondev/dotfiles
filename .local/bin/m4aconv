@@ -1,7 +1,81 @@
-#!/bin/bash
-if [ -z "$1" ]
-  then
-    echo "No argument supplied"
-    exit 1
-fi
-find "$1" -print0 | xargs -0 file | grep -i audio | cut -f 1 -d ':' | parallel 'ffmpeg -y -i {} -c:a aac -c:v copy -b:a 320k {.}-converted.m4a && rm {}'
+#!/usr/bin/env python3
+
+import argparse
+import platform
+import mimetypes
+import subprocess
+
+from pathlib import Path
+from typing import Iterator, Callable
+from functools import partial
+from multiprocessing import Pool
+
+
+def is_audio_file(file: Path) -> bool:
+    file_type, _ = mimetypes.guess_type(file)
+    return file_type and file_type.startswith("audio")
+
+
+def find_audio_files(path: Path) -> Iterator[Path]:
+    if path.is_file():
+        if is_audio_file(path):
+            yield path
+    elif path.is_dir():
+        for sub_path in path.iterdir():
+            yield from find_audio_files(sub_path)
+
+
+def convert_darwin(source: Path, output: Path):
+    subprocess.run(
+        [
+            "afconvert",
+            "-v",
+            "-f",
+            "m4af",
+            "-d",
+            "aac",
+            "-b",
+            "320000",
+            "-s",
+            "2",
+            "-q",
+            "127",
+            source,
+            output,
+        ]
+    )
+
+
+def convert_linux(source: Path, output: Path):
+    subprocess.run(
+        ["ffmpeg", "-y", "-i", source, "-c:a", "aac", "-b:a", "320k", output]
+    )
+
+
+def convert(source: Path, converter: Callable[[Path, Path], None], keep: bool):
+    output = source.with_stem(f"{source.stem}-converted").with_suffix(".m4a")
+    converter(source, output)
+    if not keep:
+        source.unlink()
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("path", type=Path)
+    parser.add_argument("--keep", "-k", action="store_true", dest="keep")
+    args = parser.parse_args()
+
+    path = args.path.resolve(strict=True)
+    keep = args.keep
+
+    system = platform.system()
+    if system == "Darwin":
+        converter = convert_darwin
+    elif system == "Linux":
+        converter = convert_linux
+    else:
+        print(f"{system} unsupported")
+        exit(1)
+
+    with Pool() as pool:
+        pool.map(partial(convert, converter=converter, keep=keep), find_audio_files(path))

@@ -1,46 +1,87 @@
 #!/usr/bin/env python3
 
 import argparse
-import subprocess
 from pathlib import Path
+from functools import reduce
+from subprocess import check_output
 
-parser = argparse.ArgumentParser()
-parser.add_argument("path", type=Path)
-args = parser.parse_args()
 
-data_path = args.path.with_suffix(".flv").resolve(strict=True)
-danamku_path = data_path.with_suffix(".xml")
-subtitles_path = data_path.with_suffix(".ass")
-burned_path = data_path.with_suffix(".mp4")
+def burn_danmaku(data_path: Path, keep_original: bool):
+    danmaku_path = data_path.with_suffix(".xml")
+    subtitles_path = data_path.with_suffix(".ass")
+    burned_path = data_path.with_suffix(".mp4")
 
-if burned_path.exists():
-    print("burned file exists, exiting...")
-    exit(0)
+    if burned_path.exists():
+        print(f"[skipped] burned file {burned_path} exists")
+        return
 
-subprocess.check_call(
-    [
-        "DanmakuFactory",
-        "-i",
-        str(danamku_path),
-        "-o",
-        str(subtitles_path),
-        "--fontname",
-        "Noto Sans CJK SC",
-        "--fontsize",
-        "64",
-    ]
-)
+    outputs = list()
 
-subprocess.check_call(
-    [
-        "ffmpeg",
-        "-y",
-        "-i",
-        str(data_path),
-        "-vf",
-        f"ass={subtitles_path}",
-        "-c:a",
-        "copy",
-        str(burned_path),
-    ]
-)
+    outputs.append(
+        check_output(
+            [
+                "DanmakuFactory",
+                "-i",
+                str(danmaku_path),
+                "-o",
+                str(subtitles_path),
+                "--fontname",
+                "Noto Sans CJK SC",
+                "--fontsize",
+                "64",
+            ]
+        )
+    )
+
+    outputs.append(
+        check_output(
+            [
+                "ffmpeg",
+                "-y",
+                "-i",
+                str(data_path),
+                "-vf",
+                f"ass={subtitles_path}",
+                "-c:a",
+                "copy",
+                str(burned_path),
+            ]
+        )
+    )
+
+    if not keep_original:
+        data_path.unlink()
+
+    return reduce(lambda acc, cur: f"{acc}\n{cur.decode('utf8')}", outputs)
+
+
+def write_logs(name: str, logs: list[str]):
+    logs_text = "\n".join(logs)
+    Path(name).write_text(logs_text)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("path", type=Path)
+    parser.add_argument("--keep_original", action="store_true", default=False)
+    args = parser.parse_args()
+
+    tasks = list()
+    if args.path.is_dir():
+        tasks.extend(args.path.glob("**/*.flv"))
+    else:
+        tasks.append(args.path.with_suffix(".flv").resolve(strict=True))
+
+    output_logs = list()
+    error_logs = list()
+    for task in tasks:
+        try:
+            output = burn_danmaku(task, args.keep_original)
+            output_logs.append(output)
+        except Exception as error:
+            error_logs.append(repr(error))
+
+    if output_logs:
+        write_logs("output_logs.txt", output_logs)
+    if error_logs:
+        write_logs("error_logs.txt", error_logs)
