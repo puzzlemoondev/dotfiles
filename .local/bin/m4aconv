@@ -62,7 +62,7 @@ def convert(source: Path, converter: Callable[[Path, Path], None], keep: bool):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("path", type=Path)
-    parser.add_argument("--keep", "-k", action="store_true", dest="keep")
+    parser.add_argument("--keep", "-k", action="store_true")
     args = parser.parse_args()
 
     path = args.path.resolve(strict=True)
