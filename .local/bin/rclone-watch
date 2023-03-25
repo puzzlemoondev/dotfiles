@@ -1,0 +1,72 @@
+#!/usr/bin/env python3
+
+import argparse
+import subprocess
+import sys
+from threading import Timer
+
+try:
+    from watchdog.observers import Observer
+except ImportError:
+    subprocess.check_call(
+        [sys.executable, "-m", "pip", "install", "watchdog"],
+        stdout=subprocess.DEVNULL,
+    )
+finally:
+    from watchdog.observers import Observer
+    from watchdog.events import FileSystemEventHandler
+
+
+def debounce(wait_time):
+    def decorator(function):
+        def debounced(*args, **kwargs):
+            def call_function():
+                debounced.timer = None
+                return function(*args, **kwargs)
+
+            if debounced.timer is not None:
+                debounced.timer.cancel()
+
+            debounced.timer = Timer(wait_time, call_function)
+            debounced.timer.start()
+
+        debounced.timer = None
+        return debounced
+
+    return decorator
+
+
+class Handler(FileSystemEventHandler):
+    def __init__(self, sync_source, sync_dest):
+        self.sync_source = sync_source
+        self.sync_dest = sync_dest
+
+    def on_any_event(self, event):
+        self.rclone_sync()
+
+    @debounce(5)
+    def rclone_sync(self):
+        subprocess.check_call(["rclone", "sync", self.sync_source, self.sync_dest])
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("source")
+    parser.add_argument("dest")
+    args = parser.parse_args()
+
+    handler = Handler(args.source, args.dest)
+    observer = Observer()
+    observer.schedule(handler, args.source, recursive=True)
+    observer.start()
+
+    try:
+        while observer.is_alive():
+            observer.join()
+    finally:
+        observer.stop()
+        observer.join()
+
+
+if __name__ == '__main__':
+    main()
