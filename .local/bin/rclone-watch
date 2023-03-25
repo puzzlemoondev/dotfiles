@@ -36,17 +36,21 @@ def debounce(wait_time):
     return decorator
 
 
+def rclone_sync(source, dest):
+    subprocess.check_call(["rclone", "sync", source, dest])
+
+
 class Handler(FileSystemEventHandler):
     def __init__(self, sync_source, sync_dest):
         self.sync_source = sync_source
         self.sync_dest = sync_dest
 
     def on_any_event(self, event):
-        self.rclone_sync()
+        self.run_rclone_sync()
 
     @debounce(5)
-    def rclone_sync(self):
-        subprocess.check_call(["rclone", "sync", self.sync_source, self.sync_dest])
+    def run_rclone_sync(self):
+        rclone_sync(self.sync_source, self.sync_dest)
 
 
 def main():
@@ -54,6 +58,8 @@ def main():
     parser.add_argument("source")
     parser.add_argument("dest")
     args = parser.parse_args()
+
+    rclone_sync(args.source, args.dest)
 
     handler = Handler(args.source, args.dest)
     observer = Observer()
