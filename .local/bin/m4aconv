@@ -48,7 +48,7 @@ def convert_darwin(source: Path, output: Path):
 
 def convert_linux(source: Path, output: Path):
     subprocess.check_call(
-        ["ffmpeg", "-y", "-i", source, "-c:a", "aac", "-b:a", "320k", output]
+        ["ffmpeg", "-y", "-i", source, "-c:a", "aac", "-c:v", "copy", "-b:a", "320k", output]
     )
 
 
