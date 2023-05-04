@@ -150,6 +150,7 @@ alias mkdir='mkdir -pv'
 alias tty-clock='tty-clock -s -c -D -C 6'
 alias pygmentize='pygmentize -O style=forest'
 alias paru='paru --skipreview --cleanafter --bottomup'
+alias hblock='hblock -H none'
 
 # Replacements
 alias more='less'
