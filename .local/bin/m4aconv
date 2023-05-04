@@ -26,7 +26,7 @@ def find_audio_files(path: Path) -> Iterator[Path]:
 
 
 def convert_darwin(source: Path, output: Path):
-    subprocess.run(
+    subprocess.check_call(
         [
             "afconvert",
             "-v",
@@ -47,7 +47,7 @@ def convert_darwin(source: Path, output: Path):
 
 
 def convert_linux(source: Path, output: Path):
-    subprocess.run(
+    subprocess.check_call(
         ["ffmpeg", "-y", "-i", source, "-c:a", "aac", "-b:a", "320k", output]
     )
 
