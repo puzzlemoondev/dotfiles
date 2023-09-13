@@ -133,10 +133,6 @@ end
 if type -q direnv
     direnv hook fish | source
 end
-
-if type -q poetry
-    poetry completions fish > $HOME/.config/fish/completions/poetry.fish
-end
 #}}}
 #{{{ Aliases
 # Default Arguments
@@ -212,7 +208,7 @@ if status --is-interactive
     if test (uname -s) = "Darwin"
         abbr -ag gimme      'brew install'
         abbr -ag yeet       'brew uninstall'
-        abbr -ag relax      'brew upgrade; brew list --cask | xargs brew upgrade; brew cleanup'
+        abbr -ag relax      'brew upgrade; brew list --cask | xargs brew upgrade && brew cleanup'
     else
         abbr -ag gimme      'paru -S'
         abbr -ag yeet       'paru -Rns'
@@ -248,6 +244,7 @@ if status --is-interactive
     abbr -ag fdir       'cd ~/.config/fish/'
     abbr -ag fconf      'vim ~/.config/fish/config.fish'
     abbr -ag sconf      'vim ~/.config/spectrwm/spectrwm.conf'
+    abbr -ag wakeoffice 'ssh office_router ether-wake -i br0 04:D4:C4:8F:76:20'
 end
 #}}}
 #{{{ Functions

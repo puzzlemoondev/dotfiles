@@ -1,3 +1,4 @@
 .ssh/config
 .ssh/puzzlemoon_*
+.ssh/office_*
 .ssh/*.pem
