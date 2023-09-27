@@ -151,7 +151,7 @@ alias hblock='hblock -H none'
 # Replacements
 alias more='less'
 alias vim='nvim'
-alias ls='exa --group --header --git'
+alias ls='eza --group --header --git'
 alias bat='bat --color=always --theme="Forest Night (Italic)" --italic-text=always'
 alias python='python3'
 alias baidupcs='baidupcs-go'
