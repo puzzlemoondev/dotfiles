@@ -14,7 +14,7 @@ end
 
 config.color_scheme = 'Everforest Dark (Gogh)'
 
-config.font = wezterm.font 'VictorMono NerdFont'
+config.font = wezterm.font 'Victor Mono'
 config.font_size = 16.0
 
 config.window_padding = {
