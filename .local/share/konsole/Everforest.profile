@@ -12,5 +12,8 @@ ShowTerminalSizeHint=false
 TerminalCenter=true
 TerminalMargin=24
 
+[Interaction Options]
+AutoCopySelectedText=true
+
 [Scrolling]
 ScrollBarPosition=2
