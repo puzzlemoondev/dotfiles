@@ -12,6 +12,29 @@ end
 
 -- This is where you actually apply your config choices
 
+config.keys = {
+  {
+    key = 'd',
+    mods = 'SUPER',
+    action = wezterm.action.SplitHorizontal {domain = 'CurrentPaneDomain' }
+  },
+  {
+    key = 'd',
+    mods = 'CTRL',
+    action = wezterm.action.SplitHorizontal {domain = 'CurrentPaneDomain' }
+  },
+  {
+    key = 'd',
+    mods = 'SUPER|SHIFT',
+    action = wezterm.action.SplitVertical {domain = 'CurrentPaneDomain' }
+  },
+  {
+    key = 'd',
+    mods = 'CTRL|SHIFT',
+    action = wezterm.action.SplitVertical {domain = 'CurrentPaneDomain' }
+  }
+}
+
 config.color_scheme = 'Everforest Dark (Gogh)'
 
 config.font = wezterm.font 'Victor Mono'
