@@ -208,7 +208,7 @@ if status --is-interactive
     if test (uname -s) = "Darwin"
         abbr -ag gimme      'brew install'
         abbr -ag yeet       'brew uninstall'
-        abbr -ag relax      'brew upgrade; brew list --cask | xargs brew upgrade && brew cleanup'
+        abbr -ag relax      'brew upgrade && brew list --cask | xargs brew upgrade && brew cleanup --prune=all'
     else
         abbr -ag gimme      'paru -S'
         abbr -ag yeet       'paru -Rns'
