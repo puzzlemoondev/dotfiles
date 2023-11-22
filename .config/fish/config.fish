@@ -232,6 +232,7 @@ if status --is-interactive
     abbr -ag aw         'awman'
     abbr -ag k3         'kid3-qt'
     abbr -ag gmpv       'mpv --player-operation-mode=pseudo-gui'
+    abbr -ag wssh       'wezterm ssh'
     abbr -ag ping       'prettyping'
     abbr -ag p8         'prettyping 8.8.8.8'
     abbr -ag abcdef     'abcde -o flac:"--best"'
