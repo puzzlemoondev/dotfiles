@@ -232,7 +232,7 @@ if status --is-interactive
     abbr -ag aw         'awman'
     abbr -ag k3         'kid3-qt'
     abbr -ag gmpv       'mpv --player-operation-mode=pseudo-gui'
-    abbr -ag wssh       'wezterm ssh'
+    abbr -ag ssh        'wezterm ssh'
     abbr -ag ping       'prettyping'
     abbr -ag p8         'prettyping 8.8.8.8'
     abbr -ag abcdef     'abcde -o flac:"--best"'
@@ -245,6 +245,7 @@ if status --is-interactive
     abbr -ag fdir       'cd ~/.config/fish/'
     abbr -ag fconf      'vim ~/.config/fish/config.fish'
     abbr -ag sconf      'vim ~/.config/spectrwm/spectrwm.conf'
+    abbr -ag wconf      'vim ~/.wezterm.lua'
     abbr -ag wakeoffice 'ssh office_router ether-wake -i br0 04:D4:C4:8F:76:20'
 end
 #}}}
