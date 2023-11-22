@@ -40,13 +40,6 @@ config.color_scheme = 'Everforest Dark (Gogh)'
 config.font = wezterm.font('Victor Mono', { weight = 'Medium' })
 config.font_size = 16.0
 
-config.window_padding = {
-  left = '2cell',
-  right = '2cell',
-  top = '0.5cell',
-  bottom = '0.5cell',
-}
-
 config.window_background_opacity = 0.95
 
 config.hide_tab_bar_if_only_one_tab = true
