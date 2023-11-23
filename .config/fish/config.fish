@@ -376,7 +376,7 @@ end
 if status is-interactive
     if not set -q ZELLIJ
         if test (zellij list-sessions | wc -l) -ge 2
-            zellij attach (zellij list-sessions | sk)
+            zellij attach (zellij list-sessions | awk '{print $1}' | sk)
         else
             zellij
         end
