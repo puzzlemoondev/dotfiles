@@ -240,6 +240,7 @@ if status --is-interactive
     abbr -ag ea         'for a in (abbr -l); abbr -e $a; end'
     abbr -ag ef         'exec fish'
     abbr -ag ur         'sudo reflector -p https -l 30 -n 20 --sort rate --save /etc/pacman.d/mirrorlist --verbose'
+    abbr -ag uyb        '$HOME/.config/yabai/./update.sh'
     abbr -ag bye        'poweroff'
     abbr -ag battery    'upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage"'
     abbr -ag fdir       'cd ~/.config/fish/'
