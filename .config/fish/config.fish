@@ -372,7 +372,7 @@ end
 if status is-login; and test -z "$DISPLAY" -a "$XDG_VTNR" = 1
     exec startx -- -keeptty &> /dev/null
 end
-# Start Multiplexer at Login
+# Start Multiplexer at Interactive Session
 if status is-interactive
     ZELLIJ_AUTO_EXIT=true eval (zellij setup --generate-auto-start fish | string collect)
 end
