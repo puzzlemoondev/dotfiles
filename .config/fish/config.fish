@@ -374,7 +374,14 @@ if status is-login; and test -z "$DISPLAY" -a "$XDG_VTNR" = 1
 end
 # Start Multiplexer at Interactive Session
 if status is-interactive
-    ZELLIJ_AUTO_EXIT=true eval (zellij setup --generate-auto-start fish | string collect)
+    if not set -q ZELLIJ
+        if test (zellij list-sessions | wc -l) -ge 2
+            zellij attach (zellij list-sessions | sk)
+        else
+            zellij
+        end
+        kill $fish_pid
+    end
 end
 #}}}
 #{{{ Conda

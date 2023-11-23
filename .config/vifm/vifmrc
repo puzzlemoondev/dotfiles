@@ -199,7 +199,8 @@ filetype *.[1-8] man ./%c
 fileviewer *.[1-8] man ./%c | col -b
 
 " Images
-" fileviewer <image/*>
+fileviewer <image/*>
+    \ wezterm imgcat %c
 "     \ kitty +icat --place %pwx%ph@%pxx%py  --silent %c
 "     \ %pc
 "     \ kitty icat --clear --silent %pd
