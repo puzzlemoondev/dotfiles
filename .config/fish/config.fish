@@ -375,8 +375,9 @@ end
 # Start Multiplexer at Interactive Session
 if status is-interactive
     if not set -q ZELLIJ
-        if test (zellij list-sessions | wc -l) -ge 2
-            zellij attach (zellij list-sessions | awk '{print $1}' | sk)
+        set sessions "$(zellij list-sessions -ns)"
+        if test (echo $sessions | count) -ge 2
+            zellij attach (echo $sessions | sk)
         else
             zellij
         end
