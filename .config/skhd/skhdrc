@@ -79,8 +79,12 @@ alt + shift - 0x32 : yabai -m window --focus stack.prev
 
 # launch
 cmd - return : open -n /Applications/WezTerm.app
-cmd + shift - e : open ~
+cmd + shift - e : open /Applications/Visual\ Studio\ Code.app
+cmd + shift - v : wezterm-gui start nvim
+cmd + shift - r : wezterm-gui ssh puzzlemoon@puzzlemoon-desktop
+cmd + shift - f : open ~
 cmd + shift - s : open /Applications/Slack.app
+cmd + shift - c : open /Applications/ClickUp.app
 cmd + shift - p : open /Applications/Spotify.app
 cmd + shift - w : open /Applications/Firefox\ Developer\ Edition.app
 cmd + ctrl - p : sudo shutdown now
