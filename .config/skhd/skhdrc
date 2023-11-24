@@ -63,7 +63,7 @@ alt + shift - k : yabai -m window --warp north
 alt + shift - up : yabai -m window --warp north
 
 alt + shift - m : yabai -m window --swap largest
-alt + shift - s : yabai -m window --toggle split
+alt + shift - v : yabai -m window --toggle split
 alt + shift - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
 alt + shift - p : yabai -m window --toggle sticky --toggle pip
 alt + shift - f : yabai -m window --toggle native-fullscreen
@@ -73,7 +73,9 @@ alt + shift - r : yabai -m window --deminimize $(yabai -m query --windows | jq '
 alt + shift - q : yabai -m window --close
 
 alt + shift - a : yabai -m space --layout bsp
-alt + shift - b : yabai -m space --balance
+alt + shift - s : yabai -m space --layout stack
+alt + shift - tab : yabai -m window --focus stack.next
+alt + shift - 0x32 : yabai -m window --focus stack.prev
 
 # launch
 cmd - return : open -n /Applications/WezTerm.app
