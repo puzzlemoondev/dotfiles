@@ -79,6 +79,7 @@ alt + shift - 0x32 : yabai -m window --focus stack.prev
 
 # launch
 cmd - return : open -n /Applications/WezTerm.app
+cmd + shift - 1 : open /Applications/1Password.app
 cmd + shift - b : wezterm-gui start vifm ~/.Trash
 cmd + shift - c : open /Applications/Visual\ Studio\ Code.app
 cmd + shift - e : wezterm-gui start vifm

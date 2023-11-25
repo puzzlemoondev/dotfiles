@@ -245,7 +245,7 @@ if status --is-interactive
     abbr -ag battery    'upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage"'
     abbr -ag fdir       'cd ~/.config/fish/'
     abbr -ag fconf      'vim ~/.config/fish/config.fish'
-    abbr -ag sconf      'vim ~/.config/spectrwm/spectrwm.conf'
+    abbr -ag sconf      'vim ~/.config/skhd/skhdrc'
     abbr -ag wconf      'vim ~/.wezterm.lua'
     abbr -ag wakeoffice 'ssh office_router ether-wake -i br0 04:D4:C4:8F:76:20'
 end
