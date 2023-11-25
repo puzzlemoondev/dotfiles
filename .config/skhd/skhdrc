@@ -89,6 +89,3 @@ cmd + shift - r : wezterm-gui ssh puzzlemoon@puzzlemoon-desktop
 cmd + shift - s : open /Applications/Slack.app
 cmd + shift - v : wezterm-gui start nvim
 cmd + shift - w : open /Applications/Firefox\ Developer\ Edition.app
-cmd + ctrl - p : sudo shutdown now
-cmd + ctrl - r : sudo shutdown -r now
-cmd + ctrl - s : sudo shutdown -s now
