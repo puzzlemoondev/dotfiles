@@ -11,6 +11,7 @@ if wezterm.config_builder then
 end
 
 -- This is where you actually apply your config choices
+config.bypass_mouse_reporting_modifiers = 'SUPER'
 
 config.keys = {
   {

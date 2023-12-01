@@ -83,6 +83,7 @@ cmd + shift - 1 : open /Applications/1Password.app
 cmd + shift - b : wezterm-gui start vifm ~/.Trash
 cmd + shift - c : open /Applications/Visual\ Studio\ Code.app
 cmd + shift - e : wezterm-gui start vifm
+cmd + shift - f : open /Applications/Figma.app
 cmd + shift - j : open /Applications/Jellyfin\ Media\ Player.app
 cmd + shift - p : open /Applications/Spotify.app
 cmd + shift - r : wezterm-gui ssh puzzlemoon@puzzlemoon-desktop

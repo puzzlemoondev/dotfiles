@@ -8,8 +8,8 @@ bar=(
   color=0x00000000
 )
 default=(
-  icon.font="VictorMono NF:SemiBold:13.0"
-  label.font="VictorMono NF:SemiBold:13.0"
+  icon.font="VictorMono Nerd Font:SemiBold:13.0"
+  label.font="VictorMono Nerd Font:SemiBold:13.0"
 )
 front_app=(
   script="$PLUGIN_DIR/front_app.sh"
