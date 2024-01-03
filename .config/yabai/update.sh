@@ -28,7 +28,8 @@ yabai --stop-service
 
 # reinstall yabai
 echo "Updating yabai.."
-brew upgrade yabai
+brew update
+brew reinstall koekeishiya/formulae/yabai
 
 # codesign (from HEAD)
 # codesign -fs "${YABAI_CERT:-yabai-cert}" "$(brew --prefix yabai)/bin/yabai"
