@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+set -eo pipefail
+
 # scripting-addition;
 # function to update sudoers file
 function suyabai() {
-  SHA256=$(shasum -a 256 "$(which yabai)" | awk '{print \$1;}')
+  SHA256=$(shasum -a 256 "$(which yabai)" | awk '{print $1;}')
   if [ -f "/private/etc/sudoers.d/yabai" ]; then
     sudo sed -i '' -e 's/sha256:[[:alnum:]]*/sha256:'"${SHA256}"'/' /private/etc/sudoers.d/yabai
     echo "sudoers > yabai > sha256 hash update complete"
@@ -26,7 +28,7 @@ yabai --stop-service
 
 # reinstall yabai
 echo "Updating yabai.."
-brew reinstall koekeishiya/formulae/yabai
+brew upgrade yabai
 
 # codesign (from HEAD)
 # codesign -fs "${YABAI_CERT:-yabai-cert}" "$(brew --prefix yabai)/bin/yabai"
