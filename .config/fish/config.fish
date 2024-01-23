@@ -374,17 +374,17 @@ if status is-login; and test -z "$DISPLAY" -a "$XDG_VTNR" = 1
     exec startx -- -keeptty &> /dev/null
 end
 # Start Multiplexer at Interactive Session
-if status is-interactive
-    if not set -q ZELLIJ
-        set sessions "$(zellij list-sessions -ns)"
-        if test (echo $sessions | count) -ge 2
-            zellij attach (echo $sessions | sk)
-        else
-            zellij
-        end
-        kill $fish_pid
-    end
-end
+#if status is-interactive
+#    if not set -q ZELLIJ
+#        set sessions "$(zellij list-sessions -ns)"
+#        if test (echo $sessions | count) -ge 2
+#            zellij attach (echo $sessions | sk)
+#        else
+#            zellij
+#        end
+#        kill $fish_pid
+#    end
+#end
 #}}}
 #{{{ Conda
 #
