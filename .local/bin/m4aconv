@@ -12,7 +12,7 @@ from typing import Iterator, Callable
 
 def is_audio_file(file: Path) -> bool:
     file_type, _ = mimetypes.guess_type(file)
-    return file_type and file_type.startswith("audio")
+    return file_type and file_type.startswith("audio") and file.suffix != ".m3u"
 
 
 def find_audio_files(path: Path) -> Iterator[Path]:

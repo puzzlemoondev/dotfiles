@@ -208,7 +208,7 @@ if status --is-interactive
     if test (uname -s) = "Darwin"
         abbr -ag gimme      'brew install'
         abbr -ag yeet       'brew uninstall'
-        abbr -ag relax      'brew upgrade && brew list --cask | xargs brew upgrade && brew cleanup --prune=all'
+        abbr -ag relax      'brew upgrade -g && brew list --cask | xargs brew upgrade -g && brew cleanup --prune=all'
     else
         abbr -ag gimme      'paru -S'
         abbr -ag yeet       'paru -Rns'
@@ -232,7 +232,6 @@ if status --is-interactive
     abbr -ag aw         'awman'
     abbr -ag k3         'kid3-qt'
     abbr -ag gmpv       'mpv --player-operation-mode=pseudo-gui'
-    abbr -ag ssh        'wezterm ssh'
     abbr -ag ping       'prettyping'
     abbr -ag p8         'prettyping 8.8.8.8'
     abbr -ag abcdef     'abcde -o flac:"--best"'
