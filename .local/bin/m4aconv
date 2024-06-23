@@ -61,15 +61,17 @@ def convert(source: Path, converter: Callable[[Path, Path], None], keep: bool):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("path", type=Path)
+    parser.add_argument("--ffmpeg", "-f", action="store_true")
     parser.add_argument("--keep", "-k", action="store_true")
     args = parser.parse_args()
 
     path = args.path.resolve(strict=True)
     keep = args.keep
+    ffmpeg = args.ffmpeg
 
     system = platform.system()
     if system == "Darwin":
-        converter = convert_darwin
+        converter = convert_darwin if not ffmpeg else convert_linux
     elif system == "Linux":
         converter = convert_linux
     else:

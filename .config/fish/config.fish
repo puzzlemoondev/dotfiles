@@ -155,6 +155,10 @@ alias ls='eza --group --header --git'
 alias bat='bat --color=always --theme="Forest Night (Italic)" --italic-text=always'
 alias python='python3'
 alias baidupcs='baidupcs-go'
+if type -q rclone-mac
+    # rclone with fuse support
+    alias rclone='rclone-mac'
+end
 #}}}
 #{{{ Abbreviations
 if status --is-interactive
@@ -247,6 +251,9 @@ if status --is-interactive
     abbr -ag sconf      'vim ~/.config/skhd/skhdrc'
     abbr -ag wconf      'vim ~/.wezterm.lua'
     abbr -ag wakeoffice 'ssh office_router ether-wake -i br0 04:D4:C4:8F:76:20'
+    abbr -ag sshinvidious 'ssh -i ~/.ssh/sean-ec2-key-pair.pem admin@23.21.218.21'
+    abbr -ag sshjellyfin 'ssh -i ~/.ssh/sean-ec2-key-pair.pem admin@34.194.77.246'
+    abbr -ag sshalist 'ssh -i ~/.ssh/sean-ec2-key-pair.pem admin@54.237.21.71'
 end
 #}}}
 #{{{ Functions
