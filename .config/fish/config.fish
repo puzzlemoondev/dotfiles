@@ -252,8 +252,8 @@ if status --is-interactive
     abbr -ag wconf      'vim ~/.wezterm.lua'
     abbr -ag wakeoffice 'ssh office_router ether-wake -i br0 04:D4:C4:8F:76:20'
     abbr -ag sshinvidious 'ssh -i ~/.ssh/sean-ec2-key-pair.pem admin@23.21.218.21'
-    abbr -ag sshjellyfin 'ssh -i ~/.ssh/sean-ec2-key-pair.pem admin@34.194.77.246'
     abbr -ag sshalist 'ssh -i ~/.ssh/sean-ec2-key-pair.pem admin@54.237.21.71'
+    abbr -ag sshplex 'ssh -i ~/.ssh/sean-ec2-key-pair.pem admin@52.72.138.231'
 end
 #}}}
 #{{{ Functions
