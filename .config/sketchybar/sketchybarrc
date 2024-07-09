@@ -14,20 +14,20 @@ default=(
 front_app=(
   script="$PLUGIN_DIR/front_app.sh"
   icon.drawing=off
-  label.color=0xffdf69ba
+  label.color=0xffdbbc7f
 )
 space=(
   script="$PLUGIN_DIR/space.sh"
   label.drawing=off
-  icon.color=0x88df69ba
-  icon.highlight_color=0xffdf69ba
+  icon.color=0x88dbbc7f
+  icon.highlight_color=0xffdbbc7f
   icon.padding_left=6
   icon.padding_right=6
 )
 clock=(
   script="$PLUGIN_DIR/clock.sh"
   icon.drawing=off
-  label.color=0xffdf69ba
+  label.color=0xffdbbc7f
 )
 
 sketchybar --bar "${bar[@]}" \
