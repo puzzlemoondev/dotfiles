@@ -86,7 +86,6 @@ cmd + shift - e : wezterm-gui start vifm
 cmd + shift - f : open /Applications/Figma.app
 cmd + shift - j : open /Applications/Jellyfin\ Media\ Player.app
 cmd + shift - p : open /Applications/Spotify.app
-cmd + shift - r : wezterm-gui ssh puzzlemoon@puzzlemoon-desktop
 cmd + shift - s : open /Applications/Slack.app
 cmd + shift - v : wezterm-gui start nvim
 cmd + shift - w : open /Applications/Firefox\ Developer\ Edition.app
