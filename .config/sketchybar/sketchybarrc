@@ -33,7 +33,6 @@ clock=(
 sketchybar --bar "${bar[@]}" \
   --default "${default[@]}" \
   --add item clock left --set clock "${clock[@]}" \
-  --add item front_app center --set front_app "${front_app[@]}" --subscribe front_app front_app_switched \
   --add space space.10 right --set space.10 space=10 icon=0 "${space[@]}" \
   --add space space.9 right --set space.9 space=9 icon=9 "${space[@]}" \
   --add space space.8 right --set space.8 space=8 icon=8 "${space[@]}" \
@@ -45,3 +44,4 @@ sketchybar --bar "${bar[@]}" \
   --add space space.2 right --set space.2 space=2 icon=2 "${space[@]}" \
   --add space space.1 right --set space.1 space=1 icon=1 "${space[@]}" \
   --update
+# --add item front_app center --set front_app "${front_app[@]}" --subscribe front_app front_app_switched \
