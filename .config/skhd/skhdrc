@@ -79,10 +79,3 @@ alt + shift - 0x32 : yabai -m window --focus stack.prev
 
 # launch
 cmd - return : open /Applications/Warp.app
-cmd + shift - 1 : open /Applications/1Password.app
-cmd + shift - c : open /Applications/Visual\ Studio\ Code.app
-cmd + shift - f : open /Applications/Figma.app
-cmd + shift - j : open /Applications/Jellyfin\ Media\ Player.app
-cmd + shift - p : open /Applications/Spotify.app
-cmd + shift - s : open /Applications/Slack.app
-cmd + shift - w : open /Applications/Firefox\ Developer\ Edition.app
