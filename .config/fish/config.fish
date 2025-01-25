@@ -153,11 +153,14 @@ alias more='less'
 alias vim='nvim'
 alias ls='eza --group --header --git'
 alias bat='bat --color=always --theme="Forest Night (Italic)" --italic-text=always'
-alias python='python3'
+alias python3='python'
 alias baidupcs='baidupcs-go'
 if type -q rclone-mac
     # rclone with fuse support
     alias rclone='rclone-mac'
+end
+if type -q cursor
+    alias code='cursor'
 end
 #}}}
 #{{{ Abbreviations
@@ -212,7 +215,7 @@ if status --is-interactive
     if test (uname -s) = "Darwin"
         abbr -ag gimme      'brew install'
         abbr -ag yeet       'brew uninstall'
-        abbr -ag relax      'brew upgrade -g && brew list --cask | xargs brew upgrade -g && brew cleanup --prune=all'
+        abbr -ag relax      'brew upgrade -g && brew cu -ya && brew cleanup --prune=all'
     else
         abbr -ag gimme      'paru -S'
         abbr -ag yeet       'paru -Rns'
@@ -226,6 +229,11 @@ if status --is-interactive
     abbr -ag asmr       'adb-sync -R /sdcard/Music/ ~/Music/'
     abbr -ag asmrd      'adb-sync -R -d /sdcard/Music/ ~/Music/'
     abbr -ag ash        'adb root && adb remount && adb push /etc/hosts /system/etc/hosts && adb reboot'
+
+    # Exercism
+    abbr -ag exd        'exercism download'
+    abbr -ag exs        'exercism submit'
+    abbr -ag exsj        'exercism submit src/main/java/*'
 
     # Misc
     abbr -ag q          'exit'
