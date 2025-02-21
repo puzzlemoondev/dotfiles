@@ -88,22 +88,12 @@ if test (uname -s) = "Darwin"
         set -gx ANDROID_HOME $ANDROID_HOME
         fish_add_path $ANDROID_HOME/platform-tools $ANDROID_HOME/tools/bin
     end
-
-    set asdf_plugin $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.fish
-    if test -f $asdf_plugin
-        source $asdf_plugin
-    end
 else
     set ANDROID_HOME $HOME/Android/Sdk
 
     if test -d $ANDROID_HOME
         set -gx ANDROID_HOME $ANDROID_HOME
         fish_add_path $ANDROID_HOME/platform-tools $ANDROID_HOME/tools/bin
-    end
-
-    set asdf_plugin /opt/asdf-vm/asdf.fish
-    if test -f $asdf_plugin
-        source $asdf_plugin
     end
 end
 
@@ -124,10 +114,15 @@ if type -q aws
 end
 
 if type -q asdf
-    set asdf_java_home_plugin $HOME/.asdf/plugins/java/set-java-home.fish
+    set --export ASDF_DATA_DIR $HOME/.asdf
+    fish_add_path --prepend $ASDF_DATA_DIR/shims
+
+    set asdf_java_home_plugin $ASDF_DATA_DIR/plugins/java/set-java-home.fish
     if test -f $asdf_java_home_plugin
         source $asdf_java_home_plugin
     end
+
+    asdf completion fish > ~/.config/fish/completions/asdf.fish
 end
 
 if type -q direnv
@@ -259,9 +254,9 @@ if status --is-interactive
     abbr -ag sconf      'vim ~/.config/skhd/skhdrc'
     abbr -ag wconf      'vim ~/.wezterm.lua'
     abbr -ag wakeoffice 'ssh office_router ether-wake -i br0 04:D4:C4:8F:76:20'
-    abbr -ag sshinvidious 'ssh -i ~/.ssh/sean-ec2-key-pair.pem admin@23.21.218.21'
     abbr -ag sshalist 'ssh -i ~/.ssh/sean-ec2-key-pair.pem admin@54.237.21.71'
     abbr -ag sshplex 'ssh -i ~/.ssh/sean-ec2-key-pair.pem admin@52.72.138.231'
+    abbr -ag sshkomga 'ssh -i ~/.ssh/sean-ec2-key-pair.pem admin@44.196.229.233'
 end
 #}}}
 #{{{ Functions
@@ -357,6 +352,16 @@ function up --description 'go up $argv directories (default 1)'
         end 
         cd $up_to 
     end
+end
+
+function imgsplit --description 'uses ImageMagick to split images vertically matching the specified pattern'
+    # Ensure the user provides an argument
+    if test (count $argv) -ne 1
+        echo "Usage: imgsplit <image_pattern>"
+        return 1
+    end
+
+    magick $argv[1] -scene 1 -crop 2x1@ +repage %03d.jpg
 end
 
 function posix_source
