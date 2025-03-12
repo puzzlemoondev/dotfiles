@@ -115,7 +115,7 @@ end
 
 if type -q asdf
     set --export ASDF_DATA_DIR $HOME/.asdf
-    fish_add_path --prepend $ASDF_DATA_DIR/shims
+    fish_add_path --move $ASDF_DATA_DIR/shims
 
     set asdf_java_home_plugin $ASDF_DATA_DIR/plugins/java/set-java-home.fish
     if test -f $asdf_java_home_plugin
