@@ -24,24 +24,34 @@ space=(
   icon.padding_left=6
   icon.padding_right=6
 )
+aerospace=(
+  label.drawing=off
+  icon.color=0x88dbbc7f
+  icon.highlight_color=0xffdbbc7f
+  icon.padding_left=6
+  icon.padding_right=6
+)
 clock=(
   script="$PLUGIN_DIR/clock.sh"
   icon.drawing=off
   label.color=0xffdbbc7f
 )
 
-sketchybar --bar "${bar[@]}" \
-  --default "${default[@]}" \
-  --add item clock left --set clock "${clock[@]}" \
-  --add space space.10 right --set space.10 space=10 icon=0 "${space[@]}" \
-  --add space space.9 right --set space.9 space=9 icon=9 "${space[@]}" \
-  --add space space.8 right --set space.8 space=8 icon=8 "${space[@]}" \
-  --add space space.7 right --set space.7 space=7 icon=7 "${space[@]}" \
-  --add space space.6 right --set space.6 space=6 icon=6 "${space[@]}" \
-  --add space space.5 right --set space.5 space=5 icon=5 "${space[@]}" \
-  --add space space.4 right --set space.4 space=4 icon=4 "${space[@]}" \
-  --add space space.3 right --set space.3 space=3 icon=3 "${space[@]}" \
-  --add space space.2 right --set space.2 space=2 icon=2 "${space[@]}" \
-  --add space space.1 right --set space.1 space=1 icon=1 "${space[@]}" \
-  --update
-# --add item front_app center --set front_app "${front_app[@]}" --subscribe front_app front_app_switched \
+sketchybar --add event aerospace_workspace_change
+
+sketchybar --default "${default[@]}"
+
+sketchybar --bar "${bar[@]}"
+
+sketchybar --add item clock left --set clock "${clock[@]}"
+
+# sketchybar --add item front_app center --set front_app "${front_app[@]}" --subscribe front_app front_app_switched
+
+for sid in $(aerospace list-workspaces --all | tail -r); do
+  sketchybar --add item space.$sid right \
+    --set space.$sid icon="$sid" click_script="aerospace workspace $sid" script="$PLUGIN_DIR/aerospace.sh $sid" "${aerospace[@]}" \
+    --subscribe space.$sid aerospace_workspace_change
+done
+
+sketchybar --update
+
