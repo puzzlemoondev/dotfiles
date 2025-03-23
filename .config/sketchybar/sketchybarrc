@@ -45,7 +45,7 @@ sketchybar --bar "${bar[@]}"
 
 sketchybar --add item clock left --set clock "${clock[@]}"
 
-# sketchybar --add item front_app center --set front_app "${front_app[@]}" --subscribe front_app front_app_switched
+sketchybar --add item front_app center --set front_app "${front_app[@]}" --subscribe front_app front_app_switched
 
 for sid in $(aerospace list-workspaces --all | tail -r); do
   sketchybar --add item space.$sid right \
