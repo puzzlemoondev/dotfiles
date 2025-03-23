@@ -107,9 +107,6 @@ alt-a = 'layout tiles horizontal vertical'
 alt-s = 'layout accordion horizontal vertical'
 alt-space = 'layout floating tiling'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#fullscreen
-alt-f = 'fullscreen --no-outer-gaps'
-
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-h = 'focus left'
 alt-j = 'focus down'
@@ -178,11 +175,19 @@ alt-q = 'close --quit-if-last-window'
 # See: https://nikitabobko.github.io/AeroSpace/commands#close-all-windows-but-current
 alt-shift-q = 'close-all-windows-but-current --quit-if-last-window'
 
+# See: https://nikitabobko.github.io/AeroSpace/commands#macos-native-minimize
+alt-x = 'macos-native-minimize'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#fullscreen
+alt-f = 'macos-native-fullscreen'
+# alt-f = 'fullscreen --no-outer-gaps'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 alt-enter = 'exec-and-forget open -n /Applications/Warp.app'
 alt-e = 'exec-and-forget open -a /Applications/Cursor.app'
 alt-m = 'exec-and-forget open -a /Applications/Spotify.app'
-alt-w = '''exec-and-forget osascript -e '
+alt-w = 'exec-and-forget open -a /Applications/Safari.app'
+alt-shift-w = '''exec-and-forget osascript -e '
 tell application "Safari"
     make new document at end of documents
     activate
