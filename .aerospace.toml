@@ -140,15 +140,15 @@ alt-equal = 'resize smart +50'
 alt-r = 'balance-sizes'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-1 = 'workspace 1'
-alt-2 = 'workspace 2'
-alt-3 = 'workspace 3'
-alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
-alt-6 = 'workspace 6'
-alt-7 = 'workspace 7'
-alt-8 = 'workspace 8'
-alt-9 = 'workspace 9'
+alt-1 = 'workspace --auto-back-and-forth 1'
+alt-2 = 'workspace --auto-back-and-forth 2'
+alt-3 = 'workspace --auto-back-and-forth 3'
+alt-4 = 'workspace --auto-back-and-forth 4'
+alt-5 = 'workspace --auto-back-and-forth 5'
+alt-6 = 'workspace --auto-back-and-forth 6'
+alt-7 = 'workspace --auto-back-and-forth 7'
+alt-8 = 'workspace --auto-back-and-forth 8'
+alt-9 = 'workspace --auto-back-and-forth 9'
 alt-period = 'workspace next'
 alt-comma = 'workspace prev'
 
@@ -173,10 +173,10 @@ alt-tab = 'workspace-back-and-forth'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#close
-alt-q = 'close'
+alt-q = 'close --quit-if-last-window'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#close-all-windows-but-current
-alt-shift-q = 'close-all-windows-but-current'
+alt-shift-q = 'close-all-windows-but-current --quit-if-last-window'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 alt-enter = 'exec-and-forget open -n /Applications/Warp.app'
